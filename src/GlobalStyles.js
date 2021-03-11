@@ -10,8 +10,13 @@ export default createGlobalStyle`
 
 body{
     margin: 0;
-    background: var(--red);
+    
  
+}
+
+h1, h2, h3, h4 {
+
+    margin: 0;
 }
 
 :root{
