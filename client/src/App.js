@@ -1,6 +1,7 @@
 import Header from './components/Header';
 import Home from './pages/Home';
 import Navigation from './components/Navigation';
+import { Route, Switch } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 
@@ -10,14 +11,34 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-        <Header headline='Welcome' open={open} setOpen={setOpen}></Header>
-        <Navigation open={open} setOpen={setOpen}></Navigation>
-      </div>
-      <Home></Home>
+      <Navigation open={open} setOpen={setOpen}></Navigation>
+      <main>
+        <Switch>
+          <Route exact path='/'>
+            <Header headline='Welcome' open={open} setOpen={setOpen}></Header>
 
+            <Home />
+          </Route>
+          <Route path='/search-mentors'>
+            <Header headline='Find a mentor' open={open} setOpen={setOpen}></Header>
 
-    </div>
+          </Route>
+          <Route path='/profile'>
+            <Header headline='Your Profile' open={open} setOpen={setOpen}></Header>
+
+          </Route>
+          <Route path='/create-profile'>
+            <Header headline='Create profile' open={open} setOpen={setOpen}></Header>
+
+          </Route>
+          <Route path='/favourites'>
+            <Header headline='Your Favourites' open={open} setOpen={setOpen}></Header>
+
+          </Route>
+        </Switch>
+      </main >
+
+    </div >
   );
 }
 
