@@ -5,7 +5,8 @@ export default createGlobalStyle`
 *{
     box-sizing: border-box;
    
-    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: 300;
 }
 
 body{

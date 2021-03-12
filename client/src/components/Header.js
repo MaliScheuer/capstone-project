@@ -68,7 +68,6 @@ padding-right: 1rem;
 a{
     margin-left: 0.3rem;
 }
-
 `
 
 

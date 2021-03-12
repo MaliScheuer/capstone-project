@@ -22,7 +22,10 @@ gap: 3rem;
 opacity: ${({ open }) => open ? '40%' : '100%'};
 
 h2{
-    text - transform: uppercase
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    line-height: 2.1rem;
+    
 
 
 }

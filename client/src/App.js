@@ -16,24 +16,23 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <Header headline='Welcome' open={open} setOpen={setOpen}></Header>
-
             <Home />
           </Route>
+
           <Route path='/search-mentors'>
             <Header headline='Find a mentor' open={open} setOpen={setOpen}></Header>
-
           </Route>
+
           <Route path='/profile'>
             <Header headline='Your Profile' open={open} setOpen={setOpen}></Header>
-
           </Route>
+
           <Route path='/create-profile'>
             <Header headline='Create profile' open={open} setOpen={setOpen}></Header>
-
           </Route>
+
           <Route path='/favourites'>
             <Header headline='Your Favourites' open={open} setOpen={setOpen}></Header>
-
           </Route>
         </Switch>
       </main >
