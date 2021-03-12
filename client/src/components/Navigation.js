@@ -5,8 +5,8 @@ export default function Navigation({ open, setOpen }) {
     return (
 
         <StyledNavigation open={open}>
-            <Button open={open} onClick={() => setOpen(!open)}>
-                &#10005;</Button>
+            <a open={open} onClick={() => setOpen(!open)}>
+                &#10005;</a>
             <a href='/'>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24.972" height="19.724" viewBox="0 0 24.972 19.724">
                     <path id="Icon_awesome-home" data-name="Icon awesome-home" d="M11.667,7.089,3.994,13.408v6.82a.666.666,0,0,0,.666.666l4.663-.012a.666.666,0,0,0,.662-.666V16.233a.666.666,0,0,1,.666-.666h2.663a.666.666,0,0,1,.666.666v3.98a.666.666,0,0,0,.666.668l4.662.013a.666.666,0,0,0,.666-.666V13.4L12.3,7.089A.507.507,0,0,0,11.667,7.089Zm12.119,4.295L20.307,8.517V2.753a.5.5,0,0,0-.5-.5h-2.33a.5.5,0,0,0-.5.5V5.774L13.252,2.709a2,2,0,0,0-2.538,0L.18,11.384a.5.5,0,0,0-.067.7l1.061,1.29a.5.5,0,0,0,.7.068l9.788-8.062a.507.507,0,0,1,.637,0l9.789,8.062a.5.5,0,0,0,.7-.067l1.061-1.29a.5.5,0,0,0-.071-.7Z" transform="translate(0.502 -1.67)" fill="rgba(255,255,255,0)" stroke="#fff" strokeWidth="1" />
@@ -71,22 +71,6 @@ letter-spacing: 0.2rem;
 svg{
     margin-right: 1rem;
 }
-
-
 `
 
-const Button = styled.button`
-background: transparent;
-border: none;
-cursor: pointer;
-color: white;
-text-align: left;
-margin-bottom: 1.5rem;
-font-size: 1.2rem;
 
-
-&:focus{
-    outline: none;
-
-}
-`

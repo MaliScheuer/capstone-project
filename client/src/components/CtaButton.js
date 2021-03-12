@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 export default function CtaButton({ buttonText }) {
 
@@ -18,3 +19,7 @@ box-shadow: 0.2rem 0.2rem 0.2rem rgba(0,0,0, 35%);
 cursor: pointer;
 width: 230px;
 `
+
+CtaButton.propTypes = {
+    buttonText: PropTypes.string
+}
