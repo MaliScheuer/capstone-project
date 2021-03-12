@@ -1,9 +1,9 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 export default function Navigation({ open, setOpen }) {
 
     return (
-
         <StyledNavigation open={open}>
             <a open={open} onClick={() => setOpen(!open)}>
                 &#10005;</a>
@@ -72,5 +72,10 @@ svg{
     margin-right: 1rem;
 }
 `
+
+Navigation.propTypes = {
+    setOpen: PropTypes.func,
+    open: PropTypes.bool
+}
 
 

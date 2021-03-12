@@ -70,7 +70,8 @@ a{
 }
 `
 
-
 Header.propTypes = {
-    headline: PropTypes.string
+    headline: PropTypes.string,
+    setOpen: PropTypes.func,
+    open: PropTypes.bool
 }

@@ -2,7 +2,7 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import Navigation from './components/Navigation';
 import { Route, Switch } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 
 function App() {
@@ -44,4 +44,3 @@ function App() {
 export default App;
 
 
-//openMenu={() => setOpen(!open)}

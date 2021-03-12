@@ -1,5 +1,6 @@
 import CtaButton from '../components/CtaButton';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 export default function Home({ open }) {
 
@@ -7,7 +8,7 @@ export default function Home({ open }) {
         <Wrapper open={open}>
             <a href='/create-profile'><CtaButton buttonText='Become a mentor'></CtaButton></a>
             <a href='/search-mentors'><CtaButton buttonText='Find a mentor'></CtaButton></a>
-            <h2>EVERY GREAT ACHIEVER IS INSPIRED BY A GREAT MENTOR</h2>
+            <h2>Every Great Achiever is inspired by a great mentor</h2>
         </Wrapper>
     )
 }
@@ -25,9 +26,8 @@ h2{
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     line-height: 2.1rem;
-    
-
-
 }
-
 `
+Home.propTypes = {
+    open: PropTypes.bool
+}

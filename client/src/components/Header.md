@@ -3,5 +3,5 @@
 This is a documentation about the header component.
 
 ```js
-<Header headline='Welcome'></Header>
+<Header headline='Welcome'/>
 ```
