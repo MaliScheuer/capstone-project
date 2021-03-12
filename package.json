@@ -1,0 +1,31 @@
+{
+  "name": "capstone-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "cd ./client && npm install && cd ../server && npm install",
+    "build": "cd ./client && npm run build",
+    "test:watch": "cd ./client && npm run test:watch",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "cd ./client && npm start",
+    "server": "nodemon ./server/src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./server/src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaliScheuer/capstone-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaliScheuer/capstone-project/issues"
+  },
+  "homepage": "https://github.com/MaliScheuer/capstone-project#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^6.0.0",
+    "nodemon": "^2.0.7"
+  }
+}
