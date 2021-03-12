@@ -5,7 +5,7 @@ import Navigation from './Navigation';
 export default function Header({ open, setOpen, headline }) {
 
     return (
-        <Wrapper>
+        <Wrapper open={open}>
             <Button open={open} onClick={() => setOpen(!open)}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="28.25" height="23.101" viewBox="0 0 28.25 23.101">
                     <g id="Icon_feather-menu" data-name="Icon feather-menu" transform="translate(-4 -8.5)">
@@ -43,6 +43,7 @@ height: 9rem;
 padding-top: 2rem;
 padding-left: 1.5rem;
 color: white;
+opacity: ${({ open }) => open ? '40%' : '100%'};
 
 h1{
     letter-spacing: 0.5rem;

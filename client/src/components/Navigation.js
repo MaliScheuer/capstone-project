@@ -39,13 +39,11 @@ const StyledNavigation = styled.nav`
 background: var(--petrol);
 display:flex;
 flex-direction: column;
-xjustify-content: center;
 gap: 1.5rem;
 transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
 height: 100vh;
 text-align: left;
 padding: 2rem;
-padding-right: 6rem;
 position: absolute;
 top: 0;
 left: 0;
@@ -55,6 +53,7 @@ a{
 text-transform: uppercase;
 text-decoration: none;
 color: white;
+letter-spacing: 0.2rem;
 }
 
 svg{
