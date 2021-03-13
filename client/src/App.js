@@ -1,6 +1,7 @@
 import Header from './components/Header';
 import Home from './pages/Home';
 import Navigation from './components/Navigation';
+import CreateMentor from './pages/CreateMentor'
 import { Route, Switch } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -29,6 +30,7 @@ function App() {
 
           <Route path='/create-profile'>
             <Header headline='Create profile' open={open} setOpen={setOpen}></Header>
+            <CreateMentor></CreateMentor>
           </Route>
 
           <Route path='/favourites'>
