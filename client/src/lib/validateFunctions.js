@@ -52,7 +52,7 @@ const isValidMentor = (mentor) =>
     isValidMentorName(mentor.mentor_name) &&
     isValidBuzzwords(mentor.buzzwords) &&
     isValidEmail(mentor.email) &&
-    isValidPhone(mentor.phone) &&
+    //isValidPhone(mentor.phone) &&
     isValidAbout(mentor.about)
 
 export default isValidMentor;

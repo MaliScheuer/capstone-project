@@ -30,5 +30,4 @@ h1, h2, h3, h4 {
     --lightgrey: #f0e6e6;
     --kakhi: #7a8775;
 }
-
 `

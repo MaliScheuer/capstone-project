@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import CtaButton from './CtaButton';
 import Buzzwords from './Buzzwords';
 import isValidMentor from '../lib/validateFunctions';
 import { useState } from 'react';
@@ -18,6 +17,7 @@ export default function Form({ submitFunction }) {
     }
 
     const [newMentor, setNewMentor] = useState(initialMentor);
+    const [valid, setValid] = useState(false)
 
     const handleChange = event => {
         const field = event.target;
@@ -33,6 +33,7 @@ export default function Form({ submitFunction }) {
     function submitForm(event) {
         event.preventDefault();
         if (isValidMentor(newMentor)) {
+            setValid(true);
             submitFunction(newMentor);
             setNewMentor(initialMentor);
         }
@@ -70,6 +71,7 @@ export default function Form({ submitFunction }) {
                 type='text'
                 name='mentor_name'
                 placeholder='Enter your full name'
+                required="required"
                 onChange={handleChange}
                 value={newMentor.mentor_name} />
 
@@ -77,7 +79,8 @@ export default function Form({ submitFunction }) {
                 type='text'
                 name='competence'
                 onChange={handleChange}
-                value={newMentor.competence} >
+                value={newMentor.competence}
+                required="required">
 
                 <option value=''>Choose field of competence</option>
                 <option value='Architecture and Engineering'>Architecture and Engineering</option>
@@ -103,13 +106,15 @@ export default function Form({ submitFunction }) {
                 type='email'
                 name='email'
                 placeholder='Enter your email'
+                required="required"
                 onChange={handleChange}
                 value={newMentor.email} />
 
             <input
-                type='text'
+                type='number'
                 name='phone'
                 placeholder='Enter your phone number'
+                required="required"
                 onChange={handleChange}
                 value={newMentor.phone} />
 
@@ -123,6 +128,7 @@ export default function Form({ submitFunction }) {
                 why you wanna become a mentor
                 and in which areas you can help
                 (use 250 - 750 characters)'
+                required="required"
                 onChange={handleChange}
                 value={newMentor.about} />
 
@@ -138,7 +144,8 @@ export default function Form({ submitFunction }) {
                 value={newMentor.image}
             />
 
-            <CtaButton type='submit' buttonText='Create Profile'></CtaButton>
+            <CtaButton valid={valid} type='submit' buttonText='Create Profile'> Create Profile</CtaButton>
+
 
         </FormWrapper>
     )
@@ -164,6 +171,12 @@ font-style: italic;
 color: var(--petrol);
 }
 
+/*input:valid, 
+select:valid, 
+textarea:valid{
+  box-shadow: 0 0 5px 1px var(--petrol);
+}*/
+
 textarea{
     height: 5rem;
     padding: 0.8rem;
@@ -177,4 +190,19 @@ p{
     margin: 0.1rem 0;
     }
 `
+
+const CtaButton = styled.button`
+background: ${({ valid }) => valid ? 'var(--red)' : 'var(--lightgrey)'};
+padding: 1rem;
+border-radius: 0.4rem;
+border: none;
+color: white;
+text-transform: uppercase;
+box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 35%);
+cursor: pointer;
+width: 230px;
+font-size: 1.1rem;
+`
+
+
 
