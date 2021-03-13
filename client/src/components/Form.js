@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import CtaButton from './CtaButton'
+import Buzzwords from './Buzzwords'
 import { useState } from 'react';
 
 export default function Form() {
@@ -16,7 +17,40 @@ export default function Form() {
 
     const [newMentor, setNewMentor] = useState(initialMentor);
 
+    const handleChange = event => {
+        const field = event.target;
+        const value = field.value;
 
+        setNewMentor({
+            ...newMentor,
+            [field.name]: value
+        })
+    }
+
+    const addBuzzword = buzzword => {
+
+        setNewMentor({
+            ...newMentor,
+            buzzwords: [...newMentor.buzzwords, buzzword]
+        })
+
+    }
+
+    function deleteBuzzword(buzzwordToDelete) {
+        const remainingBuzzwords = newMentor.buzzwords.filter(
+            (buzzword) => buzzwordToDelete !== buzzword);
+        setNewMentor({ ...newMentor, buzzwords: remainingBuzzwords })
+    }
+
+    function deleteLastBuzzword() {
+        const remainingBuzzwords = newMentor.buzzwords.filter((_, index) =>
+            index !== newMentor.buzzwords.length - 1
+        )
+        setNewMentor({
+            ...newMentor,
+            buzzwords: remainingBuzzwords
+        })
+    }
 
 
     return (
@@ -25,16 +59,16 @@ export default function Form() {
 
             <input
                 type='text'
-                name='product_name'
+                name='mentor_name'
                 placeholder='Enter your full name'
-                //onChange={handleChange}
+                onChange={handleChange}
                 value={newMentor.mentor_name} />
 
 
             <select
                 type='text'
                 name='competence'
-                //onChange={handleChange}
+                onChange={handleChange}
                 value={newMentor.competence} >
 
                 <option value=''>Choose field of competence</option>
@@ -49,61 +83,53 @@ export default function Form() {
                 <option value='Science and Technology'>Science and Technology</option>
             </select>
 
-            <BuzzwordWrapper>
-                <input
+            <Buzzwords
+                buzzwords={newMentor.buzzwords}
+                onCreateBuzzword={addBuzzword}
+                onDeleteBuzzword={deleteBuzzword}
+                onDeleteLastBuzzword={deleteLastBuzzword} />
 
-                    type='text'
-                    name='buzzwords'
-                    placeholder='Enter skill or buzzword'
-                    //onChange={handleChange}
-                    value={newMentor.buzzwords} />
-                <button>Add</button>
-            </BuzzwordWrapper>
 
             <input
                 type='email'
                 name='email'
                 placeholder='Enter your email'
-                //onChange={handleChange}
+                onChange={handleChange}
                 value={newMentor.email} />
 
             <input
                 type='text'
                 name='phone'
                 placeholder='Enter your phone number'
-                //onChange={handleChange}
+                onChange={handleChange}
                 value={newMentor.phone} />
 
-            <label>About</label>
+            <p><label>About</label></p>
             <textarea
                 minLength="250"
-                maxlength="1000"
+                maxLength="750"
                 type='text'
                 name='about'
                 placeholder='Tell the world about yourself,
                 why you wanna become a mentor
                 and in which areas you can help
-                (use 250 -1.000 characters)'
-                //onChange={handleChange}
+                (use 250 - 750 characters)'
+                onChange={handleChange}
                 value={newMentor.about} />
 
 
-            <label> Add image
-                <input
+            <p><label>Add image
+            </label></p>
+            <input
 
-                    type='file'
-                    name='image'
-                    placeholder='Add image'
-                    //onChange={handleChange}
-                    value={newMentor.image}
+                type='file'
+                name='image'
+                placeholder='Add image'
+                onChange={handleChange}
+                value={newMentor.image}
+            />
 
-
-                />
-
-
-            </label>
-
-            <CtaButton buttonText='Create Profile'></CtaButton>
+            <CtaButton type='submit' buttonText='Create Profile'></CtaButton>
 
         </FormWrapper>
     )
@@ -116,28 +142,28 @@ margin: 1.2rem 2.3rem;
 gap: 0.7rem;
 
 
+
 input, select, textarea{
 margin-bottom: 1rem;
 border-radius: 1rem;
-box-shadow: 0.2rem 0.2rem 0.2rem rgba(0,0,0, 35%);
+box-shadow: 0.1rem 0.2rem 0.2rem 0.1rem rgba(0,0,0, 35%);
 border: none;
-padding: 0.8rem;
+padding: 0.6rem;
 background: white;
-color: var(--petrol);
+outline: none;
+font-style: italic;
 }
+
+textarea{
+    height: 5rem;
+}
+
+label{
+    margin-left: 0.5rem;
+}
+p{
+    color: var(--petrol);
+    margin: 0.1rem 0;
+    }
 `
 
-const BuzzwordWrapper = styled.section`
-display:grid;
-grid-template-columns: 4fr 1fr;
-gap: 1rem;
-
-button{
-    border: none;
-    background: var(--petrol-light);
-    color: white;
-    box-shadow: 0.2rem 0.2rem 0.2rem rgba(0,0,0, 35%);
-    border-radius: 1rem;
-    height: 70%;
-}
-`
