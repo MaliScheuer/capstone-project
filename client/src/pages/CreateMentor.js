@@ -1,9 +1,15 @@
-import Form from '../components/Form'
+import Form from '../components/Form';
+import { useState } from 'react';
 
 
 export default function CreateMentor() {
 
+    const [mentors, setMentors] = useState([]);
+
+    const addMentor = () =>
+        setMentors([...mentors]);
+
     return (
-        <Form></Form>
+        <Form submitFunction={addMentor}></Form>
     )
 }

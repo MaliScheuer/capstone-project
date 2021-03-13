@@ -14,6 +14,9 @@ export default function Buzzwords({ onCreateBuzzword, buzzwords, onDeleteBuzzwor
             event.preventDefault();
             onCreateBuzzword(value);
             setValue('');
+        } else if (event.key === 'Backspace' && value === ('')) {
+            event.preventDefault();
+            onDeleteLastBuzzword(value)
         }
     }
 
@@ -24,20 +27,19 @@ export default function Buzzwords({ onCreateBuzzword, buzzwords, onDeleteBuzzwor
 
 
     return (
-        <>
-            <Wrapper>
-                <input
-                    type='text'
-                    name='buzzwords'
-                    placeholder='Enter skill or buzzword'
-                    onChange={handleChange}
-                    value={value}
-                    onKeyDown={handleKeyDown} />
-                <button
-                    type='button'
-                    onClick={handleClick}
-                >Add</button>
-            </Wrapper >
+        <Wrapper>
+            <input
+                type='text'
+                name='buzzwords'
+                placeholder='Enter skill or buzzword'
+                onChange={handleChange}
+                value={value}
+                onKeyDown={handleKeyDown} />
+            <button
+                type='button'
+                onClick={handleClick}
+            >Add</button>
+
 
             <BuzzwordWrapper>
                 {buzzwords.map((buzzword, index) => (
@@ -46,8 +48,7 @@ export default function Buzzwords({ onCreateBuzzword, buzzwords, onDeleteBuzzwor
                     </span>
                 ))}
             </BuzzwordWrapper>
-        </>
-
+        </Wrapper >
     )
 }
 
@@ -56,7 +57,10 @@ export default function Buzzwords({ onCreateBuzzword, buzzwords, onDeleteBuzzwor
 const Wrapper = styled.section`
     display:grid;
     grid-template-columns: 4fr 1fr;
-    gap: 1rem;
+    box-shadow: 0.2rem 0.2rem 0.2rem 0.1rem rgba(0,0,0, 35%);
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
 
     button {
     border: none;
@@ -67,8 +71,15 @@ const Wrapper = styled.section`
     height: 70%;
     outline: none;
     cursor: pointer;
+    margin-left: 0.5rem;
+    }
+
+    input[type=text]{
+    box-shadow: none;
     }
     `
+
+
 const BuzzwordWrapper = styled.section`
     display: flex;
     flex-wrap: wrap;
@@ -79,5 +90,9 @@ const BuzzwordWrapper = styled.section`
         color: white;
         padding: 0.5rem;
         border-radius: 0.6rem;
+    }
+
+    i{
+        cursor: pointer;
     }
     `

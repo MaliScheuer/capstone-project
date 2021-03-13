@@ -1,9 +1,11 @@
 import styled from 'styled-components';
-import CtaButton from './CtaButton'
-import Buzzwords from './Buzzwords'
+import CtaButton from './CtaButton';
+import Buzzwords from './Buzzwords';
+import isValidMentor from '../lib/validateFunctions';
 import { useState } from 'react';
 
-export default function Form() {
+
+export default function Form({ submitFunction }) {
     const initialMentor =
     {
         mentor_name: '',
@@ -27,13 +29,23 @@ export default function Form() {
         })
     }
 
+
+    function submitForm(event) {
+        event.preventDefault();
+        if (isValidMentor(newMentor)) {
+            submitFunction(newMentor);
+            setNewMentor(initialMentor);
+        }
+    }
+
+
     const addBuzzword = buzzword => {
-
-        setNewMentor({
-            ...newMentor,
-            buzzwords: [...newMentor.buzzwords, buzzword]
-        })
-
+        if (buzzword.length >= 1) {
+            setNewMentor({
+                ...newMentor,
+                buzzwords: [...newMentor.buzzwords, buzzword]
+            })
+        }
     }
 
     function deleteBuzzword(buzzwordToDelete) {
@@ -44,8 +56,7 @@ export default function Form() {
 
     function deleteLastBuzzword() {
         const remainingBuzzwords = newMentor.buzzwords.filter((_, index) =>
-            index !== newMentor.buzzwords.length - 1
-        )
+            index !== newMentor.buzzwords.length - 1)
         setNewMentor({
             ...newMentor,
             buzzwords: remainingBuzzwords
@@ -54,16 +65,13 @@ export default function Form() {
 
 
     return (
-        <FormWrapper>
-
-
+        <FormWrapper onSubmit={submitForm}>
             <input
                 type='text'
                 name='mentor_name'
                 placeholder='Enter your full name'
                 onChange={handleChange}
                 value={newMentor.mentor_name} />
-
 
             <select
                 type='text'
@@ -87,7 +95,8 @@ export default function Form() {
                 buzzwords={newMentor.buzzwords}
                 onCreateBuzzword={addBuzzword}
                 onDeleteBuzzword={deleteBuzzword}
-                onDeleteLastBuzzword={deleteLastBuzzword} />
+                onDeleteLastBuzzword={deleteLastBuzzword}>
+            </Buzzwords>
 
 
             <input
@@ -139,7 +148,7 @@ const FormWrapper = styled.form`
 display:flex;
 flex-direction: column;
 margin: 1.2rem 2.3rem;
-gap: 0.7rem;
+gap: 0.4rem;
 
 
 
@@ -152,10 +161,12 @@ padding: 0.6rem;
 background: white;
 outline: none;
 font-style: italic;
+color: var(--petrol);
 }
 
 textarea{
     height: 5rem;
+    padding: 0.8rem;
 }
 
 label{
