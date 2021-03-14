@@ -1,9 +1,9 @@
-import Header from './components/Header';
-import Home from './pages/Home';
-import Navigation from './components/Navigation';
-import CreateMentor from './pages/CreateMentor'
 import { Route, Switch } from 'react-router-dom';
 import { useState } from 'react';
+import Home from './pages/Home';
+import CreateMentor from './pages/CreateMentor';
+import Header from './components/Header';
+import Navigation from './components/Navigation';
 
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="App">
+    <div>
       <Navigation open={open} setOpen={setOpen}></Navigation>
       <main>
         <Switch>

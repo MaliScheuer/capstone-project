@@ -1,9 +1,8 @@
+import { useState } from 'react';
+import PropTypes from 'prop-types'
 import styled from 'styled-components';
 import Buzzwords from './Buzzwords';
 import isValidMentor from '../lib/validateFunctions';
-import { useState } from 'react';
-import PropTypes from 'prop-types'
-
 
 export default function Form({ submitFunction, open }) {
     const initialMentor =
@@ -67,83 +66,85 @@ export default function Form({ submitFunction, open }) {
 
 
     return (
-        <FormWrapper open={open} onSubmit={submitForm}>
-            <input
-                type='text'
-                name='mentor_name'
-                placeholder='Enter your full name'
-                onChange={handleChange}
-                value={newMentor.mentor_name} />
+        <>
+            <FormWrapper open={open} valid={valid} onSubmit={submitForm}>
+                <input
+                    type='text'
+                    name='mentor_name'
+                    placeholder='Enter your full name'
+                    onChange={handleChange}
+                    value={newMentor.mentor_name} />
 
-            <select
-                type='text'
-                name='competence'
-                onChange={handleChange}
-                value={newMentor.competence}>
+                <select
+                    type='text'
+                    name='competence'
+                    onChange={handleChange}
+                    value={newMentor.competence}>
 
-                <option value=''>Choose field of competence</option>
-                <option value='Architecture and Engineering'>Architecture and Engineering</option>
-                <option value='Agriculture and Food'>Agriculture and Food</option>
-                <option value='Arts and Entertainment'>Arts and Entertainment</option>
-                <option value='Business, Management and Administration'>Business, Management and Administration</option>
-                <option value='Education and Training'>Education and Training</option>
-                <option value='Health and Medicine'>Health and Medicine</option>
-                <option value='Law and Public Policy'>Law and Public Policy</option>
-                <option value='Sales, Marketing and Communications'>Sales, Marketing and Communications</option>
-                <option value='Science and Technology'>Science and Technology</option>
-            </select>
+                    <option value=''>Choose field of competence</option>
+                    <option value='Architecture and Engineering'>Architecture and Engineering</option>
+                    <option value='Agriculture and Food'>Agriculture and Food</option>
+                    <option value='Arts and Entertainment'>Arts and Entertainment</option>
+                    <option value='Business, Management and Administration'>Business, Management and Administration</option>
+                    <option value='Education and Training'>Education and Training</option>
+                    <option value='Health and Medicine'>Health and Medicine</option>
+                    <option value='Law and Public Policy'>Law and Public Policy</option>
+                    <option value='Sales, Marketing and Communications'>Sales, Marketing and Communications</option>
+                    <option value='Science and Technology'>Science and Technology</option>
+                </select>
 
-            <Buzzwords
-                buzzwords={newMentor.buzzwords}
-                onCreateBuzzword={addBuzzword}
-                onDeleteBuzzword={deleteBuzzword}
-                onDeleteLastBuzzword={deleteLastBuzzword}>
-            </Buzzwords>
+                <Buzzwords
+                    buzzwords={newMentor.buzzwords}
+                    onCreateBuzzword={addBuzzword}
+                    onDeleteBuzzword={deleteBuzzword}
+                    onDeleteLastBuzzword={deleteLastBuzzword}>
+                </Buzzwords>
 
+                <input
+                    type='email'
+                    name='email'
+                    placeholder='Enter your email'
+                    onChange={handleChange}
+                    value={newMentor.email} />
 
-            <input
-                type='email'
-                name='email'
-                placeholder='Enter your email'
-                onChange={handleChange}
-                value={newMentor.email} />
+                <input
+                    type='tel'
+                    name='phone'
+                    placeholder='Enter your phone number'
+                    onChange={handleChange}
+                    value={newMentor.phone} />
 
-            <input
-                type='tel'
-                name='phone'
-                placeholder='Enter your phone number'
-                onChange={handleChange}
-                value={newMentor.phone} />
-
-            <p><label>About</label></p>
-            <textarea
-                minLength="250"
-                maxLength="750"
-                type='text'
-                name='about'
-                placeholder='Tell the world about yourself,
+                <p><label>About</label></p>
+                <textarea
+                    minLength="250"
+                    maxLength="750"
+                    type='text'
+                    name='about'
+                    placeholder='Tell the world about yourself,
                 why you wanna become a mentor
                 and in which areas you can help
                 (use 250 - 750 characters)'
-                onChange={handleChange}
-                value={newMentor.about} />
+                    onChange={handleChange}
+                    value={newMentor.about} />
 
 
-            <p><label>Add image
+                <p><label>Add image
             </label></p>
-            <input
+                <input
 
-                type='file'
-                name='image'
-                placeholder='Add image'
-                onChange={handleChange}
-                value={newMentor.image}
-            />
+                    type='file'
+                    name='image'
+                    placeholder='Add image'
+                    onChange={handleChange}
+                    value={newMentor.image}
+                />
 
-            <CtaButton valid={valid} type='submit' buttonText='Create Profile'> Create Profile</CtaButton>
+                <CtaButton valid={valid} type='submit' buttonText='Create Profile'> Create Profile</CtaButton>
 
-
-        </FormWrapper>
+            </FormWrapper>
+            {valid && <SuccessMessage> <p>Thanks for sharing your experience! Now your profile is part of our mentors network!</p>
+                <ProfileButton>Checkout other profiles</ProfileButton></SuccessMessage>}
+        </>
     )
 }
 
@@ -152,7 +153,9 @@ display:flex;
 flex-direction: column;
 margin: 1.2rem 2.3rem;
 gap: 0.4rem;
-opacity: ${({ open }) => open ? '40%' : '100%'};
+opacity: ${({ open, valid }) => open || valid ? '40%' : '100%'};
+position: absolute; 
+
 
 
 
@@ -199,6 +202,28 @@ box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 35%);
 cursor: pointer;
 width: 230px;
 font-size: 1.1rem;
+`
+
+const SuccessMessage = styled.div`
+background: var(--petrol);
+color: white;
+padding: 1rem;
+margin: 2rem;
+position: relative;
+border-radius: 0.3rem;
+`
+
+const ProfileButton = styled.button`
+border: none; 
+outline: none;
+border-radius: 0.3rem;
+color: var(--petrol);
+padding: 0.5rem;
+margin-top: 1rem;
+background: var(--lightgrey);
+letter-spacing: 0.1rem;
+font-size: 0.7rem;
+text-transform: uppercase;
 `
 
 Form.propTypes = {

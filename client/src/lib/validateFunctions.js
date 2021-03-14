@@ -9,6 +9,16 @@ export const isValidMentorName = (name) => {
 }
 
 
+export const isValidCompetence = (competence) => {
+    if (competence !== '') {
+        return true
+    } else {
+        alert("You have to choose a field of competence")
+        return false
+    }
+}
+
+
 export const isValidBuzzwords = (buzzword) => {
     if (buzzword.length >= 1) {
         return true
@@ -52,6 +62,7 @@ export const isValidAbout = (about) => {
 
 const isValidMentor = (mentor) =>
     isValidMentorName(mentor.mentor_name) &&
+    isValidCompetence(mentor.competence) &&
     isValidBuzzwords(mentor.buzzwords) &&
     isValidEmail(mentor.email) &&
     isValidPhone(mentor.phone) &&
