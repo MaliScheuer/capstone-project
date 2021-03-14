@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import Buzzwords from './Buzzwords';
 import isValidMentor from '../lib/validateFunctions';
 import { useState } from 'react';
+import PropTypes from 'prop-types'
 
 
-export default function Form({ submitFunction }) {
+export default function Form({ submitFunction, open }) {
     const initialMentor =
     {
         mentor_name: '',
@@ -66,12 +67,11 @@ export default function Form({ submitFunction }) {
 
 
     return (
-        <FormWrapper onSubmit={submitForm}>
+        <FormWrapper open={open} onSubmit={submitForm}>
             <input
                 type='text'
                 name='mentor_name'
                 placeholder='Enter your full name'
-                required="required"
                 onChange={handleChange}
                 value={newMentor.mentor_name} />
 
@@ -79,8 +79,7 @@ export default function Form({ submitFunction }) {
                 type='text'
                 name='competence'
                 onChange={handleChange}
-                value={newMentor.competence}
-                required="required">
+                value={newMentor.competence}>
 
                 <option value=''>Choose field of competence</option>
                 <option value='Architecture and Engineering'>Architecture and Engineering</option>
@@ -106,15 +105,13 @@ export default function Form({ submitFunction }) {
                 type='email'
                 name='email'
                 placeholder='Enter your email'
-                required="required"
                 onChange={handleChange}
                 value={newMentor.email} />
 
             <input
-                type='number'
+                type='tel'
                 name='phone'
                 placeholder='Enter your phone number'
-                required="required"
                 onChange={handleChange}
                 value={newMentor.phone} />
 
@@ -128,7 +125,6 @@ export default function Form({ submitFunction }) {
                 why you wanna become a mentor
                 and in which areas you can help
                 (use 250 - 750 characters)'
-                required="required"
                 onChange={handleChange}
                 value={newMentor.about} />
 
@@ -156,6 +152,7 @@ display:flex;
 flex-direction: column;
 margin: 1.2rem 2.3rem;
 gap: 0.4rem;
+opacity: ${({ open }) => open ? '40%' : '100%'};
 
 
 
@@ -204,5 +201,7 @@ width: 230px;
 font-size: 1.1rem;
 `
 
-
+Form.propTypes = {
+    submitFunction: PropTypes.func
+}
 

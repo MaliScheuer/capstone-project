@@ -2,7 +2,7 @@ import Form from '../components/Form';
 import { useState } from 'react';
 
 
-export default function CreateMentor() {
+export default function CreateMentor({ open }) {
 
     const [mentors, setMentors] = useState([]);
 
@@ -10,6 +10,6 @@ export default function CreateMentor() {
         setMentors([...mentors]);
 
     return (
-        <Form submitFunction={addMentor}></Form>
+        <Form open={open} submitFunction={addMentor}></Form>
     )
 }

@@ -1,11 +1,13 @@
 export const isValidMentorName = (name) => {
-    if (name.length >= 2) {
+    const letters = /^[a-z]*$/i;
+    if (name.length >= 2 && name.match(letters)) {
         return true
     } else {
         alert("Not a valid name");
         return false;
     }
 }
+
 
 export const isValidBuzzwords = (buzzword) => {
     if (buzzword.length >= 1) {
@@ -27,7 +29,7 @@ export const isValidEmail = (email) => {
 }
 
 export const isValidPhone = (phone) => {
-    const phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    const phoneno = /([0-9\s\-]{7,})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/;
     if (phone.match(phoneno)) {
         return true;
     }
@@ -52,7 +54,7 @@ const isValidMentor = (mentor) =>
     isValidMentorName(mentor.mentor_name) &&
     isValidBuzzwords(mentor.buzzwords) &&
     isValidEmail(mentor.email) &&
-    //isValidPhone(mentor.phone) &&
+    isValidPhone(mentor.phone) &&
     isValidAbout(mentor.about)
 
 export default isValidMentor;

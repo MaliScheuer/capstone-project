@@ -17,7 +17,7 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <Header headline='Welcome' open={open} setOpen={setOpen}></Header>
-            <Home />
+            <Home open={open} />
           </Route>
 
           <Route path='/search-mentors'>
@@ -30,7 +30,7 @@ function App() {
 
           <Route path='/create-profile'>
             <Header headline='Create profile' open={open} setOpen={setOpen}></Header>
-            <CreateMentor></CreateMentor>
+            <CreateMentor open={open}></CreateMentor>
           </Route>
 
           <Route path='/favourites'>

@@ -1,6 +1,6 @@
-import CtaButton from '../components/CtaButton';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import CtaButton from '../components/CtaButton';
 
 export default function Home({ open }) {
 

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 export default function Buzzwords({ onCreateBuzzword, buzzwords, onDeleteBuzzword, onDeleteLastBuzzword }) {
 
@@ -96,3 +97,10 @@ const BuzzwordWrapper = styled.section`
         cursor: pointer;
     }
     `
+
+Buzzwords.propTypes = {
+    onCreateBuzzword: PropTypes.func,
+    buzzwords: PropTypes.array,
+    onDeleteBuzzword: PropTypes.func,
+    onDeleteLastBuzzword: PropTypes.func
+}
