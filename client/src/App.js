@@ -1,7 +1,8 @@
 import { Route, Switch } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Home from './pages/Home';
 import CreateMentor from './pages/CreateMentor';
+import SearchMentor from './pages/SearchMentor';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
 
@@ -9,14 +10,7 @@ import Navigation from './components/Navigation';
 function App() {
 
   const [open, setOpen] = useState(false);
-  const [mentorsApi, setMentorsApi] = useState([]);
 
-  useEffect(() => {
-    fetch('http://localhost:4000/search-mentors')
-      .then(result => result.json())
-      .then(mentors => setMentorsApi(mentors))
-      .catch(error => console.error(error.message))
-  }, []);
 
   return (
     <div>
@@ -30,6 +24,7 @@ function App() {
 
           <Route path='/search-mentors'>
             <Header headline='Find a mentor' open={open} setOpen={setOpen} />
+            <SearchMentor open={open} />
           </Route>
 
           <Route path='/profile'>
