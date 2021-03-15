@@ -1,5 +1,5 @@
 import { Route, Switch } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Home from './pages/Home';
 import CreateMentor from './pages/CreateMentor';
 import Header from './components/Header';
@@ -9,6 +9,14 @@ import Navigation from './components/Navigation';
 function App() {
 
   const [open, setOpen] = useState(false);
+  const [mentorsApi, setMentorsApi] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:4000/search-mentors')
+      .then(result => result.json())
+      .then(mentors => setMentorsApi(mentors))
+      .catch(error => console.error(error.message))
+  }, []);
 
   return (
     <div>
