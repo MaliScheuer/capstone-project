@@ -28,7 +28,7 @@ Favourites</a>
 
             <a href='/create-profile'>
                 <NewProfileIcon />
-New Profile</a>
+Become a mentor</a>
         </StyledNavigation>
     )
 }

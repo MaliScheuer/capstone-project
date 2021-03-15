@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Buzzwords from './Buzzwords';
 import isValidMentor from '../lib/validateFunctions';
@@ -143,7 +143,7 @@ export default function Form({ submitFunction, open }) {
 
             </FormWrapper>
             {valid && <SuccessMessage> <p>Thanks for sharing your experience! Now your profile is part of our mentors network!</p>
-                <ProfileButton>Checkout other profiles</ProfileButton></SuccessMessage>}
+                <a href='/search-mentors'>  <ProfileButton>Checkout other profiles</ProfileButton></a></SuccessMessage>}
         </>
     )
 }
@@ -155,9 +155,6 @@ margin: 1.2rem 2.3rem;
 gap: 0.4rem;
 opacity: ${({ open, valid }) => open || valid ? '40%' : '100%'};
 position: absolute; 
-
-
-
 
 input, select, textarea{
 margin-bottom: 1rem;
@@ -224,6 +221,7 @@ background: var(--lightgrey);
 letter-spacing: 0.1rem;
 font-size: 0.7rem;
 text-transform: uppercase;
+cursor: pointer;
 `
 
 Form.propTypes = {
