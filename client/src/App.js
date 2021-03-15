@@ -12,29 +12,29 @@ function App() {
 
   return (
     <div>
-      <Navigation open={open} setOpen={setOpen}></Navigation>
+      <Navigation open={open} setOpen={setOpen} />
       <main>
         <Switch>
           <Route exact path='/'>
-            <Header headline='Welcome' open={open} setOpen={setOpen}></Header>
+            <Header headline='Welcome' open={open} setOpen={setOpen} />
             <Home open={open} />
           </Route>
 
           <Route path='/search-mentors'>
-            <Header headline='Find a mentor' open={open} setOpen={setOpen}></Header>
+            <Header headline='Find a mentor' open={open} setOpen={setOpen} />
           </Route>
 
           <Route path='/profile'>
-            <Header headline='Your Profile' open={open} setOpen={setOpen}></Header>
+            <Header headline='Your Profile' open={open} setOpen={setOpen} />
           </Route>
 
           <Route path='/create-profile'>
-            <Header headline='Create profile' open={open} setOpen={setOpen}></Header>
-            <CreateMentor open={open}></CreateMentor>
+            <Header headline='Create profile' open={open} setOpen={setOpen} />
+            <CreateMentor open={open} />
           </Route>
 
           <Route path='/favourites'>
-            <Header headline='Your Favourites' open={open} setOpen={setOpen}></Header>
+            <Header headline='Your Favourites' open={open} setOpen={setOpen} />
           </Route>
         </Switch>
       </main >

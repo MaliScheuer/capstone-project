@@ -37,7 +37,6 @@ export default function Form({ submitFunction, open }) {
             submitFunction(newMentor);
             setNewMentor(initialMentor);
         }
-        console.log(newMentor)
     }
 
 
@@ -115,7 +114,7 @@ export default function Form({ submitFunction, open }) {
                     onChange={handleChange}
                     value={newMentor.phone} />
 
-                <p><label>About</label></p>
+                <label>About</label>
                 <textarea
                     minLength="250"
                     maxLength="750"
@@ -129,8 +128,8 @@ export default function Form({ submitFunction, open }) {
                     value={newMentor.about} />
 
 
-                <p><label>Add image
-            </label></p>
+                <label>Add image
+            </label>
                 <input
 
                     type='file'
@@ -140,7 +139,7 @@ export default function Form({ submitFunction, open }) {
                     value={newMentor.image}
                 />
 
-                <CtaButton valid={valid} type='submit' buttonText='Create Profile'> Create Profile</CtaButton>
+                <CtaButton valid={valid} type='submit'> Create Profile</CtaButton>
 
             </FormWrapper>
             {valid && <SuccessMessage> <p>Thanks for sharing your experience! Now your profile is part of our mentors network!</p>
@@ -183,11 +182,8 @@ textarea{
 
 label{
     margin-left: 0.5rem;
-}
-p{
     color: var(--petrol);
-    margin: 0.1rem 0;
-    }
+}
 `
 
 const CtaButton = styled.button`

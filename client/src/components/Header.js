@@ -9,7 +9,7 @@ export default function Header({ open, setOpen, headline }) {
     return (
         <Wrapper open={open}>
             <PseudoButton onClick={() => setOpen(!open)}>
-                <BurgerIcon></BurgerIcon>
+                <BurgerIcon />
             </PseudoButton>
 
             <IconsWrapper>
@@ -56,7 +56,6 @@ a{
 const PseudoButton = styled.button`
 background: none;
 border: none;
-outline: none;
 `
 
 Header.propTypes = {
