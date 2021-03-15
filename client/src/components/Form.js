@@ -37,6 +37,7 @@ export default function Form({ submitFunction, open }) {
             submitFunction(newMentor);
             setNewMentor(initialMentor);
         }
+        console.log(newMentor)
     }
 
 
@@ -152,9 +153,10 @@ const FormWrapper = styled.form`
 display:flex;
 flex-direction: column;
 margin: 1.2rem 2.3rem;
-gap: 0.4rem;
+gap: 0.2rem;
 opacity: ${({ open, valid }) => open || valid ? '40%' : '100%'};
 position: absolute; 
+
 
 input, select, textarea{
 margin-bottom: 1rem;
@@ -175,7 +177,7 @@ textarea:valid{
 }*/
 
 textarea{
-    height: 5rem;
+    height: 6rem;
     padding: 0.8rem;
 }
 

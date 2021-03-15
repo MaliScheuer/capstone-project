@@ -3,7 +3,7 @@ export const isValidMentorName = (name) => {
     if (name.length >= 2 && name.match(letters)) {
         return true
     } else {
-        alert("Not a valid name");
+        alert("Enter your right name");
         return false;
     }
 }
@@ -23,7 +23,7 @@ export const isValidBuzzwords = (buzzword) => {
     if (buzzword.length >= 1) {
         return true
     } else {
-        alert("Not a valid buzzword");
+        alert("Enter at least one buzzword");
         return false;
     }
 }
@@ -33,7 +33,7 @@ export const isValidEmail = (email) => {
     if (email.includes('@')) {
         return true
     } else {
-        alert("Not a valid email");
+        alert("Enter a valid email");
         return false;
     }
 }
@@ -44,7 +44,7 @@ export const isValidPhone = (phone) => {
         return true;
     }
     else {
-        alert("Not a valid Phone Number");
+        alert("Enter a valid Phone Number");
         return false;
     }
 }
