@@ -21,6 +21,7 @@ box-shadow: 0.2rem 0.2rem 0.2rem rgba(0,0,0, 35%);
 cursor: pointer;
 width: 230px;
 font-size: 1.1rem;
+outline:white;
 `
 
 CtaButton.propTypes = {

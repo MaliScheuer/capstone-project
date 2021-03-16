@@ -6,10 +6,6 @@ export default function CreateMentor({ open }) {
 
     const [mentors, setMentors] = useState([]);
 
-    /*const addMentor = () => {
-        setMentors([...mentors])
-    };*/
-
     const addToMentors = (mentor) => {
         fetch('http://localhost:4000/create-profile', {
             method: 'POST',
@@ -25,7 +21,7 @@ export default function CreateMentor({ open }) {
             })
         })
             .then(result => result.json())
-            .then(mentor => console.log(mentor))
+            .then(mentor => setMentors(mentor))
             .catch(error => console.error(error.message));
     }
 
