@@ -15,7 +15,7 @@ export default function MentorsCard({ mentor, open, onAddToFavourite }) {
     return (
         <Wrapper open={open}>
             <Section >
-                <IconWrapper ><HeartIconPetrol onClick={() => setIsActive(!isActive)} /></IconWrapper>
+                <IconWrapper isActive={isActive}><HeartIconPetrol onClick={() => setIsActive(!isActive)} /></IconWrapper>
                 <ProfileImg src='https://images.unsplash.com/photo-1541535881962-3bb380b08458?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=632&q=80'></ProfileImg>
                 <p>{mentor.image}</p>
                 <WrapperContact details={details}>
