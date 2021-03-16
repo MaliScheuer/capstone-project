@@ -43,11 +43,12 @@ export default function Buzzwords({ onCreateBuzzword, buzzwords, onDeleteBuzzwor
 
 
             <BuzzwordWrapper>
-                {buzzwords.map((buzzword, index) => (
-                    <span key={index}>{buzzword}
-                        <i onClick={() => onDeleteBuzzword(buzzword)}> &times;</i>
-                    </span>
-                ))}
+                {buzzwords &&
+                    buzzwords.map((buzzword, index) => (
+                        <span key={index}>{buzzword}
+                            <i onClick={() => onDeleteBuzzword(buzzword)}> &times;</i>
+                        </span>
+                    ))}
             </BuzzwordWrapper>
         </Wrapper >
     )

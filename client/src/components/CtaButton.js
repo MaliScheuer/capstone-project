@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-export default function CtaButton({ buttonText }) {
+export default function CtaButton({ buttonText, clickHandler }) {
 
     return (
-        <Button>{buttonText}</Button>
+
+        <Button onClick={clickHandler}>{buttonText}</Button>
+
     )
 }
 

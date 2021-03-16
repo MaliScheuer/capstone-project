@@ -37,6 +37,7 @@ export default function Form({ submitFunction, open }) {
             submitFunction(newMentor);
             setNewMentor(initialMentor);
         }
+        console.log(newMentor)
     }
 
 
@@ -63,7 +64,6 @@ export default function Form({ submitFunction, open }) {
             buzzwords: remainingBuzzwords
         })
     }
-
 
     return (
         <>
@@ -140,6 +140,7 @@ export default function Form({ submitFunction, open }) {
                 />
 
                 <CtaButton valid={valid} type='submit'> Create Profile</CtaButton>
+
 
             </FormWrapper>
             {valid && <SuccessMessage> <p>Thanks for sharing your experience! Now your profile is part of our mentors network!</p>
