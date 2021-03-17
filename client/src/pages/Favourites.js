@@ -1,16 +1,22 @@
+import PropTypes from 'prop-types';
 import MentorsCard from '../components/MentorsCard';
-import SearchMentor from './SearchMentor';
 
-export default function Favourites({ favourites, onAddToFavourites }) {
-
+export default function Favourites({ favourites, removeFavourite }) {
     return (
         <>
             {
                 favourites.map((mentor, index) => (
-                    <MentorsCard onAddToFavourites={onAddToFavourites} key={index} mentor={mentor} ></MentorsCard>))
+                    <MentorsCard
+                        onAddToFavourites={() => removeFavourite(mentor._id)}
+                        key={index}
+                        mentor={mentor}
+                        isFavourite></MentorsCard>))
             }
         </>
     )
+}
 
-
+Favourites.propTypes = {
+    favourites: PropTypes.array,
+    removeFavourite: PropTypes.func
 }

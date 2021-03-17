@@ -1,26 +1,21 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { ReactComponent as HeartIconPetrol } from '../icons/heart.petrol.svg';
 import { ReactComponent as PhoneIcon } from '../icons/phone.svg';
-import { ReactComponent as MailIcon } from '../icons/mail.svg'
-import background from '../images/graphicblue.png'
+import { ReactComponent as MailIcon } from '../icons/mail.svg';
+import background from '../images/graphicblue.png';
 import CtaButton from './CtaButton';
 
-export default function MentorsCard({ mentor, open, onAddToFavourites }) {
+export default function MentorsCard({ mentor, open, onAddToFavourites, isFavourite }) {
 
     const [details, setDetails] = useState(false);
-    const [isActive, setIsActive] = useState(false);
-
-    function handleFavourites() {
-        setIsActive(!isActive)
-        onAddToFavourites()
-    }
 
 
     return (
         <Wrapper open={open}>
             <Section >
-                <IconWrapper isActive={isActive}><HeartIconPetrol onClick={handleFavourites} /></IconWrapper>
+                <IconWrapper isFavourite={isFavourite}><HeartIconPetrol onClick={onAddToFavourites} /></IconWrapper>
                 <ProfileImg src='https://images.unsplash.com/photo-1541535881962-3bb380b08458?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=632&q=80'></ProfileImg>
                 <p>{mentor.image}</p>
                 <WrapperContact details={details}>
@@ -154,7 +149,13 @@ outline: white;
 
 svg{
     path {
-    fill: ${(props) => props.isActive ? 'var(--petrol)' : 'white'};
+    fill: ${(props) => props.isFavourite ? 'var(--petrol)' : 'white'};
 }
 }
 `
+MentorsCard.propTypes = {
+    mentor: PropTypes.object,
+    open: PropTypes.bool,
+    onAddToFavourites: PropTypes.func,
+    isFavourite: PropTypes.bool
+}

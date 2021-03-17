@@ -6,6 +6,7 @@ import SearchMentor from './pages/SearchMentor';
 import Favourites from './pages/Favourites';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
+import MentorsCard from './components/MentorsCard';
 import loadFromLocal from './lib/loadFromLocal';
 import saveToLocal from './lib/saveToLocal';
 
@@ -17,7 +18,10 @@ function App() {
 
 
   const [open, setOpen] = useState(false);
+
   const [mentorsApi, setMentorsApi] = useState(loadFromLocal(MENTORS_KEY) ?? []);
+
+  console.log(mentorsApi)
   const [favourites, setFavourites] = useState(loadFromLocal(FAVOURITES_KEY) ?? []);
 
 
@@ -31,24 +35,30 @@ function App() {
 
 
   useEffect(() => {
+
     fetch('http://localhost:4000/search-mentors')
       .then(result => result.json())
       .then(mentors => setMentorsApi(mentors))
       .catch(error => console.error(error.message))
   }, []);
 
-  function isFavouriteMentor(mentorId) {
-    const selectedFavourite = mentorsApi.filter((mentor) => mentor._id === mentorId)
-    setFavourites([...favourites, ...selectedFavourite]);
 
-    if (mentorsApi._id === mentorId) {
-      const remainingFavourites = favourites.filter((mentor) => mentor._id !== mentorId)
+
+  function addToFavouriteMentor(favouriteMentor) {
+    const selectedFavourite = mentorsApi.filter((mentor) => mentor._id === favouriteMentor._id)
+
+
+    const isFavourite = favourites.some(favourite => favouriteMentor._id === favourite._id)
+
+
+    if (isFavourite) {
+      const remainingFavourites = favourites.filter((mentor) => mentor._id !== favouriteMentor._id)
       setFavourites(remainingFavourites)
     } else {
       setFavourites([...favourites, ...selectedFavourite]);
     }
-    console.log(favourites)
   }
+
 
   function removeFavourite(idToRemove) {
     const remainingFavourites = favourites.filter((mentor) => mentor._id !== idToRemove)
@@ -68,7 +78,14 @@ function App() {
 
           <Route path='/search-mentors'>
             <Header headline='Find a mentor' open={open} setOpen={setOpen} />
-            <SearchMentor onAddToFavourites={removeFavourite} mentors={mentorsApi} open={open} />
+            <SearchMentor
+              open={open}
+              mentors={mentorsApi}
+              favourites={favourites}
+              addToFavouriteMentor={addToFavouriteMentor}
+            ></SearchMentor>
+
+
           </Route>
 
           <Route path='/profile'>
@@ -82,7 +99,10 @@ function App() {
 
           <Route path='/favourites'>
             <Header headline='your favourites' open={open} setOpen={setOpen} />
-            <Favourites onAddToFavourites={isFavouriteMentor} favourites={favourites} open={open} />
+            <Favourites
+              open={open}
+              favourites={favourites}
+              removeFavourite={removeFavourite} />
           </Route>
 
         </Switch>

@@ -1,21 +1,29 @@
-import { useState, useEffect } from 'react';
-import { Route, Switch, match } from 'react-router-dom';
-import Header from '../components/Header';
+import PropTypes from 'prop-types';
 import MentorsCard from '../components/MentorsCard';
 
 
-export default function SearchMentor({ open, mentors, onAddToFavourites }) {
+export default function SearchMentor({ open, mentors, addToFavouriteMentor, favourites }) {
 
   return (
     <>
       {
         mentors.map((mentor, index) => (
-          <MentorsCard onAddToFavourites={onAddToFavourites} open={open} key={index} mentor={mentor} ></MentorsCard>))
+          <MentorsCard
+            onAddToFavourites={() => addToFavouriteMentor(mentor)}
+            open={open}
+            key={index}
+            mentor={mentor}
+            isFavourite={favourites.some(favourite => mentor._id === favourite._id)}
+          ></MentorsCard>))
       }
 
     </>
   )
-
 }
 
-
+SearchMentor.propTypes = {
+  open: PropTypes.bool,
+  mentors: PropTypes.array,
+  addToFavouriteMentor: PropTypes.func,
+  favourites: PropTypes.array
+}
