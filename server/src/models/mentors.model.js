@@ -20,7 +20,12 @@ const mentorsSchema = new mongoose.Schema({
         type: String
     },
     image:
-        { type: String }
+    {
+        type: String
+    },
+    isActive: {
+        type: Boolean
+    }
 });
 const Mentors = mongoose.model("mentor", mentorsSchema);
 
