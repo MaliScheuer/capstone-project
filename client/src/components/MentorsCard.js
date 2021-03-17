@@ -17,10 +17,10 @@ export default function MentorsCard({ mentor, open, onAddToFavourites, isFavouri
             <Section >
                 <IconWrapper isFavourite={isFavourite}><HeartIconPetrol onClick={onAddToFavourites} /></IconWrapper>
                 <ProfileImg src='https://images.unsplash.com/photo-1541535881962-3bb380b08458?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=632&q=80'></ProfileImg>
-                <p>{mentor.image}</p>
+                {/*<p>{mentor.image}</p>*/}
                 <WrapperContact details={details}>
-                    <a href='tel:'><PhoneIcon /></a><p>{mentor.phone}</p>
-                    <a href='mailto:'><MailIcon /></a><p>{mentor.email}</p>
+                    <PhoneMail><a href='tel:'><PhoneIcon /></a><p>{mentor.phone}</p></PhoneMail>
+                    <PhoneMail><a href='mailto:'><MailIcon /></a><p>{mentor.email}</p></PhoneMail>
                 </WrapperContact>
                 <h2>{mentor.mentor_name}</h2>
                 <Competence>{mentor.competence}</Competence>
@@ -34,7 +34,7 @@ export default function MentorsCard({ mentor, open, onAddToFavourites, isFavouri
                 </WrapperBuzzwords>
                 <Button clickHandler={() => setDetails(!details)} buttonText={details ? 'Show less' : 'Show more'} />
             </Section >
-        </Wrapper>
+        </Wrapper >
     )
 }
 
@@ -69,10 +69,6 @@ h2, h4{
 const WrapperContact = styled.section`
 height: ${(props) => props.details ? 'auto' : '0'} ;
 overflow-y: hidden;
-display: grid;
-grid-template-columns: 1fr 5fr;
-gap: 0.3rem;
-align-items: center;
 background: var(--petrol-light);
 color: white;
 border-radius: 0.5rem;
@@ -85,6 +81,12 @@ p{
     font-size: 0.8rem;
 
 }
+`
+
+const PhoneMail = styled.div`
+display:flex;
+gap: 1rem;
+margin-bottom: 0.5rem
 `
 
 const ProfileImg = styled.img`

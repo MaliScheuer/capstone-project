@@ -17,7 +17,8 @@ export default function CreateMentor({ open }) {
                 email: mentor.email,
                 phone: mentor.phone,
                 about: mentor.about,
-                image: mentor.image
+                image: mentor.image,
+                isActive: true
             })
         })
             .then(result => result.json())

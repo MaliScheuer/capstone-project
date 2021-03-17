@@ -6,7 +6,6 @@ import SearchMentor from './pages/SearchMentor';
 import Favourites from './pages/Favourites';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
-import MentorsCard from './components/MentorsCard';
 import loadFromLocal from './lib/loadFromLocal';
 import saveToLocal from './lib/saveToLocal';
 
