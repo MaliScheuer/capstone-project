@@ -6,16 +6,21 @@ import { ReactComponent as MailIcon } from '../icons/mail.svg'
 import background from '../images/graphicblue.png'
 import CtaButton from './CtaButton';
 
-export default function MentorsCard({ mentor, open, onAddToFavourite }) {
+export default function MentorsCard({ mentor, open, onAddToFavourites }) {
 
     const [details, setDetails] = useState(false);
     const [isActive, setIsActive] = useState(false);
-    console.log(isActive)
+
+    function handleFavourites() {
+        setIsActive(!isActive)
+        onAddToFavourites()
+    }
+
 
     return (
         <Wrapper open={open}>
             <Section >
-                <IconWrapper isActive={isActive}><HeartIconPetrol onClick={() => setIsActive(!isActive)} /></IconWrapper>
+                <IconWrapper isActive={isActive}><HeartIconPetrol onClick={handleFavourites} /></IconWrapper>
                 <ProfileImg src='https://images.unsplash.com/photo-1541535881962-3bb380b08458?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=632&q=80'></ProfileImg>
                 <p>{mentor.image}</p>
                 <WrapperContact details={details}>
@@ -73,7 +78,7 @@ display: grid;
 grid-template-columns: 1fr 5fr;
 gap: 0.3rem;
 align-items: center;
-background: var(--petrol);
+background: var(--petrol-light);
 color: white;
 border-radius: 0.5rem;
 padding: ${(props) => props.details ? '0.7rem 2rem' : '0'};

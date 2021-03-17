@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Home from './pages/Home';
 import CreateMentor from './pages/CreateMentor';
 import SearchMentor from './pages/SearchMentor';
+import Favourites from './pages/Favourites';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
 
@@ -37,8 +38,10 @@ function App() {
           </Route>
 
           <Route path='/favourites'>
-            <Header headline='Your Favourites' open={open} setOpen={setOpen} />
+            <Header headline='your favourites' open={open} setOpen={setOpen} />
+            <Favourites open={open} />
           </Route>
+
         </Switch>
       </main >
 
