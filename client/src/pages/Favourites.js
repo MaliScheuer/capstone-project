@@ -10,7 +10,8 @@ export default function Favourites({ favourites, removeFavourite }) {
                         onAddToFavourites={() => removeFavourite(mentor._id)}
                         key={index}
                         mentor={mentor}
-                        isFavourite></MentorsCard>))
+                        isFavourite/>
+                        ))
             }
         </>
     )

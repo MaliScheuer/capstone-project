@@ -16,13 +16,13 @@ function App() {
   const FAVOURITES_KEY = 'favouritesList'
 
   const [open, setOpen] = useState(false);
-  const [mentorsApi, setMentorsApi] = useState(loadFromLocal(MENTORS_KEY) ?? []);
+  const [mentors, setMentors] = useState(loadFromLocal(MENTORS_KEY) ?? []);
   const [favourites, setFavourites] = useState(loadFromLocal(FAVOURITES_KEY) ?? []);
 
 
   useEffect(() => {
-    saveToLocal(MENTORS_KEY, mentorsApi)
-  }, [mentorsApi])
+    saveToLocal(MENTORS_KEY, mentors)
+  }, [mentors])
 
   useEffect(() => {
     saveToLocal(FAVOURITES_KEY, favourites)
@@ -31,18 +31,17 @@ function App() {
   useEffect(() => {
     fetch('http://localhost:4000/search-mentors')
       .then(result => result.json())
-      .then(mentors => setMentorsApi(mentors))
+      .then(mentors => setMentors(mentors))
       .catch(error => console.error(error.message))
   }, []);
 
 
   function addToFavouriteMentor(favouriteMentor) {
-    const selectedFavourite = mentorsApi.filter((mentor) => mentor._id === favouriteMentor._id)
+    const selectedFavourite = mentors.filter((mentor) => mentor._id === favouriteMentor._id)
     const isFavourite = favourites.some(favourite => favourite._id === favouriteMentor._id)
 
     if (isFavourite) {
-      const remainingFavourites = favourites.filter((mentor) => mentor._id !== favouriteMentor._id)
-      setFavourites(remainingFavourites)
+      removeFavourite(favouriteMentor._id)
     } else {
       setFavourites([...favourites, ...selectedFavourite]);
     }
@@ -68,7 +67,7 @@ function App() {
             <Header headline='Find a mentor' open={open} setOpen={setOpen} />
             <SearchMentor
               open={open}
-              mentors={mentorsApi}
+              mentors={mentors}
               favourites={favourites}
               addToFavouriteMentor={addToFavouriteMentor}
             ></SearchMentor>

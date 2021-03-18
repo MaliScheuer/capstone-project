@@ -1,7 +1,6 @@
 export default function loadFromLocal(key) {
     try {
-        const local = JSON.parse(localStorage.getItem(key));
-        return local;
+        return JSON.parse(localStorage.getItem(key));
     } catch (error) {
         console.error(error.message);
     }

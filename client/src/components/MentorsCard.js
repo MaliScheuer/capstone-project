@@ -17,7 +17,6 @@ export default function MentorsCard({ mentor, open, onAddToFavourites, isFavouri
             <Section >
                 <IconWrapper isFavourite={isFavourite}><HeartIconPetrol onClick={onAddToFavourites} /></IconWrapper>
                 <ProfileImg src='https://images.unsplash.com/photo-1541535881962-3bb380b08458?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=632&q=80'></ProfileImg>
-                {/*<p>{mentor.image}</p>*/}
                 <WrapperContact details={details}>
                     <PhoneMail><a href='tel:'><PhoneIcon /></a><p>{mentor.phone}</p></PhoneMail>
                     <PhoneMail><a href='mailto:'><MailIcon /></a><p>{mentor.email}</p></PhoneMail>
@@ -63,7 +62,6 @@ h2, h4{
     text-transform: uppercase;
     letter-spacing: 0.3rem;
  }
-
 `
 
 const WrapperContact = styled.section`
@@ -79,14 +77,13 @@ margin: 1rem auto;
 p{
     margin: 0.2rem;
     font-size: 0.8rem;
-
 }
 `
 
 const PhoneMail = styled.div`
 display:flex;
 gap: 1rem;
-margin-bottom: 0.5rem
+margin-bottom: 0.5rem;
 `
 
 const ProfileImg = styled.img`
@@ -109,7 +106,6 @@ const About = styled.p`
 font-size: 0.8rem;
 height: ${(props) => props.details ? 'auto' : '2.4rem'} ;
 overflow-y: hidden;
-//box-shadow: 0 7px 5px -5px rgba(200, 200, 200, 0.6);
 `
 
 const Button = styled(CtaButton)`
