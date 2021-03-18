@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import MentorsCard from '../components/MentorsCard';
 
-export default function Favourites({ favourites, removeFavourite }) {
+export default function Favourites({ favourites, removeFavourite, open }) {
     return (
         <>
             {
@@ -10,7 +10,8 @@ export default function Favourites({ favourites, removeFavourite }) {
                         onAddToFavourites={() => removeFavourite(mentor._id)}
                         key={index}
                         mentor={mentor}
-                        isFavourite/>
+                        isFavourite
+                        open={open}/>
                         ))
             }
         </>

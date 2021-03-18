@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import CreateMentor from './pages/CreateMentor';
 import SearchMentor from './pages/SearchMentor';
 import Favourites from './pages/Favourites';
+import Profile from './pages/Profile';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
 import loadFromLocal from './lib/loadFromLocal';
@@ -75,6 +76,7 @@ function App() {
 
           <Route path='/profile'>
             <Header headline='Your Profile' open={open} setOpen={setOpen} />
+            <Profile open={open}/>
           </Route>
 
           <Route path='/create-profile'>
