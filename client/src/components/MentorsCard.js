@@ -1,26 +1,25 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { ReactComponent as HeartIconPetrol } from '../icons/heart.petrol.svg';
 import { ReactComponent as PhoneIcon } from '../icons/phone.svg';
-import { ReactComponent as MailIcon } from '../icons/mail.svg'
-import background from '../images/graphicblue.png'
+import { ReactComponent as MailIcon } from '../icons/mail.svg';
+import background from '../images/graphicblue.png';
 import CtaButton from './CtaButton';
 
-export default function MentorsCard({ mentor, open, onAddToFavourite }) {
+export default function MentorsCard({ mentor, open, onAddToFavourites, isFavourite }) {
 
     const [details, setDetails] = useState(false);
-    const [isActive, setIsActive] = useState(false);
-    console.log(isActive)
+
 
     return (
         <Wrapper open={open}>
             <Section >
-                <IconWrapper isActive={isActive}><HeartIconPetrol onClick={() => setIsActive(!isActive)} /></IconWrapper>
+                <IconWrapper isFavourite={isFavourite}><HeartIconPetrol onClick={onAddToFavourites} /></IconWrapper>
                 <ProfileImg src='https://images.unsplash.com/photo-1541535881962-3bb380b08458?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=632&q=80'></ProfileImg>
-                <p>{mentor.image}</p>
                 <WrapperContact details={details}>
-                    <a href='tel:'><PhoneIcon /></a><p>{mentor.phone}</p>
-                    <a href='mailto:'><MailIcon /></a><p>{mentor.email}</p>
+                    <PhoneMail><a href='tel:'><PhoneIcon /></a><p>{mentor.phone}</p></PhoneMail>
+                    <PhoneMail><a href='mailto:'><MailIcon /></a><p>{mentor.email}</p></PhoneMail>
                 </WrapperContact>
                 <h2>{mentor.mentor_name}</h2>
                 <Competence>{mentor.competence}</Competence>
@@ -34,7 +33,7 @@ export default function MentorsCard({ mentor, open, onAddToFavourite }) {
                 </WrapperBuzzwords>
                 <Button clickHandler={() => setDetails(!details)} buttonText={details ? 'Show less' : 'Show more'} />
             </Section >
-        </Wrapper>
+        </Wrapper >
     )
 }
 
@@ -63,17 +62,12 @@ h2, h4{
     text-transform: uppercase;
     letter-spacing: 0.3rem;
  }
-
 `
 
 const WrapperContact = styled.section`
 height: ${(props) => props.details ? 'auto' : '0'} ;
 overflow-y: hidden;
-display: grid;
-grid-template-columns: 1fr 5fr;
-gap: 0.3rem;
-align-items: center;
-background: var(--petrol);
+background: var(--petrol-light);
 color: white;
 border-radius: 0.5rem;
 padding: ${(props) => props.details ? '0.7rem 2rem' : '0'};
@@ -83,8 +77,13 @@ margin: 1rem auto;
 p{
     margin: 0.2rem;
     font-size: 0.8rem;
-
 }
+`
+
+const PhoneMail = styled.div`
+display:flex;
+gap: 1rem;
+margin-bottom: 0.5rem;
 `
 
 const ProfileImg = styled.img`
@@ -107,7 +106,6 @@ const About = styled.p`
 font-size: 0.8rem;
 height: ${(props) => props.details ? 'auto' : '2.4rem'} ;
 overflow-y: hidden;
-//box-shadow: 0 7px 5px -5px rgba(200, 200, 200, 0.6);
 `
 
 const Button = styled(CtaButton)`
@@ -149,7 +147,13 @@ outline: white;
 
 svg{
     path {
-    fill: ${(props) => props.isActive ? 'var(--petrol)' : 'white'};
+    fill: ${(props) => props.isFavourite ? 'var(--petrol)' : 'white'};
 }
 }
 `
+MentorsCard.propTypes = {
+    mentor: PropTypes.object,
+    open: PropTypes.bool,
+    onAddToFavourites: PropTypes.func,
+    isFavourite: PropTypes.bool
+}

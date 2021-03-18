@@ -1,32 +1,29 @@
-import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import MentorsCard from '../components/MentorsCard';
 
 
-export default function SearchMentor({ open }) {
-
-  const [mentorsApi, setMentorsApi] = useState([]);
-
-
-  useEffect(() => {
-    fetch('http://localhost:4000/search-mentors')
-      .then(result => result.json())
-      .then(mentors => setMentorsApi(mentors))
-      .catch(error => console.error(error.message))
-  }, []);
-
-
+export default function SearchMentor({ open, mentors, addToFavouriteMentor, favourites }) {
 
   return (
     <>
-
       {
-        mentorsApi.map((mentor, index) => (
-          <MentorsCard open={open} key={index} mentor={mentor}></MentorsCard>))
+        mentors.map((mentor, index) => (
+          <MentorsCard
+            onAddToFavourites={() => addToFavouriteMentor(mentor)}
+            open={open}
+            key={index}
+            mentor={mentor}
+            isFavourite={favourites.some(favourite => mentor._id === favourite._id)}
+          />
+          ))
       }
     </>
-
   )
-
 }
 
-
+SearchMentor.propTypes = {
+  open: PropTypes.bool,
+  mentors: PropTypes.array,
+  addToFavouriteMentor: PropTypes.func,
+  favourites: PropTypes.array
+}

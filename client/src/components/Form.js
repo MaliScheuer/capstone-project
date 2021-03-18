@@ -37,7 +37,6 @@ export default function Form({ submitFunction, open }) {
             submitFunction(newMentor);
             setNewMentor(initialMentor);
         }
-        console.log(newMentor)
     }
 
 

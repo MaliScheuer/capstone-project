@@ -30,9 +30,9 @@ server.post('/create-profile', (request, response) => {
         email: request.body.email,
         phone: request.body.phone,
         about: request.body.about,
-        image: request.body.image
+        image: request.body.image,
+        isActive: request.body.isActive
     })
-    console.log(mentor)
     mentor.save()
         .then(mentor => response.json(mentor))
         .catch(error => response.json(error))
