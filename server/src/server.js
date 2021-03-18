@@ -22,6 +22,7 @@ server.get('/search-mentors', (request, response) => {
 })
 
 server.post('/create-profile', (request, response) => {
+    console.log(request, 'POST HERE')
     const mentor = new Mentors({
         mentor_name: request.body.mentor_name,
         competence: request.body.competence,
@@ -31,7 +32,7 @@ server.post('/create-profile', (request, response) => {
         about: request.body.about,
         image: request.body.image
     })
-
+    console.log(mentor)
     mentor.save()
         .then(mentor => response.json(mentor))
         .catch(error => response.json(error))

@@ -1,27 +1,32 @@
 import mongoose from 'mongoose';
 
-const mentorsSchema = {
+const mentorsSchema = new mongoose.Schema({
     mentor_name: {
-        type: String, required: true
+        type: String
     },
     competence: {
-        type: String, required: true
+        type: String
     },
     buzzwords: [{
-        type: String, required: true
+        type: String
     }],
     email: {
-        type: String, required: true
+        type: String
     },
     phone: {
-        type: String, required: true
+        type: String
     },
     about: {
-        type: String, required: true
+        type: String
     },
     image:
-        { type: String }
-};
+    {
+        type: String
+    },
+    isActive: {
+        type: Boolean
+    }
+});
 const Mentors = mongoose.model("mentor", mentorsSchema);
 
 

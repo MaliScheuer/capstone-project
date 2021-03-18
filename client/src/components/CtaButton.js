@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-export default function CtaButton({ buttonText }) {
+export default function CtaButton({ buttonText, clickHandler }) {
 
     return (
-        <Button>{buttonText}</Button>
+
+        <Button onClick={clickHandler}>{buttonText}</Button>
+
     )
 }
 
@@ -19,6 +21,7 @@ box-shadow: 0.2rem 0.2rem 0.2rem rgba(0,0,0, 35%);
 cursor: pointer;
 width: 230px;
 font-size: 1.1rem;
+outline:white;
 `
 
 CtaButton.propTypes = {
