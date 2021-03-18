@@ -2,22 +2,22 @@ import mongoose from 'mongoose';
 
 const mentorsSchema = new mongoose.Schema({
     mentor_name: {
-        type: String
+        type: String, required: true
     },
     competence: {
-        type: String
+        type: String, required: true
     },
     buzzwords: [{
-        type: String
+        type: String, required: true
     }],
     email: {
-        type: String
+        type: String, required: true
     },
     phone: {
-        type: String
+        type: String, required: true
     },
     about: {
-        type: String
+        type: String, required: true
     },
     image:
     {
