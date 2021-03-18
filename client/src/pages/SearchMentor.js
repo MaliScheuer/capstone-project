@@ -16,7 +16,6 @@ export default function SearchMentor({ open, mentors, addToFavouriteMentor, favo
             isFavourite={favourites.some(favourite => mentor._id === favourite._id)}
           ></MentorsCard>))
       }
-
     </>
   )
 }

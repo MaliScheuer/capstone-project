@@ -15,12 +15,8 @@ function App() {
   const MENTORS_KEY = 'mentorsList'
   const FAVOURITES_KEY = 'favouritesList'
 
-
   const [open, setOpen] = useState(false);
-
   const [mentorsApi, setMentorsApi] = useState(loadFromLocal(MENTORS_KEY) ?? []);
-
-  console.log(mentorsApi)
   const [favourites, setFavourites] = useState(loadFromLocal(FAVOURITES_KEY) ?? []);
 
 
@@ -32,9 +28,7 @@ function App() {
     saveToLocal(FAVOURITES_KEY, favourites)
   }, [favourites])
 
-
   useEffect(() => {
-
     fetch('http://localhost:4000/search-mentors')
       .then(result => result.json())
       .then(mentors => setMentorsApi(mentors))
@@ -42,13 +36,9 @@ function App() {
   }, []);
 
 
-
   function addToFavouriteMentor(favouriteMentor) {
     const selectedFavourite = mentorsApi.filter((mentor) => mentor._id === favouriteMentor._id)
-
-
-    const isFavourite = favourites.some(favourite => favouriteMentor._id === favourite._id)
-
+    const isFavourite = favourites.some(favourite => favourite._id === favouriteMentor._id)
 
     if (isFavourite) {
       const remainingFavourites = favourites.filter((mentor) => mentor._id !== favouriteMentor._id)
@@ -57,7 +47,6 @@ function App() {
       setFavourites([...favourites, ...selectedFavourite]);
     }
   }
-
 
   function removeFavourite(idToRemove) {
     const remainingFavourites = favourites.filter((mentor) => mentor._id !== idToRemove)
@@ -83,8 +72,6 @@ function App() {
               favourites={favourites}
               addToFavouriteMentor={addToFavouriteMentor}
             ></SearchMentor>
-
-
           </Route>
 
           <Route path='/profile'>
