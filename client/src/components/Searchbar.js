@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import CtaButton from './CtaButton';
 
-export default function Searchbar({open, onHandleSearch}) {
+export default function Searchbar({open}) {
 
 
     return(
-        <SearchWrapper open={open} method="get">
+        <>
+        <SearchWrapper open={open} >
             <select
                     type='text'
                     name='competence'>
@@ -29,9 +30,11 @@ export default function Searchbar({open, onHandleSearch}) {
                  />
             <CtaButton
                 buttonText='Find your mentor'
-                onClick={onHandleSearch}
             />
         </SearchWrapper>
+
+        <Result>Results</Result>
+        </>
     )
 }
 
@@ -63,4 +66,11 @@ color: var(--petrol);
 input{
     padding: 0.6rem 4.5rem;
 }
+`
+
+const Result = styled.p`
+color: var(--petrol);
+margin-left: 2rem;
+letter-spacing: 0.25rem;
+font-weight: bold;
 `

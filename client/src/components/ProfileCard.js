@@ -52,6 +52,7 @@ padding: 1.2rem;
 background: url(${background});
 background-repeat: no-repeat;
 background-size: cover;
+height: 110px;
 h3, h4{
     text-transform: uppercase;
     letter-spacing: 0.3rem;
@@ -165,7 +166,7 @@ margin-bottom: 0.8rem;
 `
 
 const Buzzwords = styled.p`
-background: var(--petrol);
+background: var(--red);
 color: white;
 padding: 0.5rem;
 border-radius: 0.7rem;

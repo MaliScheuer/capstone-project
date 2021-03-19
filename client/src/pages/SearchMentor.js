@@ -8,7 +8,6 @@ export default function SearchMentor({ open, mentors, addToFavouriteMentor, favo
   const { search } = window.location;
 const query = new URLSearchParams(search).get('competence');
 
-
 const filterMentors = (mentors, query) => {
   if (!query) {
       return mentors;
