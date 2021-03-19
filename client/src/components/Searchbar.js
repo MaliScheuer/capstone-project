@@ -26,7 +26,7 @@ export default function Searchbar({open}) {
                 id='header-search'
                 type='text'
                 name='search'
-                placeholder='Enter search term...'
+                placeholder='Enter skill or buzzword...'
                  />
             <CtaButton
                 buttonText='Find your mentor'
@@ -64,7 +64,7 @@ color: var(--petrol);
 }
 
 input{
-    padding: 0.6rem 4.5rem;
+    padding-right: 8.8rem;
 }
 `
 

@@ -6,15 +6,17 @@ import Searchbar from '../components/Searchbar';
 export default function SearchMentor({ open, mentors, addToFavouriteMentor, favourites, handleSearch }) {
 
   const { search } = window.location;
-const query = new URLSearchParams(search).get('competence');
+const query = new URLSearchParams(search).get('competence' || 'search');
 
-const filterMentors = (mentors, query) => {
+function filterMentors(mentors, query) {
   if (!query) {
       return mentors;
   }
   return mentors.filter((mentor) => {
       const mentorCompetence = mentor.competence
-      return mentorCompetence.includes(query);
+      const mentorBuzzwords = mentor.buzzwords
+      
+      return mentorCompetence.includes(query) 
   });
 };
 
@@ -23,10 +25,9 @@ const filteredMentors = filterMentors(mentors, query);
   return (
     <>
     <Searchbar 
-    open={open}
-    onHandleSearch={handleSearch}/>
+    open={open}/>
       {
-        filteredMentors.map((mentor, index) => (
+        filteredMentors.map((mentor) => (
           <MentorsCard
             onAddToFavourites={() => addToFavouriteMentor(mentor)}
             open={open}
