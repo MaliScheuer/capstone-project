@@ -106,8 +106,6 @@ const About = styled.p`
 font-size: 0.8rem;
 height: ${(props) => props.details ? 'auto' : '2.4rem'} ;
 overflow-y: hidden;
-xbackground-image: linear-gradient(to bottom, transparent, var(--lightgrey));
-
 `
 
 const PetrolButton = styled(CtaButton)`
