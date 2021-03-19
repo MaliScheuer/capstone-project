@@ -24,14 +24,14 @@ export default function MentorsCard({ mentor, open, onAddToFavourites, isFavouri
                 <h2>{mentor.mentor_name}</h2>
                 <Competence>{mentor.competence}</Competence>
                 <Subline>About Me</Subline>
-                <About details={details}>{mentor.about}</About>
+                <About className='shadow' details={details}>{mentor.about}</About>
                 <Subline>Skills</Subline>
                 <WrapperBuzzwords details={details}>
                     {mentor.buzzwords.map((buzzword, index) => (
                         <Buzzwords key={index}>{buzzword}</Buzzwords>
                     ))}
                 </WrapperBuzzwords>
-                <Button clickHandler={() => setDetails(!details)} buttonText={details ? 'Show less' : 'Show more'} />
+                <PetrolButton clickHandler={() => setDetails(!details)} buttonText={details ? 'Show less' : 'Show more'} />
             </Section >
         </Wrapper >
     )
@@ -106,10 +106,12 @@ const About = styled.p`
 font-size: 0.8rem;
 height: ${(props) => props.details ? 'auto' : '2.4rem'} ;
 overflow-y: hidden;
+xbackground-image: linear-gradient(to bottom, transparent, var(--lightgrey));
+
 `
 
-const Button = styled(CtaButton)`
-background: var(--petrol);
+const PetrolButton = styled(CtaButton)`
+background-color: var(--petrol);
 `
 
 const WrapperBuzzwords = styled.section`
