@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-export default function CtaButton({ buttonText, clickHandler }) {
+export default function CtaButton({ buttonText, clickHandler, backgroundColor }) {
 
     return (
 
-        <Button onClick={clickHandler}>{buttonText}</Button>
+        <Button backgroundColor={backgroundColor} onClick={clickHandler}>{buttonText}</Button>
 
     )
 }
 
 const Button = styled.button`
-background: var(--red);
-padding: 1rem;
+background: ${(props) => props.backgroundColor ? props.backgroundColor : 'var(--red)'};
+padding: 0.8rem;
 border-radius: 0.4rem;
 border: none;
 color: white;

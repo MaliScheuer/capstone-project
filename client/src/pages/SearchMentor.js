@@ -1,17 +1,37 @@
 import PropTypes from 'prop-types';
 import MentorsCard from '../components/MentorsCard';
+import Searchbar from '../components/Searchbar';
 
 
-export default function SearchMentor({ open, mentors, addToFavouriteMentor, favourites }) {
+export default function SearchMentor({ open, mentors, addToFavouriteMentor, favourites, handleSearch }) {
+
+  const { search } = window.location;
+const query = new URLSearchParams(search).get('competence');
+
+
+const filterMentors = (mentors, query) => {
+  if (!query) {
+      return mentors;
+  }
+  return mentors.filter((mentor) => {
+      const mentorCompetence = mentor.competence
+      return mentorCompetence.includes(query);
+  });
+};
+
+const filteredMentors = filterMentors(mentors, query);
 
   return (
     <>
+    <Searchbar 
+    open={open}
+    onHandleSearch={handleSearch}/>
       {
-        mentors.map((mentor, index) => (
+        filteredMentors.map((mentor, index) => (
           <MentorsCard
             onAddToFavourites={() => addToFavouriteMentor(mentor)}
             open={open}
-            key={index}
+            key={mentor._id}
             mentor={mentor}
             isFavourite={favourites.some(favourite => mentor._id === favourite._id)}
           />

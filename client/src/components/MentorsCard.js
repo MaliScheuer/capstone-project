@@ -31,7 +31,7 @@ export default function MentorsCard({ mentor, open, onAddToFavourites, isFavouri
                         <Buzzwords key={index}>{buzzword}</Buzzwords>
                     ))}
                 </WrapperBuzzwords>
-                <PetrolButton clickHandler={() => setDetails(!details)} buttonText={details ? 'Show less' : 'Show more'} />
+                <CtaButton clickHandler={() => setDetails(!details)} buttonText={details ? 'Show less' : 'Show more'} />
             </Section >
         </Wrapper >
     )
@@ -108,10 +108,6 @@ height: ${(props) => props.details ? 'auto' : '2.4rem'} ;
 overflow-y: hidden;
 `
 
-const PetrolButton = styled(CtaButton)`
-background-color: var(--petrol);
-`
-
 const WrapperBuzzwords = styled.section`
 display:flex;
 flex-wrap: wrap;
@@ -124,7 +120,7 @@ overflow-y: hidden;
 `
 
 const Buzzwords = styled.p`
-background: var(--petrol-light);
+background: var(--petrol);
 color: white;
 padding: 0.5rem;
 border-radius: 0.7rem;

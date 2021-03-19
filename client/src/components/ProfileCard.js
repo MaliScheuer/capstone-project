@@ -12,11 +12,14 @@ export default function ProfileCard({open}) {
     }
 
     return (
+
             <Section toggle={toggle} open={open} >
+              <div>
                 <SwitchIcon className={toggle ? 'active' : ''}>
                     <input onChange={triggerToggle} type="checkbox"/>
                     <Slider className={toggle ? 'active' : ''}/>
                 </SwitchIcon>
+                </div>
                 <WrapperImageContact>
                 <ProfileImg src='https://images.unsplash.com/photo-1571844307880-751c6d86f3f3?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2017&q=80'></ProfileImg>
                 <Name>Lisa Musterfrau</Name>
@@ -42,13 +45,13 @@ export default function ProfileCard({open}) {
 }
 
 const Section = styled.section`
+position: relative;
 opacity: ${({ open, toggle }) => open || !toggle ? '40%' : '100%'};
 text-align: center;
 padding: 1.2rem;
 background: url(${background});
 background-repeat: no-repeat;
 background-size: cover;
-height: 110px;
 h3, h4{
     text-transform: uppercase;
     letter-spacing: 0.3rem;

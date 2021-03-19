@@ -22,7 +22,7 @@ h1, h2, h3, h4 {
 
 :root{
 
-    --red: #ff6750;
+    --red: #E0B810;
     --petrol: #3d717d;
     --petrol-light: #77b1b5;
     --rose: #f2b29b;
