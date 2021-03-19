@@ -80,7 +80,7 @@ function App() {
           </Route>
 
           <Route path='/create-profile'>
-            <Header headline='Create profile' open={open} setOpen={setOpen} />
+            <Header headline='Create Profile' open={open} setOpen={setOpen} />
             <CreateMentor open={open} />
           </Route>
 

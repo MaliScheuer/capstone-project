@@ -3,8 +3,6 @@ import { useState } from 'react';
 import { ReactComponent as PhoneIcon } from '../icons/phone.svg';
 import { ReactComponent as MailIcon } from '../icons/mail.svg';
 import background from '../images/rectangle-petrol.png';
-import SwitchButton from './SwitchButton';
-import { Switch } from 'react-router';
 
 export default function ProfileCard({open}) {
 
@@ -14,10 +12,10 @@ export default function ProfileCard({open}) {
     }
 
     return (
-            <Section open={open} >
+            <Section toggle={toggle} open={open} >
                 <SwitchIcon className={toggle ? 'active' : ''}>
                     <input onChange={triggerToggle} type="checkbox"/>
-                    <Slider className={toggle ? 'active' : ''}></Slider>
+                    <Slider className={toggle ? 'active' : ''}/>
                 </SwitchIcon>
                 <WrapperImageContact>
                 <ProfileImg src='https://images.unsplash.com/photo-1571844307880-751c6d86f3f3?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2017&q=80'></ProfileImg>
@@ -44,8 +42,9 @@ export default function ProfileCard({open}) {
 }
 
 const Section = styled.section`
+
 position: absolute;
-opacity: ${({ open}) => open ? '40%' : '100%'};
+opacity: ${({ open, toggle }) => open || !toggle ? '40%' : '100%'};
 text-align: center;
 padding: 1.2rem;
 background: url(${background});
@@ -65,7 +64,7 @@ h3, h4{
 const SwitchIcon = styled.label`
 opacity: 50%;
 position: relative;
-top: -1.2rem;
+top: -0.8rem;
 left: 12rem;
 display: inline-block;
 background-color: white;
