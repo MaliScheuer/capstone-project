@@ -154,7 +154,6 @@ flex-direction: column;
 margin: 1.2rem 2.3rem;
 gap: 0.2rem;
 opacity: ${({ open, valid }) => open || valid ? '40%' : '100%'};
-position: absolute; 
 
 
 input, select, textarea{

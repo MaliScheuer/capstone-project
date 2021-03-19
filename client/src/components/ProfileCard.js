@@ -42,8 +42,6 @@ export default function ProfileCard({open}) {
 }
 
 const Section = styled.section`
-
-position: absolute;
 opacity: ${({ open, toggle }) => open || !toggle ? '40%' : '100%'};
 text-align: center;
 padding: 1.2rem;
@@ -51,7 +49,6 @@ background: url(${background});
 background-repeat: no-repeat;
 background-size: cover;
 height: 110px;
-
 h3, h4{
     text-transform: uppercase;
     letter-spacing: 0.3rem;
@@ -65,19 +62,17 @@ const SwitchIcon = styled.label`
 opacity: 50%;
 position: relative;
 top: -0.8rem;
-left: 12rem;
+left: 38vw;
 display: inline-block;
 background-color: white;
 border-radius: 2rem;
 width: 50px;
 height: 28px;
-
 input{
     opacity: 0;
     width: 0;
     height: 0;
   }
-
   &.active{
     opacity: 100%
   }
@@ -91,7 +86,6 @@ position: absolute;
   bottom: 0;
   transition: .4s;
   border-radius: 34px;
-
   &:before{
     position: absolute;
     content: "";
@@ -102,7 +96,6 @@ position: absolute;
     background-color: var(--petrol);
     border-radius: 50%;
   }
-
   &.active{
     left: 20px;
   }
