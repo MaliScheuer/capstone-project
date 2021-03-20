@@ -25,7 +25,7 @@ export default function Searchbar({open}) {
                 <input
                 id='header-search'
                 type='text'
-                name='search'
+                name='buzzwords'
                 placeholder='Enter skill or buzzword...'
                  />
             <CtaButton

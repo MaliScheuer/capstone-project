@@ -3,24 +3,45 @@ import MentorsCard from '../components/MentorsCard';
 import Searchbar from '../components/Searchbar';
 
 
-export default function SearchMentor({ open, mentors, addToFavouriteMentor, favourites, handleSearch }) {
+export default function SearchMentor({ open, mentors, addToFavouriteMentor, favourites}) {
 
-  const { search } = window.location;
-const query = new URLSearchParams(search).get('competence' || 'search');
+  /*const { search } = window.location;
+const query = new URLSearchParams(search).getAll('competence', 'search' );*/
 
-function filterMentors(mentors, query) {
+
+const params = new URLSearchParams(window.location.search.substring(1));
+const competence = params.get("competence");
+const buzzwords = params.get("buzzwords");
+const lowercase = String(buzzwords).toLowerCase();
+console.log(competence);
+console.log(buzzwords)
+
+
+/*function filterMentors(mentors, query) {
   if (!query) {
       return mentors;
   }
+  
   return mentors.filter((mentor) => {
-      const mentorCompetence = mentor.competence
       const mentorBuzzwords = mentor.buzzwords
-      
-      return mentorCompetence.includes(query) 
+      const mentorCompetence = mentor.competence
+      return mentorBuzzwords.includes(query) || mentorCompetence.includes(query)
   });
-};
+};*/
 
-const filteredMentors = filterMentors(mentors, query);
+function filterMentors(mentors, competence, buzzwords) {
+  if(!competence && !buzzwords) {
+    return mentors
+  }
+return mentors.filter((mentor) => {
+    const mentorBuzzwords = mentor.buzzwords
+    const mentorCompetence = mentor.competence
+
+    return mentorCompetence.includes(competence) || mentorBuzzwords.includes(buzzwords);
+});
+}
+
+const filteredMentors = filterMentors(mentors, competence, buzzwords);
 
   return (
     <>
