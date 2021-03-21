@@ -12,32 +12,19 @@ const query = new URLSearchParams(search).getAll('competence', 'search' );*/
 const params = new URLSearchParams(window.location.search.substring(1));
 const competence = params.get("competence");
 const buzzwords = params.get("buzzwords");
-const lowercase = String(buzzwords).toLowerCase();
 console.log(competence);
 console.log(buzzwords)
-
-
-/*function filterMentors(mentors, query) {
-  if (!query) {
-      return mentors;
-  }
-  
-  return mentors.filter((mentor) => {
-      const mentorBuzzwords = mentor.buzzwords
-      const mentorCompetence = mentor.competence
-      return mentorBuzzwords.includes(query) || mentorCompetence.includes(query)
-  });
-};*/
 
 function filterMentors(mentors, competence, buzzwords) {
   if(!competence && !buzzwords) {
     return mentors
   }
 return mentors.filter((mentor) => {
-    const mentorBuzzwords = mentor.buzzwords
+    const mentorBuzzwordsLower = mentor.buzzwords.toLocaleString().toLowerCase().split(',')
+    const mentorBuzzwordsUpper = mentor.buzzwords.toLocaleString().toUpperCase().split(',')
     const mentorCompetence = mentor.competence
 
-    return mentorCompetence.includes(competence) || mentorBuzzwords.includes(buzzwords);
+    return mentorCompetence.includes(competence) ||mentorBuzzwordsLower.includes(buzzwords) ||mentorBuzzwordsUpper.includes(buzzwords)
 });
 }
 

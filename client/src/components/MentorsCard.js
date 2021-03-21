@@ -125,6 +125,9 @@ color: white;
 padding: 0.5rem;
 border-radius: 0.7rem;
 margin: 0;
+text-transform: uppercase;
+font-size: 0.8rem;
+align-self: center;
 `
 
 const Subline = styled.h4`
