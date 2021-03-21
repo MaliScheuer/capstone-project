@@ -10,7 +10,7 @@ export default function Searchbar({open}) {
             <select
                     type='text'
                     name='competence'>
-                    <option value=''>Choose field of competence</option>
+                    <option value='Choose field of competence'>Choose field of competence</option>
                     <option value='Architecture and Engineering'>Architecture and Engineering</option>
                     <option value='Agriculture and Food'>Agriculture and Food</option>
                     <option value='Arts and Entertainment'>Arts and Entertainment</option>

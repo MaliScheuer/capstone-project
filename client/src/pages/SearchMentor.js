@@ -20,11 +20,11 @@ function filterMentors(mentors, competence, buzzwords) {
     return mentors
   }
 return mentors.filter((mentor) => {
-    const mentorBuzzwordsLower = mentor.buzzwords.toLocaleString().toLowerCase().split(',')
-    const mentorBuzzwordsUpper = mentor.buzzwords.toLocaleString().toUpperCase().split(',')
+    const mentorBuzzwords = mentor.buzzwords.toLocaleString().toLowerCase().split(',')
     const mentorCompetence = mentor.competence
 
-    return mentorCompetence.includes(competence) ||mentorBuzzwordsLower.includes(buzzwords) ||mentorBuzzwordsUpper.includes(buzzwords)
+    return mentorBuzzwords.includes(buzzwords.toLowerCase()) ||
+    mentorCompetence.includes(competence) 
 });
 }
 
