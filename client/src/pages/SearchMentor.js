@@ -5,30 +5,35 @@ import Searchbar from '../components/Searchbar';
 
 export default function SearchMentor({ open, mentors, addToFavouriteMentor, favourites}) {
 
-  /*const { search } = window.location;
-const query = new URLSearchParams(search).getAll('competence', 'search' );*/
+const params = new URLSearchParams(window.location.search);
+const competenceInput = params.get("competence");
+const buzzwordsInput = params.get("buzzwords");
+console.log(competenceInput);
+console.log(buzzwordsInput);
 
-
-const params = new URLSearchParams(window.location.search.substring(1));
-const competence = params.get("competence");
-const buzzwords = params.get("buzzwords");
-console.log(competence);
-console.log(buzzwords)
 
 function filterMentors(mentors, competence, buzzwords) {
   if(!competence && !buzzwords) {
     return mentors
   }
 return mentors.filter((mentor) => {
-    const mentorBuzzwords = mentor.buzzwords.toLocaleString().toLowerCase().split(',')
+    const mentorBuzzwords = mentor.buzzwords.toString().toLowerCase()
     const mentorCompetence = mentor.competence
 
-    return mentorBuzzwords.includes(buzzwords.toLowerCase()) ||
-    mentorCompetence.includes(competence) 
+    if(competence === '') {
+      return mentorBuzzwords.includes(buzzwords.toLowerCase())
+    }
+
+    if (buzzwords === '') {
+      return mentorCompetence.includes(competence)
+    }
+    else {
+    return mentorCompetence.includes(competence) ||  mentorBuzzwords.includes(buzzwords.toLowerCase())
+    }
 });
 }
 
-const filteredMentors = filterMentors(mentors, competence, buzzwords);
+const filteredMentors = filterMentors(mentors, competenceInput, buzzwordsInput);
 
   return (
     <>

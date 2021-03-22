@@ -9,17 +9,19 @@ export default function Searchbar({open}) {
         <SearchWrapper open={open} >
             <select
                     type='text'
-                    name='competence'>
-                    <option value='Choose field of competence'>Choose field of competence</option>
-                    <option value='Architecture and Engineering'>Architecture and Engineering</option>
-                    <option value='Agriculture and Food'>Agriculture and Food</option>
-                    <option value='Arts and Entertainment'>Arts and Entertainment</option>
-                    <option value='Business, Management and Administration'>Business, Management and Administration</option>
-                    <option value='Education and Training'>Education and Training</option>
-                    <option value='Health and Medicine'>Health and Medicine</option>
-                    <option value='Law and Public Policy'>Law and Public Policy</option>
-                    <option value='Sales, Marketing and Communications'>Sales, Marketing and Communications</option>
-                    <option value='Science and Technology'>Science and Technology</option>
+                    name='competence'
+                    >
+                    <option >Choose field of competence</option>
+                    <option >Architecture and Engineering</option>
+                    <option >Agriculture and Food</option>
+                    <option >Arts and Entertainment</option>
+                    <option >Business, Management and Administration</option>
+                    <option >Education and Training</option>
+                    <option >Finance and Accounting</option>
+                    <option >Health and Medicine</option>
+                    <option >Law and Public Policy</option>
+                    <option >Sales, Marketing and Communications</option>
+                    <option >Science and Technology</option>
                 </select>
 
                 <input
@@ -29,7 +31,7 @@ export default function Searchbar({open}) {
                 placeholder='Enter skill or buzzword...'
                  />
             <CtaButton
-                buttonText='Find your mentor'
+                buttonText='Search mentor'
             />
         </SearchWrapper>
 

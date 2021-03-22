@@ -1,3 +1,4 @@
+
 export const isValidMentorName = (name) => {
     const letters = /^[a-z ,.'-]+$/i;
     if (name.length >= 2 && name.match(letters)) {
@@ -54,7 +55,7 @@ export const isValidAbout = (about) => {
     if (about.length >= 250 && about.length <= 750) {
         return true
     } else {
-        alert("Not a valid about text");
+        alert("Enter a valid about text");
         return false;
     }
 }
