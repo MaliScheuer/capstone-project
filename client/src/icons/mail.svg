@@ -1,8 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="18.42" height="14.622" viewBox="0 0 18.42 14.622">
-  <g id="Icon_feather-mail" data-name="Icon feather-mail" transform="translate(-2.304 -5.5)">
-    <path id="Pfad_41" data-name="Pfad 41" d="M4.7,6H18.325a1.708,1.708,0,0,1,1.7,1.7V17.919a1.708,1.708,0,0,1-1.7,1.7H4.7a1.708,1.708,0,0,1-1.7-1.7V7.7A1.708,1.708,0,0,1,4.7,6Z" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-    <path id="Pfad_42" data-name="Pfad 42" d="M20.028,9l-8.514,5.96L3,9" transform="translate(0 -1.297)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="12.831" height="10.264" viewBox="0 0 12.831 10.264">
+  <path id="Icon_material-email" data-name="Icon material-email" d="M14.547,6H4.283A1.281,1.281,0,0,0,3.006,7.283L3,14.981a1.287,1.287,0,0,0,1.283,1.283H14.547a1.287,1.287,0,0,0,1.283-1.283v-7.7A1.287,1.287,0,0,0,14.547,6Zm0,2.566L9.415,11.774,4.283,8.566V7.283l5.132,3.208,5.132-3.208Z" transform="translate(-3 -6)" fill="#fff"/>
 </svg>
+
 
 
