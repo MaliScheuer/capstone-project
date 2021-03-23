@@ -32,7 +32,7 @@ export default function Buzzwords({ onCreateBuzzword, buzzwords, onDeleteBuzzwor
             <input
                 type='text'
                 name='buzzwords'
-                placeholder='Enter skill or buzzword'
+                placeholder='Enter skills or buzzwords'
                 onChange={handleChange}
                 value={value}
                 onKeyDown={handleKeyDown} />
