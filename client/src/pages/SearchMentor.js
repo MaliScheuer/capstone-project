@@ -8,22 +8,18 @@ export default function SearchMentor({ open, mentors, addToFavouriteMentor, favo
 const params = new URLSearchParams(window.location.search);
 const competenceInput = params.get("competence");
 const buzzwordsInput = params.get("buzzwords");
-console.log(competenceInput);
-console.log(buzzwordsInput);
-
 
 function filterMentors(mentors, competence, buzzwords) {
   if(!competence && !buzzwords) {
     return mentors
   }
-return mentors.filter((mentor) => {
+  return mentors.filter((mentor) => {
     const mentorBuzzwords = mentor.buzzwords.toString().toLowerCase()
     const mentorCompetence = mentor.competence
 
     if(competence === '') {
       return mentorBuzzwords.includes(buzzwords.toLowerCase())
     }
-
     if (buzzwords === '') {
       return mentorCompetence.includes(competence)
     }
