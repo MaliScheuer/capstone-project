@@ -3,20 +3,26 @@ import bodyParser from 'body-parser';
 import fileUpload from 'express-fileupload';
 import mongoose from 'mongoose';
 import Mentors from './models/mentors.model.js';
-import Image from './models/image.model.js'
+import Image from './models/image.model.js';
+import dotenv from 'dotenv';
 import cors from 'cors';
 
 
-const connectionString = "mongodb://localhost:27017/mentor-app";
-
+//"mongodb://localhost:27017/mentor-app"; 
+dotenv.config()
 const server = express();
 server.use(cors());
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(fileUpload({ createParentPath: true }))
 
+const connectionString = process.env.mongoUrl
+
 mongoose.connect(connectionString,
     { useNewUrlParser: true, useUnifiedTopology: true });
+
+const connection = mongoose.connection
+connection.once('open', () => console.log('mongodb is connected'))
 
 server.get('/', (req, res) => res.send('Hello'))
 
