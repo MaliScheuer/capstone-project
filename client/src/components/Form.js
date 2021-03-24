@@ -37,9 +37,12 @@ export default function Form({ submitFunction, open }) {
         })
     }
 
-    /*const removeImage = () => {
-        setNewMentor(initialMentor.image)
-     }*/
+    const removeImage = () => {
+        setNewMentor({
+            ...newMentor,
+            image: ''
+        })
+     }
 
      const handleImageUpload = event => {
         const url = 'http://localhost:4000/upload';
@@ -153,22 +156,24 @@ export default function Form({ submitFunction, open }) {
 
                 <label>Add image
             </label>
-           {/* <ImageWrapper>*/}
+        
                 <input
                     type= 'file'
                     name='image'
                     placeholder='Add image'
                     onChange={handleImageUpload}
-                    /*ref={imageInput => initialMentor.image = imageInput}*/
+                    style={{display: 'none'}}
+                    ref={imageInput => initialMentor.image = imageInput}
                 />
+                   <ImageWrapper>
                 {
                     newMentor.image?.name &&
                     <img src={`/images/${newMentor.image.name}`} width="100" />
                 }
-                {/*<ImageButton type='button' onClick={() => initialMentor.image.click()}>Pick image</ImageButton>
-                <ImageButton type='button' onClick={removeImage}>Remove</ImageButton>
-                <p>{newMentor.image}</p>
-    </ImageWrapper>*/}
+                <ImageButton type='button' onClick={() => initialMentor.image.click()}>Pick image</ImageButton>
+                <ImageButton onClick={removeImage} type='button'>Remove Image</ImageButton>
+              
+    </ImageWrapper>
 
                 <CtaButton valid={valid} type='submit'> Create Profile</CtaButton>
             </FormWrapper>
@@ -256,6 +261,9 @@ display: flex;
 justify-content: space-between;
 gap: 1rem;
 margin-bottom: 1rem;
+box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 35%);
+padding: 1rem;
+border-radius: 1rem;
 `
 
 const ImageButton = styled.button`

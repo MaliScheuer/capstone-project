@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 109 109">
+  <g id="Ellipse_6" data-name="Ellipse 6" fill="#3d717d" stroke="rgba(112,112,112,0)" stroke-width="1">
+    <circle cx="54.5" cy="54.5" r="54.5" stroke="none"/>
+    <circle cx="54.5" cy="54.5" r="54" fill="none"/>
+  </g>
+  <path id="Icon_ionic-md-person" data-name="Icon ionic-md-person" d="M30.326,30.326A12.913,12.913,0,1,0,17.413,17.413,12.951,12.951,0,0,0,30.326,30.326Zm0,6.456C21.771,36.782,4.5,41.141,4.5,49.7v6.456H56.152V49.7C56.152,41.141,38.88,36.782,30.326,36.782Z" transform="translate(24.174 24.174)" fill="#fff" stroke="rgba(112,112,112,0)" stroke-width="1"/>
+</svg>

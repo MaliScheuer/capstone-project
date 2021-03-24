@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { ReactComponent as HeartIconPetrol } from '../icons/heart.petrol.svg';
 import { ReactComponent as PhoneIcon } from '../icons/phone.svg';
 import { ReactComponent as MailIcon } from '../icons/mail.svg';
+import {ReactComponent as ProfilePlaceholder } from '../icons/profile.placeholder.svg'
 import background from '../images/graphicblue.png';
 import CtaButton from './CtaButton';
 
@@ -20,7 +21,9 @@ export default function MentorsCard({ mentor, open, onAddToFavourites, isFavouri
                 {
                     mentor.image
                       ? <ProfileImg src={'/images/' + mentor.image.name} />
-                      : <ProfileImg src='https://images.unsplash.com/photo-1541535881962-3bb380b08458?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=632&q=80'></ProfileImg>
+                      : 
+                          <ProfilePlaceholder/>
+                      
                 }
     
                 <WrapperContact details={details}>
