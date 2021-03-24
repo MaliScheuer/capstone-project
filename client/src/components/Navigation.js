@@ -57,6 +57,7 @@ letter-spacing: 0.2rem;
 
 svg{
     margin-right: 1rem;
+
 }
 `
 const PseudoButton = styled.button`

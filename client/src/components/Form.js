@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Buzzwords from './Buzzwords';
 import isValidMentor from '../lib/validateFunctions';
+import loadFromLocal from '../lib/loadFromLocal';
+import saveToLocal from '../lib/saveToLocal';
+import {isValidMentorName, isValidAbout, isValidBuzzwords, isValidCompetence, isValidEmail, isValidPhone} from '../lib/validateFunctions'
 
 export default function Form({ submitFunction, open }) {
     const initialMentor =
@@ -16,8 +19,14 @@ export default function Form({ submitFunction, open }) {
         image: ''
     }
 
-    const [newMentor, setNewMentor] = useState(initialMentor);
+    const NEWMENTOR_KEY = 'newMentorInput'
+
+    const [newMentor, setNewMentor] = useState(loadFromLocal(NEWMENTOR_KEY) ?? initialMentor);
     const [valid, setValid] = useState(false)
+
+    useEffect(() => {
+        saveToLocal(NEWMENTOR_KEY, newMentor)
+      }, [newMentor])
 
     const handleChange = event => {
         const field = event.target;
@@ -29,16 +38,14 @@ export default function Form({ submitFunction, open }) {
         })
     }
 
-
     function submitForm(event) {
         event.preventDefault();
         if (isValidMentor(newMentor)) {
-            setValid(true);
+            setValid(true)
             submitFunction(newMentor);
             setNewMentor(initialMentor);
         }
     }
-
 
     const addBuzzword = buzzword => {
         if (buzzword.length >= 1) {
@@ -86,6 +93,7 @@ export default function Form({ submitFunction, open }) {
                     <option value='Arts and Entertainment'>Arts and Entertainment</option>
                     <option value='Business, Management and Administration'>Business, Management and Administration</option>
                     <option value='Education and Training'>Education and Training</option>
+                    <option value='Finance and Accounting'>Finance and Accounting</option>
                     <option value='Health and Medicine'>Health and Medicine</option>
                     <option value='Law and Public Policy'>Law and Public Policy</option>
                     <option value='Sales, Marketing and Communications'>Sales, Marketing and Communications</option>
@@ -148,7 +156,10 @@ export default function Form({ submitFunction, open }) {
     )
 }
 
+
+
 const FormWrapper = styled.form`
+position: absolute;
 display:flex;
 flex-direction: column;
 margin: 1.2rem 2.3rem;
@@ -186,7 +197,7 @@ label{
 `
 
 const CtaButton = styled.button`
-background: ${({ valid }) => valid ? 'var(--red)' : 'var(--lightgrey)'};
+background: ${({ valid }) => !valid ? 'var(--red)' : 'var(--lightgrey)'};
 padding: 1rem;
 border-radius: 0.4rem;
 border: none;
@@ -196,6 +207,7 @@ box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 35%);
 cursor: pointer;
 width: 230px;
 font-size: 1.1rem;
+align-self: center;
 `
 
 const SuccessMessage = styled.div`

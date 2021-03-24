@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="22.374" height="22.374" viewBox="0 0 22.374 22.374">
-                    <g id="Icon_feather-search" data-name="Icon feather-search" transform="translate(-4 -4)">
-                        <path id="Pfad_23" data-name="Pfad 23" d="M23.315,13.908A9.408,9.408,0,1,1,13.908,4.5a9.408,9.408,0,0,1,9.408,9.408Z" transform="translate(0 0)" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" />
-                        <path id="Pfad_24" data-name="Pfad 24" d="M30.09,30.09l-5.115-5.115" transform="translate(-4.423 -4.423)" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" />
-                    </g>
-                </svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="24.207" height="24.207" viewBox="0 0 24.207 24.207">
+  <g id="Icon_feather-search" data-name="Icon feather-search" transform="translate(-4 -4)">
+    <path id="Pfad_23" data-name="Pfad 23" d="M25.148,14.824A10.324,10.324,0,1,1,14.824,4.5,10.324,10.324,0,0,1,25.148,14.824Z" transform="translate(0 0)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    <path id="Pfad_24" data-name="Pfad 24" d="M30.09,30.09l-5.115-5.115" transform="translate(-2.59 -2.59)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+  </g>
+</svg>
