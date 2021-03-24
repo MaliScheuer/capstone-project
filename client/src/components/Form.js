@@ -23,8 +23,6 @@ export default function Form({ submitFunction, open }) {
     const [newMentor, setNewMentor] = useState(loadFromLocal(NEWMENTOR_KEY) ?? initialMentor);
     const [valid, setValid] = useState(false)
 
-    const [image, setImage] = useState('')
-
     useEffect(() => {
         saveToLocal(NEWMENTOR_KEY, newMentor)
       }, [newMentor])
@@ -44,13 +42,13 @@ export default function Form({ submitFunction, open }) {
      }*/
 
      const handleImageUpload = event => {
-
         const url = 'http://localhost:4000/upload';
-
         const formData = new FormData();
         formData.append('image', event.target.files[0]);
 
-        fetch(url, { method: 'POST', body: formData })
+        fetch(url, { 
+            method: 'POST', 
+            body: formData })
             .then(result => result.json())
             .then(image => setNewMentor({...newMentor, image: image}))
             .catch(error => console.error(error.message))
@@ -165,7 +163,7 @@ export default function Form({ submitFunction, open }) {
                 />
                 {
                     newMentor.image?.name &&
-                    <img src={`/images/${newMentor.image.name}`} width="200" />
+                    <img src={`/images/${newMentor.image.name}`} width="100" />
                 }
                 {/*<ImageButton type='button' onClick={() => initialMentor.image.click()}>Pick image</ImageButton>
                 <ImageButton type='button' onClick={removeImage}>Remove</ImageButton>
