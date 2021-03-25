@@ -35,7 +35,7 @@ Become a mentor</Link>
 }
 
 const StyledNavigation = styled.nav`
-background: var(--petrol);
+background:var(--petrol);
 display:flex;
 flex-direction: column;
 gap: 1.7rem;
