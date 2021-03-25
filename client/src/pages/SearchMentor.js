@@ -1,18 +1,35 @@
+import {useState} from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import MentorsCard from '../components/MentorsCard';
 import Searchbar from '../components/Searchbar';
 
 
 export default function SearchMentor({ open, mentors, addToFavouriteMentor, favourites}) {
+  const initialSearch =
+  {
+      competence: '',
+      buzzwords: ''   
+  }
 
-const params = new URLSearchParams(window.location.search);
-const competenceInput = params.get("competence");
-const buzzwordsInput = params.get("buzzwords");
+  const [searchterm, setSearchterm] = useState(initialSearch)
+
+  const handleChange = event => {
+    const field = event.target;
+    const value = field.value;
+  
+    setSearchterm({
+      ...searchterm,
+      [field.name]: value
+  })
+}
+
 
 function filterMentors(mentors, competence, buzzwords) {
   if(!competence && !buzzwords) {
     return mentors
   }
+
   return mentors.filter((mentor) => {
     const mentorBuzzwords = mentor.buzzwords.toString().toLowerCase()
     const mentorCompetence = mentor.competence
@@ -23,18 +40,28 @@ function filterMentors(mentors, competence, buzzwords) {
     if (buzzwords === '') {
       return mentorCompetence.includes(competence)
     }
+
     else {
     return mentorCompetence.includes(competence) ||  mentorBuzzwords.includes(buzzwords.toLowerCase())
     }
+
 });
 }
 
-const filteredMentors = filterMentors(mentors, competenceInput, buzzwordsInput);
+const filteredMentors = filterMentors(mentors, searchterm.competence, searchterm.buzzwords);
+
+function showAll() {
+  setSearchterm(initialSearch)
+}
 
   return (
     <>
     <Searchbar 
-    open={open}/>
+    open={open}
+    searchterm={searchterm}
+    onhandleChange={handleChange}
+    onShowAll={showAll}
+    />
       {
         filteredMentors.map((mentor) => (
           <MentorsCard
@@ -46,9 +73,23 @@ const filteredMentors = filterMentors(mentors, competenceInput, buzzwordsInput);
           />
           ))
       }
+{ filteredMentors.length === 0 &&
+      <NoResult>Your search term didn´t match any mentor. Please choose another field of competence or add a buzzword to expand your search.</NoResult>
+}
     </>
   )
 }
+
+
+const NoResult = styled.p`
+color: var(--petrol);
+margin: 2rem;
+font-weight: bold;
+border: solid 0.1rem var(--petrol);
+padding: 1rem;
+border-radius: 0.3rem;
+box-shadow: 0.2rem 0.2rem 0.2rem rgba(0,0,0, 35%);
+`
 
 SearchMentor.propTypes = {
   open: PropTypes.bool,

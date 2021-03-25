@@ -1,8 +1,9 @@
+import {Link} from 'react-router-dom';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { ReactComponent as BurgerIcon } from "../icons/burger.svg";
 import { ReactComponent as SearchIcon } from "../icons/search.svg";
 import { ReactComponent as HeartIcon } from "../icons/heart.svg";
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 export default function Header({ open, setOpen, headline }) {
 
@@ -13,12 +14,12 @@ export default function Header({ open, setOpen, headline }) {
             </PseudoButton>
 
             <IconsWrapper>
-                <a href="/search-mentors">
+                <Link to="/search-mentors">
                     <SearchIcon />
-                </a>
-                <a href="/favourites">
+                </Link>
+                <Link to="/favourites">
                     <HeartIcon />
-                </a>
+                </Link>
             </IconsWrapper>
             <h1>{headline}</h1>
         </Wrapper >

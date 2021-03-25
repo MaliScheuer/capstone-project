@@ -268,7 +268,7 @@ border-radius: 1rem;
 
 const ImageButton = styled.button`
 border: none;
-background: var(--petrol-light);
+background: var(--petrol);
 color: white;
 box-shadow: 0.2rem 0.2rem 0.2rem rgba(0,0,0, 35%);
 border-radius: 0.5rem;
