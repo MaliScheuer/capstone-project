@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { ReactComponent as PhoneIcon } from '../icons/phone.svg';
 import { ReactComponent as MailIcon } from '../icons/mail.svg';
@@ -177,3 +178,7 @@ const Subline = styled.h4`
 margin-top: 1.5rem;
 color: var(--petrol);
 `
+
+ProfileCard.propTypes = {
+  open: PropTypes.bool
+}

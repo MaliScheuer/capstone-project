@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import CtaButton from './CtaButton';
 
 export default function Searchbar({open, searchterm,  onhandleChange, onShowAll}) {
@@ -81,3 +82,10 @@ margin-left: 2rem;
 letter-spacing: 0.25rem;
 font-weight: bold;
 `
+
+Searchbar.propTypes = {
+    open: PropTypes.bool, 
+    searchterm: PropTypes.object,
+    onhandleChange: PropTypes.func,
+    onShowAll: PropTypes.func
+}

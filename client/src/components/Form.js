@@ -168,7 +168,7 @@ export default function Form({ submitFunction, open }) {
                    <ImageWrapper>
                 {
                     newMentor.image?.name &&
-                    <img src={`/images/${newMentor.image.name}`} width="100" />
+                    <img src={`/images/${newMentor.image.name}`} width="100" alt='profile imge'/>
                 }
                 <ImageButton type='button' onClick={() => initialMentor.image.click()}>Pick image</ImageButton>
                 <ImageButton onClick={removeImage} type='button'>Remove Image</ImageButton>
@@ -279,5 +279,6 @@ cursor: pointer;
 margin-left: 0.5rem;
 `
 Form.propTypes = {
-    submitFunction: PropTypes.func
+    submitFunction: PropTypes.func,
+    open: PropTypes.bool
 }

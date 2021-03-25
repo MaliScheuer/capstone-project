@@ -29,7 +29,7 @@ font-weight: bold;
 
 Favourites.propTypes = {
     favourites: PropTypes.array,
-    removeFavourite: PropTypes.func
+    removeFavourite: PropTypes.func,
+    open: PropTypes.bool
 }
-
 
