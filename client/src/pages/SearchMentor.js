@@ -10,12 +10,12 @@ export default function SearchMentor({
   addToFavouriteMentor,
   favourites,
 }) {
-  const initialSearch = {
+  const initialSearchTerms = {
     competence: "",
     buzzwords: "",
   };
 
-  const [searchterm, setSearchterm] = useState(initialSearch);
+  const [searchterm, setSearchterm] = useState(initialSearchTerms);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -58,7 +58,7 @@ export default function SearchMentor({
   );
 
   function showAll() {
-    setSearchterm(initialSearch);
+    setSearchterm(initialSearchTerms);
   }
 
   return (

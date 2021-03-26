@@ -38,7 +38,11 @@ export default function Searchbar({
           value={searchterm.buzzwords}
           onChange={onhandleChange}
         />
-        <CtaButton buttonText="Show all" clickHandler={onShowAll} />
+        <CtaButton
+          type="button"
+          buttonText="Show all"
+          clickHandler={onShowAll}
+        />
       </SearchWrapper>
 
       <Result>Results</Result>

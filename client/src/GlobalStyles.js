@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
 
@@ -30,4 +30,4 @@ h1, h2, h3, h4 {
     --lightgrey: #f0e6e6;
     --kakhi: #7a8775;
 }
-`
+`;
