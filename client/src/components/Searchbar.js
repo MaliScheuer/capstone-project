@@ -13,6 +13,7 @@ export default function Searchbar({
       <SearchWrapper open={open}>
         <select
           type="text"
+          title="competence"
           name="competence"
           value={searchterm.competence}
           onChange={onhandleChange}
@@ -32,6 +33,7 @@ export default function Searchbar({
 
         <input
           id="header-search"
+          title="buzzwords"
           type="text"
           name="buzzwords"
           placeholder="Enter skill or buzzword..."

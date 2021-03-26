@@ -133,6 +133,7 @@ const WrapperImageContact = styled.section`
   border-radius: 2.5rem;
   padding: 1rem;
   text-align: left;
+  box-shadow: 0.2rem 0.2rem 0.3rem rgba(0, 0, 0, 35%);
 `;
 const Name = styled.h4`
   color: white;
@@ -209,6 +210,7 @@ const EditButton = styled.button`
   gap: 0.5rem;
   align-items: center;
   font-weight: bold;
+  cursor: pointer;
 `;
 
 ProfileCard.propTypes = {
