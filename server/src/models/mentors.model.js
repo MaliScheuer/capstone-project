@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+const Schema = mongoose.Schema;
 
 const mentorsSchema = new mongoose.Schema({
     mentor_name: {
@@ -21,7 +22,8 @@ const mentorsSchema = new mongoose.Schema({
     },
     image:
     {
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: 'image'
     },
     isActive: {
         type: Boolean

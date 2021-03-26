@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import CtaButton from './CtaButton';
 
-export default function Searchbar({open}) {
+export default function Searchbar({open, searchterm,  onhandleChange, onShowAll}) {
 
 
     return(
@@ -10,6 +11,8 @@ export default function Searchbar({open}) {
             <select
                     type='text'
                     name='competence'
+                    value={searchterm.competence}
+                    onChange={onhandleChange}
                     >
                     <option >Choose field of competence</option>
                     <option >Architecture and Engineering</option>
@@ -29,9 +32,12 @@ export default function Searchbar({open}) {
                 type='text'
                 name='buzzwords'
                 placeholder='Enter skill or buzzword...'
+                value={searchterm.buzzwords}
+                onChange={onhandleChange}
                  />
             <CtaButton
-                buttonText='Search mentor'
+                buttonText='Show all'
+                clickHandler={onShowAll}
             />
         </SearchWrapper>
 
@@ -40,7 +46,7 @@ export default function Searchbar({open}) {
     )
 }
 
-const SearchWrapper = styled.form`
+const SearchWrapper = styled.section`
 display:flex;
 flex-direction: column;
 align-items: center;
@@ -76,3 +82,10 @@ margin-left: 2rem;
 letter-spacing: 0.25rem;
 font-weight: bold;
 `
+
+Searchbar.propTypes = {
+    open: PropTypes.bool, 
+    searchterm: PropTypes.object,
+    onhandleChange: PropTypes.func,
+    onShowAll: PropTypes.func
+}

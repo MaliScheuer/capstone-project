@@ -23,7 +23,9 @@
     "url": "https://github.com/MaliScheuer/capstone-project/issues"
   },
   "homepage": "https://github.com/MaliScheuer/capstone-project#readme",
-  "dependencies": {},
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  },
   "devDependencies": {
     "concurrently": "^6.0.0",
     "nodemon": "^2.0.7"

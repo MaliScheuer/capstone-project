@@ -3,6 +3,7 @@ import { ReactComponent as SearchSmallIcon } from "../icons/search.small.svg";
 import { ReactComponent as ProfileIcon } from "../icons/profile.small.svg";
 import { ReactComponent as HeartSmallIcon } from "../icons/heart.small.svg";
 import { ReactComponent as NewProfileIcon } from "../icons/newprofile.small.svg";
+import {Link} from 'react-router-dom'
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -12,29 +13,29 @@ export default function Navigation({ open, setOpen }) {
         <StyledNavigation open={open}>
             <PseudoButton open={open} onClick={() => setOpen(!open)}>
                 &#10005;</PseudoButton>
-            <a href='/'>
-                <HomeIcon />
-Home</a>
-            <a href='/search-mentors'>
-                <SearchSmallIcon />
+            <Link to='/' open={open} onClick={() => setOpen(!open)}>
+                <HomeIcon open={open} onClick={() => setOpen(!open)} />
+Home</Link>
+            <Link to='/search-mentors' open={open} onClick={() => setOpen(!open)}>
+                <SearchSmallIcon  open={open} onClick={() => setOpen(!open)}/>
 
-            Find a mentor</a>
-            <a href='/profile'>
-                <ProfileIcon />
-                Profile</a>
-            <a href='/favourites'>
-                <HeartSmallIcon />
-Favourites</a>
+            Find a mentor</Link>
+            <Link to='/profile' open={open} onClick={() => setOpen(!open)}>
+                <ProfileIcon open={open} onClick={() => setOpen(!open)} />
+                Profile</Link>
+            <Link to='/favourites' open={open} onClick={() => setOpen(!open)}>
+                <HeartSmallIcon open={open} onClick={() => setOpen(!open)}/>
+Favourites</Link>
 
-            <a href='/create-profile'>
-                <NewProfileIcon />
-Become a mentor</a>
+            <Link to='/create-profile' open={open} onClick={() => setOpen(!open)}>
+                <NewProfileIcon open={open} onClick={() => setOpen(!open)} />
+Become a mentor</Link>
         </StyledNavigation>
     )
 }
 
 const StyledNavigation = styled.nav`
-background: var(--petrol);
+background:var(--petrol);
 display:flex;
 flex-direction: column;
 gap: 1.7rem;

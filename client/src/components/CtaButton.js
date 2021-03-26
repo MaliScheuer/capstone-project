@@ -25,5 +25,7 @@ outline:white;
 `
 
 CtaButton.propTypes = {
-    buttonText: PropTypes.string
+    buttonText: PropTypes.string,
+    clickHandler: PropTypes.func,
+    backgroundColor: PropTypes.func
 }
