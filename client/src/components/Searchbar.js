@@ -52,7 +52,7 @@ export default function Searchbar({
   );
 }
 
-const SearchWrapper = styled.section`
+const SearchWrapper = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;

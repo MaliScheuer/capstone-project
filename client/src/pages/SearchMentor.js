@@ -57,7 +57,8 @@ export default function SearchMentor({
     searchterm.buzzwords
   );
 
-  function showAll() {
+  function showAll(event) {
+    event.preventDefault();
     setSearchterm(initialSearchTerms);
   }
 
