@@ -2,5 +2,8 @@
 This is a documentation about the navigation component.
 
 ```js
-<Navigation />
+import { MemoryRouter } from "react-router-dom";
+<MemoryRouter>
+  <Navigation />
+</MemoryRouter>;
 ```

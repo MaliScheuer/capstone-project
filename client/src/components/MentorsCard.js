@@ -5,7 +5,7 @@ import { ReactComponent as HeartIconPetrol } from "../icons/heart.petrol.svg";
 import { ReactComponent as PhoneIcon } from "../icons/phone.svg";
 import { ReactComponent as MailIcon } from "../icons/mail.svg";
 import { ReactComponent as ProfilePlaceholder } from "../icons/profile.placeholder.svg";
-import background from "../images/graphicblue.png";
+import background from "../images/background-petrol.png";
 import CtaButton from "./CtaButton";
 
 export default function MentorsCard({

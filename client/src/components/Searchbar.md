@@ -3,5 +3,10 @@
 This is a documentation about the searchbar component.
 
 ```js
-<Searchbar />
+<Searchbar
+  searchterm={{
+    competence: "",
+    buzzwords: "",
+  }}
+/>
 ```

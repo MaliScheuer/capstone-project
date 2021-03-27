@@ -1,6 +1,6 @@
-import { render } from "@testing-library/react";
+import { getByTestId, render, fireEvent } from "@testing-library/react";
 import Header from "./Header";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 
 describe("Header component", () => {
   it("should render a headline", () => {
@@ -10,5 +10,16 @@ describe("Header component", () => {
       </BrowserRouter>
     );
     expect(getByText("headline text")).toBeInTheDocument();
+  });
+
+  it("should show three icons(burgermenu, favourite & search)", () => {
+    const { getByTestId } = render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>
+    );
+    expect(getByTestId("search")).toBeInTheDocument();
+    expect(getByTestId("favourites")).toBeInTheDocument();
+    expect(getByTestId("burgermenu")).toBeInTheDocument();
   });
 });

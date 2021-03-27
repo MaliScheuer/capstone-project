@@ -25,15 +25,11 @@ export default function ProfileCard({ open }) {
         <Name>Lisa Musterfrau</Name>
         <WrapperContact>
           <PhoneMail>
-            <a href="tel:">
-              <PhoneIcon />
-            </a>
+            <PhoneIcon />
             <p>0176 3965 2184</p>
           </PhoneMail>
           <PhoneMail>
-            <a href="mailto:">
-              <MailIcon />
-            </a>
+            <MailIcon />
             <p>lisa.mustermann@gmail.com</p>
           </PhoneMail>
         </WrapperContact>

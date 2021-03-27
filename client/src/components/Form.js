@@ -28,6 +28,8 @@ export default function Form({ postNewMentorToApi, open }) {
     saveToLocal(NEWMENTOR_KEY, newMentor);
   }, [newMentor]);
 
+  let imageInput = null;
+
   const handleChange = (event) => {
     const field = event.target;
     const value = field.value;
@@ -175,7 +177,7 @@ export default function Form({ postNewMentorToApi, open }) {
           placeholder="Add image"
           onChange={handleImageUpload}
           style={{ display: "none" }}
-          ref={(imageInput) => (initialMentor.image = imageInput)}
+          ref={(input) => (imageInput = input)}
         />
         <ImageWrapper>
           {newMentor.image?.name && (
@@ -185,10 +187,7 @@ export default function Form({ postNewMentorToApi, open }) {
               alt="profile imge"
             />
           )}
-          <ImageButton
-            type="button"
-            onClick={() => initialMentor.image.click()}
-          >
+          <ImageButton type="button" onClick={() => imageInput.click()}>
             Pick image
           </ImageButton>
           <ImageButton onClick={removeImage} type="button">
