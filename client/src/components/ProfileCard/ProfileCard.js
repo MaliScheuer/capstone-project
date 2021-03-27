@@ -5,8 +5,9 @@ import { ReactComponent as PhoneIcon } from "../../icons/phone.svg";
 import { ReactComponent as MailIcon } from "../../icons/mail.svg";
 import { ReactComponent as EditIcon } from "../../icons/edit.svg";
 import background from "../../images/rectangle-petrol.png";
+import MentorsCard from "../MentorsCard/MentorsCard";
 
-export default function ProfileCard({ open }) {
+export default function ProfileCard({ open, mentor }) {
   const [toggle, setToggle] = useState(true);
   const triggerToggle = () => {
     setToggle(!toggle);
@@ -21,28 +22,23 @@ export default function ProfileCard({ open }) {
         </SwitchIcon>
       </div>
       <WrapperImageContact>
-        <ProfileImg src="https://images.unsplash.com/photo-1571844307880-751c6d86f3f3?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2017&q=80"></ProfileImg>
-        <Name>Lisa Musterfrau</Name>
+        <ProfileImg src={"/images/" + mentor.image.name}></ProfileImg>
+        <Name>{mentor.mentor_name}</Name>
         <WrapperContact>
           <PhoneMail>
             <PhoneIcon />
-            <p>0176 3965 2184</p>
+            <p>{mentor.phone}</p>
           </PhoneMail>
           <PhoneMail>
             <MailIcon />
-            <p>lisa.mustermann@gmail.com</p>
+            <p>{mentor.email}</p>
           </PhoneMail>
         </WrapperContact>
       </WrapperImageContact>
       <Subline>Field of Competence</Subline>
-      <Competence>Finance and Taxes</Competence>
+      <Competence>{mentor.competence}</Competence>
       <Subline>About Me</Subline>
-      <About>
-        Bavaria ipsum dolor sit amet da Kini Radi woaß Haberertanz und sei. Mim
-        i sog ja nix, i red ja bloß liberalitas Bavariae nimmds, blärrd: Wolln
-        Watschnpladdla a ganze Steckerleis Sauakraud unbandig resch hi sog i
-        ghupft wia gsprunga auffi. Kummd und sei singd sowos wui.
-      </About>
+      <About>{mentor.about}</About>
       <Subline>Skills</Subline>
       <WrapperBuzzwords>
         <Buzzwords>Tax Consultant</Buzzwords>
