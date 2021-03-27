@@ -1,12 +1,12 @@
 import { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { ReactComponent as HeartIconPetrol } from "../icons/heart.petrol.svg";
-import { ReactComponent as PhoneIcon } from "../icons/phone.svg";
-import { ReactComponent as MailIcon } from "../icons/mail.svg";
-import { ReactComponent as ProfilePlaceholder } from "../icons/profile.placeholder.svg";
-import background from "../images/background-petrol.png";
-import CtaButton from "./CtaButton";
+import { ReactComponent as HeartIconPetrol } from "../../icons/heart.petrol.svg";
+import { ReactComponent as PhoneIcon } from "../../icons/phone.svg";
+import { ReactComponent as MailIcon } from "../../icons/mail.svg";
+import { ReactComponent as ProfilePlaceholder } from "../../icons/profile.placeholder.svg";
+import background from "../../images/background-petrol.png";
+import CtaButton from "../CtaButton/CtaButton";
 
 export default function MentorsCard({
   mentor,

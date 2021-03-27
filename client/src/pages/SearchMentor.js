@@ -1,8 +1,8 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import MentorsCard from "../components/MentorsCard";
-import Searchbar from "../components/Searchbar";
+import MentorsCard from "../components/MentorsCard/MentorsCard";
+import Searchbar from "../components/Searchbar/Searchbar";
 
 export default function SearchMentor({
   open,

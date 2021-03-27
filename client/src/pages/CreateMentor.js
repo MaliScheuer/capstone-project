@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import Form from "../components/Form";
+import Form from "../components/Form/Form";
 
 export default function CreateMentor({ open }) {
   const [mentors, setMentors] = useState([]);

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Buzzwords from "./Buzzwords";
-import isValidMentor from "../lib/validateFunctions";
-import loadFromLocal from "../lib/loadFromLocal";
-import saveToLocal from "../lib/saveToLocal";
+import Buzzwords from "../Buzzwords/Buzzwords";
+import isValidMentor from "../../lib/validateFunctions";
+import loadFromLocal from "../../lib/loadFromLocal";
+import saveToLocal from "../../lib/saveToLocal";
 
 export default function Form({ postNewMentorToApi, open }) {
   const initialMentor = {

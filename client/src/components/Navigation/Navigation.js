@@ -1,8 +1,8 @@
-import { ReactComponent as HomeIcon } from "../icons/home.svg";
-import { ReactComponent as SearchSmallIcon } from "../icons/search.small.svg";
-import { ReactComponent as ProfileIcon } from "../icons/profile.small.svg";
-import { ReactComponent as HeartSmallIcon } from "../icons/heart.small.svg";
-import { ReactComponent as NewProfileIcon } from "../icons/newprofile.small.svg";
+import { ReactComponent as HomeIcon } from "../../icons/home.svg";
+import { ReactComponent as SearchSmallIcon } from "../../icons/search.small.svg";
+import { ReactComponent as ProfileIcon } from "../../icons/profile.small.svg";
+import { ReactComponent as HeartSmallIcon } from "../../icons/heart.small.svg";
+import { ReactComponent as NewProfileIcon } from "../../icons/newprofile.small.svg";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import PropTypes from "prop-types";

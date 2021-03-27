@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import CtaButton from "./CtaButton";
+import CtaButton from "../CtaButton/CtaButton";
 
 export default function Searchbar({
   open,

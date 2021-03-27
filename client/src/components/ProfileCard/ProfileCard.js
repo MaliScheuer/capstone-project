@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { ReactComponent as PhoneIcon } from "../icons/phone.svg";
-import { ReactComponent as MailIcon } from "../icons/mail.svg";
-import { ReactComponent as EditIcon } from "../icons/edit.svg";
-import background from "../images/rectangle-petrol.png";
+import { ReactComponent as PhoneIcon } from "../../icons/phone.svg";
+import { ReactComponent as MailIcon } from "../../icons/mail.svg";
+import { ReactComponent as EditIcon } from "../../icons/edit.svg";
+import background from "../../images/rectangle-petrol.png";
 
 export default function ProfileCard({ open }) {
   const [toggle, setToggle] = useState(true);

@@ -5,8 +5,8 @@ import CreateMentor from "./pages/CreateMentor";
 import SearchMentor from "./pages/SearchMentor";
 import Favourites from "./pages/Favourites";
 import Profile from "./pages/Profile";
-import Header from "./components/Header";
-import Navigation from "./components/Navigation";
+import Header from "./components/Header/Header";
+import Navigation from "./components/Navigation/Navigation";
 import loadFromLocal from "./lib/loadFromLocal";
 import saveToLocal from "./lib/saveToLocal";
 
