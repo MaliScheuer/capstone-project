@@ -1,9 +1,6 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CtaButton from "../components/CtaButton/CtaButton";
-import saveToLocal from "../lib/saveToLocal";
-import loadFromLocal from "../lib/loadFromLocal";
 
 export default function Login({ activeUser, setActiveUser }) {
   function handleClick1() {

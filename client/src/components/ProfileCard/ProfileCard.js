@@ -1,25 +1,39 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { useState } from "react";
 import { ReactComponent as PhoneIcon } from "../../icons/phone.svg";
 import { ReactComponent as MailIcon } from "../../icons/mail.svg";
 import { ReactComponent as EditIcon } from "../../icons/edit.svg";
 import { ReactComponent as ProfilePlaceholder } from "../../icons/profile.placeholder.svg";
 import background from "../../images/rectangle-petrol.png";
-import MentorsCard from "../MentorsCard/MentorsCard";
 
-export default function ProfileCard({ open, mentor }) {
-  const [toggle, setToggle] = useState(true);
-  const triggerToggle = () => {
-    setToggle(!toggle);
+export default function ProfileCard({ open, mentor, setMentors }) {
+  const setInactive = (mentor) => {
+    let active = !mentor.isActive;
+    fetch("http://localhost:4000/search-mentors/" + mentor._id, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        isActive: active,
+      }),
+    })
+      .then(
+        fetch("http://localhost:4000/search-mentors")
+          .then((result) => result.json())
+          .then((mentors) => setMentors(mentors))
+          .catch((error) => console.error(error.message))
+      )
+      .catch((error) => console.error(error.message));
   };
 
   return (
-    <Section toggle={toggle} open={open}>
+    <Section toggle={mentor.isActive} open={open}>
       <div>
-        <SwitchIcon className={toggle ? "active" : ""}>
-          <input onChange={triggerToggle} type="checkbox" />
-          <Slider className={toggle ? "active" : ""} />
+        <SwitchIcon
+          onChange={() => setInactive(mentor)}
+          className={mentor.isActive && "active"}
+        >
+          <input type="checkbox" />
+          <Slider className={mentor.isActive && "active"} />
         </SwitchIcon>
       </div>
       <WrapperImageContact>

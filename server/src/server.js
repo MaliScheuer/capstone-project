@@ -65,4 +65,15 @@ server.post("/upload", (request, response) => {
     .catch((error) => response.json(error));
 });
 
+server.put("/search-mentors/:mentorId", (request, response) => {
+  const mentorId = request.params.mentorId;
+  const updatedMentor = request.body;
+
+  console.log(request.body);
+
+  Mentors.findOneAndUpdate({ _id: mentorId }, updatedMentor, {
+    new: true,
+  }).then((result) => response.json(result));
+});
+
 server.listen(4000);
