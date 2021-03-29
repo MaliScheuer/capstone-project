@@ -32,7 +32,10 @@ export default function Navigation({ open, setOpen }) {
       </Link>
       <Link to="/profile" open={open} onClick={() => setOpen(!open)}>
         <ProfileIcon open={open} onClick={() => setOpen(!open)} />
-        Profile
+        Your Profile
+      </Link>
+      <Link to="/" open={open} onClick={() => setOpen(!open)}>
+        <Logout>Logout</Logout>
       </Link>
     </StyledNavigation>
   );
@@ -44,7 +47,7 @@ const StyledNavigation = styled.nav`
   flex-direction: column;
   gap: 1.7rem;
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
-  height: 100vh;
+  height: 60vh;
   text-align: left;
   padding: 2rem;
   position: absolute;
@@ -70,6 +73,13 @@ const PseudoButton = styled.button`
   text-align: left;
   color: white;
   outline: none;
+`;
+
+const Logout = styled.p`
+  position: relative;
+  top: 5rem;
+  color: var(--red);
+  font-weight: bold;
 `;
 
 Navigation.propTypes = {
