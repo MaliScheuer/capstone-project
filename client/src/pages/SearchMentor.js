@@ -10,6 +10,8 @@ export default function SearchMentor({
   addToFavouriteMentor,
   favourites,
 }) {
+  const allActiveMentors = mentors.filter((mentor) => mentor.isActive === true);
+
   const initialSearchTerms = {
     competence: "",
     buzzwords: "",
@@ -52,7 +54,7 @@ export default function SearchMentor({
   }
 
   const filteredMentors = filterMentors(
-    mentors,
+    allActiveMentors,
     searchterm.competence,
     searchterm.buzzwords
   );
@@ -103,7 +105,7 @@ const NoResult = styled.p`
 
 SearchMentor.propTypes = {
   open: PropTypes.bool,
-  mentors: PropTypes.object,
+  mentors: PropTypes.array,
   addToFavouriteMentor: PropTypes.func,
   favourites: PropTypes.array,
 };

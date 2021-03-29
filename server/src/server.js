@@ -27,7 +27,7 @@ connection.once("open", () => console.log("mongodb is connected"));
 
 server.get("/", (req, res) => res.send("Hello"));
 
-server.get("/search-mentors", (request, response) => {
+server.get("/mentors", (request, response) => {
   Mentors.find()
     .populate("image")
     .exec((error, mentors) => {
@@ -65,7 +65,7 @@ server.post("/upload", (request, response) => {
     .catch((error) => response.json(error));
 });
 
-server.put("/search-mentors/:mentorId", (request, response) => {
+server.put("/mentors/:mentorId", (request, response) => {
   const mentorId = request.params.mentorId;
   const updatedMentor = request.body;
 

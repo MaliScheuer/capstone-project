@@ -9,7 +9,7 @@ import background from "../../images/rectangle-petrol.png";
 export default function ProfileCard({ open, mentor, setMentors }) {
   const setInactive = (mentor) => {
     let active = !mentor.isActive;
-    fetch("http://localhost:4000/search-mentors/" + mentor._id, {
+    fetch("http://localhost:4000/mentors/" + mentor._id, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -17,7 +17,7 @@ export default function ProfileCard({ open, mentor, setMentors }) {
       }),
     })
       .then(
-        fetch("http://localhost:4000/search-mentors")
+        fetch("http://localhost:4000/mentors")
           .then((result) => result.json())
           .then((mentors) => setMentors(mentors))
           .catch((error) => console.error(error.message))
@@ -27,11 +27,8 @@ export default function ProfileCard({ open, mentor, setMentors }) {
 
   return (
     <Section toggle={mentor.isActive} open={open}>
-      <div>
-        <SwitchIcon
-          onChange={() => setInactive(mentor)}
-          className={mentor.isActive && "active"}
-        >
+      <div onChange={() => setInactive(mentor)}>
+        <SwitchIcon className={mentor.isActive && "active"}>
           <input type="checkbox" />
           <Slider className={mentor.isActive && "active"} />
         </SwitchIcon>
