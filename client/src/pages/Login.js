@@ -4,12 +4,12 @@ import CtaButton from "../components/CtaButton/CtaButton";
 
 export default function Login({ activeUser, setActiveUser }) {
   function handleClick1() {
-    setActiveUser("605b3052fb7697b76d179dfa");
+    setActiveUser("60620381ba39595a8c3f7ef2");
     console.log(activeUser);
   }
 
   function handleClick2() {
-    setActiveUser("605b3dadfb7697b76d179dfc");
+    setActiveUser("60620150d254ab59e015a137");
     console.log(activeUser);
   }
 

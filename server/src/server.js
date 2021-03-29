@@ -27,8 +27,8 @@ connection.once("open", () => console.log("mongodb is connected"));
 
 server.get("/", (req, res) => res.send("Hello"));
 
-server.get("/mentors", (request, response) => {
-  Mentors.findOneAndRemove()
+server.get("/search-mentors", (request, response) => {
+  Mentors.find()
     .populate("image")
     .exec((error, mentors) => {
       if (error) response.json(error.message);

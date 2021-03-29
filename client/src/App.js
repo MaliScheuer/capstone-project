@@ -38,7 +38,7 @@ function App() {
   }, [activeUser]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/mentors")
+    fetch("http://localhost:4000/search-mentors")
       .then((result) => result.json())
       .then((mentors) => setMentors(mentors))
       .catch((error) => console.error(error.message));

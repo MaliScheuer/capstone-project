@@ -103,7 +103,7 @@ const NoResult = styled.p`
 
 SearchMentor.propTypes = {
   open: PropTypes.bool,
-  mentors: PropTypes.array,
+  mentors: PropTypes.object,
   addToFavouriteMentor: PropTypes.func,
   favourites: PropTypes.array,
 };
