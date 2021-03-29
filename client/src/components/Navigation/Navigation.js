@@ -14,7 +14,7 @@ export default function Navigation({ open, setOpen }) {
         &#10005;
       </PseudoButton>
 
-      <Link to="/" open={open} onClick={() => setOpen(!open)}>
+      <Link to="/home" open={open} onClick={() => setOpen(!open)}>
         <HomeIcon open={open} onClick={() => setOpen(!open)} />
         Home
       </Link>

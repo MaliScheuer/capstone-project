@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ReactComponent as PhoneIcon } from "../../icons/phone.svg";
 import { ReactComponent as MailIcon } from "../../icons/mail.svg";
 import { ReactComponent as EditIcon } from "../../icons/edit.svg";
+import { ReactComponent as ProfilePlaceholder } from "../../icons/profile.placeholder.svg";
 import background from "../../images/rectangle-petrol.png";
 import MentorsCard from "../MentorsCard/MentorsCard";
 
@@ -22,7 +23,11 @@ export default function ProfileCard({ open, mentor }) {
         </SwitchIcon>
       </div>
       <WrapperImageContact>
-        <ProfileImg src={"/images/" + mentor.image.name}></ProfileImg>
+        {mentor.image ? (
+          <ProfileImg src={"/images/" + mentor.image.name} />
+        ) : (
+          <ProfilePlaceholder />
+        )}
         <Name>{mentor.mentor_name}</Name>
         <WrapperContact>
           <PhoneMail>

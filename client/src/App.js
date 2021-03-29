@@ -7,17 +7,22 @@ import Favourites from "./pages/Favourites";
 import Profile from "./pages/Profile";
 import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
+import Login from "./pages/Login";
 import loadFromLocal from "./lib/loadFromLocal";
 import saveToLocal from "./lib/saveToLocal";
 
 function App() {
   const MENTORS_KEY = "mentorsList";
   const FAVOURITES_KEY = "favouritesList";
+  const ACTIVE_USER_KEY = "activeUserList";
 
   const [open, setOpen] = useState(false);
   const [mentors, setMentors] = useState(loadFromLocal(MENTORS_KEY) ?? []);
   const [favourites, setFavourites] = useState(
     loadFromLocal(FAVOURITES_KEY) ?? []
+  );
+  const [activeUser, setActiveUser] = useState(
+    loadFromLocal(ACTIVE_USER_KEY) ?? ""
   );
 
   useEffect(() => {
@@ -27,6 +32,10 @@ function App() {
   useEffect(() => {
     saveToLocal(FAVOURITES_KEY, favourites);
   }, [favourites]);
+
+  useEffect(() => {
+    saveToLocal(ACTIVE_USER_KEY, activeUser);
+  }, [activeUser]);
 
   useEffect(() => {
     fetch("http://localhost:4000/search-mentors")
@@ -62,7 +71,7 @@ function App() {
       <Navigation open={open} setOpen={setOpen} />
       <main>
         <Switch>
-          <Route exact path="/">
+          <Route path="/home">
             <Header headline="Welcome" open={open} setOpen={setOpen} />
             <Home open={open} />
           </Route>
@@ -79,7 +88,7 @@ function App() {
 
           <Route path="/profile">
             <Header headline="Your Profile" open={open} setOpen={setOpen} />
-            <Profile open={open} mentors={mentors} />
+            <Profile open={open} mentors={mentors} activeUser={activeUser} />
           </Route>
 
           <Route path="/create-profile">
@@ -94,6 +103,9 @@ function App() {
               favourites={favourites}
               removeFavourite={removeFavourite}
             />
+          </Route>
+          <Route exact path="/">
+            <Login activeUser={activeUser} setActiveUser={setActiveUser} />
           </Route>
         </Switch>
       </main>
