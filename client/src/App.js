@@ -27,6 +27,8 @@ function App() {
 
   const [editMode, setEditMode] = useState(false);
 
+  const activeMentor = mentors.find((mentor) => mentor._id === activeUser);
+
   useEffect(() => {
     saveToLocal(MENTORS_KEY, mentors);
   }, [mentors]);
@@ -70,12 +72,23 @@ function App() {
 
   return (
     <div>
-      <Navigation open={open} setOpen={setOpen} />
+      <Navigation open={open} setOpen={setOpen} activeUser={activeUser} />
       <main>
         <Switch>
           <Route path="/home">
-            <Header headline="Welcome" open={open} setOpen={setOpen} />
-            <Home open={open} />
+            <Header
+              headline={
+                activeUser === "anonym"
+                  ? "Welcome"
+                  : `Welcome ${activeMentor.mentor_name
+                      .split(" ")
+                      .slice(0, 1)
+                      .join("")}`
+              }
+              open={open}
+              setOpen={setOpen}
+            />
+            <Home open={open} activeUser={activeUser} />
           </Route>
 
           <Route path="/search-mentors">

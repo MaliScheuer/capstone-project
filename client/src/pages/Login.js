@@ -1,16 +1,19 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import CtaButton from "../components/CtaButton/CtaButton";
 
-export default function Login({ activeUser, setActiveUser }) {
+export default function Login({ setActiveUser }) {
   function handleClick1() {
     setActiveUser("60620381ba39595a8c3f7ef2");
-    console.log(activeUser);
   }
 
   function handleClick2() {
     setActiveUser("60620150d254ab59e015a137");
-    console.log(activeUser);
+  }
+
+  function handleClickNoUser() {
+    setActiveUser("anonym");
   }
 
   return (
@@ -28,6 +31,12 @@ export default function Login({ activeUser, setActiveUser }) {
             clickHandler={handleClick2}
           ></CtaButton>
         </Link>
+        <Link to="/home">
+          <CtaButton
+            buttonText="Start without Login"
+            clickHandler={handleClickNoUser}
+          ></CtaButton>
+        </Link>
       </Wrapper>
     </>
   );
@@ -42,3 +51,7 @@ const Wrapper = styled.section`
   gap: 2rem;
   height: 100vh;
 `;
+
+Login.propTypes = {
+  setactiveUser: PropTypes.func,
+};

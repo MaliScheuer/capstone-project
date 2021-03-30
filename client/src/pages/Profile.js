@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
 import ProfileCard from "../components/ProfileCard/ProfileCard";
 
 export default function Profile({

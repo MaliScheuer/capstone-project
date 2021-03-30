@@ -257,4 +257,8 @@ const GoBack = styled.button`
 
 ProfileCard.propTypes = {
   open: PropTypes.bool,
+  setMentors: PropTypes.func,
+  editMode: PropTypes.bool,
+  setEditMode: PropTypes.func,
+  mentor: PropTypes.object,
 };
