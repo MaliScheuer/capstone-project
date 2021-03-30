@@ -6,7 +6,16 @@ import isValidMentor from "../../lib/validateFunctions";
 import loadFromLocal from "../../lib/loadFromLocal";
 import saveToLocal from "../../lib/saveToLocal";
 
-export default function Form({ postNewMentorToApi, open }) {
+export default function Form({
+  postNewMentorToApi,
+  open,
+  editMode,
+  activeUser,
+  mentors,
+}) {
+  /*const activeMentor = mentors.find((mentor) => mentor._id === activeUser);
+  console.log(activeMentor, 1234);*/
+
   const initialMentor = {
     mentor_name: "",
     competence: "",
@@ -25,8 +34,11 @@ export default function Form({ postNewMentorToApi, open }) {
   const [valid, setValid] = useState(false);
 
   useEffect(() => {
-    saveToLocal(NEWMENTOR_KEY, newMentor);
-  }, [newMentor]);
+    /*if (activeUser === "") {
+      setNewMentor(initialMentor);
+    }*/
+    saveToLocal(NEWMENTOR_KEY, initialMentor);
+  }, [initialMentor]);
 
   let imageInput = null;
 
@@ -102,7 +114,7 @@ export default function Form({ postNewMentorToApi, open }) {
         <input
           type="text"
           name="mentor_name"
-          placeholder="Enter your full name"
+          placeholder="Enter your full name*"
           onChange={handleChange}
           value={newMentor.mentor_name}
         />
@@ -113,7 +125,7 @@ export default function Form({ postNewMentorToApi, open }) {
           onChange={handleChange}
           value={newMentor.competence}
         >
-          <option value="">Choose field of competence</option>
+          <option value="">Choose field of competence*</option>
           <option value="Architecture and Engineering">
             Architecture and Engineering
           </option>
@@ -142,7 +154,7 @@ export default function Form({ postNewMentorToApi, open }) {
         <input
           type="email"
           name="email"
-          placeholder="Enter your email"
+          placeholder="Enter your email*"
           onChange={handleChange}
           value={newMentor.email}
         />
@@ -150,7 +162,7 @@ export default function Form({ postNewMentorToApi, open }) {
         <input
           type="tel"
           name="phone"
-          placeholder="Enter your phone number"
+          placeholder="Enter your phone number*"
           onChange={handleChange}
           value={newMentor.phone}
         />
@@ -164,7 +176,7 @@ export default function Form({ postNewMentorToApi, open }) {
           placeholder="Tell the world about yourself,
                 why you wanna become a mentor
                 and in which areas you can help
-                (use 250 - 750 characters)"
+                (use 250 - 750 characters)*"
           onChange={handleChange}
           value={newMentor.about}
         />
@@ -195,21 +207,18 @@ export default function Form({ postNewMentorToApi, open }) {
           </ImageButton>
         </ImageWrapper>
 
-        <CtaButton valid={valid} type="submit">
-          {" "}
-          Create Profile
-        </CtaButton>
+        <SubmitButton valid={valid} type="submit">
+          {editMode ? "Save" : "Create Profile"}
+        </SubmitButton>
       </FormWrapper>
 
       {valid && (
         <SuccessMessage>
-          {" "}
           <p>
             Thanks for sharing your experience! Now your profile is part of our
             mentors network!
           </p>
           <a href="/search-mentors">
-            {" "}
             <ProfileButton>Checkout other profiles</ProfileButton>
           </a>
         </SuccessMessage>
@@ -222,7 +231,7 @@ const FormWrapper = styled.form`
   position: absolute;
   display: flex;
   flex-direction: column;
-  margin: 1.2rem 2.3rem;
+  margin: 2.3rem;
   gap: 0.2rem;
   opacity: ${({ open, valid }) => (open || valid ? "40%" : "100%")};
   input,
@@ -253,7 +262,7 @@ textarea:valid{
   }
 `;
 
-const CtaButton = styled.button`
+const SubmitButton = styled.button`
   background: ${({ valid }) => (!valid ? "var(--red)" : "var(--lightgrey)")};
   padding: 1rem;
   border-radius: 0.4rem;

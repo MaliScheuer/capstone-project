@@ -33,7 +33,7 @@ export default function Buzzwords({
       <input
         type="text"
         name="buzzwords"
-        placeholder="Enter skills or buzzwords"
+        placeholder="Enter skills or buzzwords*"
         onChange={handleChange}
         value={value}
         onKeyDown={handleKeyDown}

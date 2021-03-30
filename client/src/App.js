@@ -25,6 +25,8 @@ function App() {
     loadFromLocal(ACTIVE_USER_KEY) ?? ""
   );
 
+  const [editMode, setEditMode] = useState(false);
+
   useEffect(() => {
     saveToLocal(MENTORS_KEY, mentors);
   }, [mentors]);
@@ -93,12 +95,21 @@ function App() {
               mentors={mentors}
               activeUser={activeUser}
               setMentors={setMentors}
+              editMode={editMode}
+              setEditMode={setEditMode}
             />
           </Route>
 
           <Route path="/create-profile">
             <Header headline="Create Profile" open={open} setOpen={setOpen} />
-            <CreateMentor open={open} />
+            <CreateMentor
+              setMentors={setMentors}
+              mentors={mentors}
+              open={open}
+              activeUser={activeUser}
+              editMode={editMode}
+              setEditMode={setEditMode}
+            />
           </Route>
 
           <Route path="/favourites">

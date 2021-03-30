@@ -46,8 +46,6 @@ export default function Searchbar({
           clickHandler={onShowAll}
         />
       </SearchWrapper>
-
-      <Result>Results</Result>
     </>
   );
 }
@@ -80,13 +78,6 @@ const SearchWrapper = styled.form`
   input {
     padding-right: 8.8rem;
   }
-`;
-
-const Result = styled.p`
-  color: var(--petrol);
-  margin-left: 2rem;
-  letter-spacing: 0.25rem;
-  font-weight: bold;
 `;
 
 Searchbar.propTypes = {

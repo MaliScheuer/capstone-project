@@ -2,10 +2,15 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import ProfileCard from "../components/ProfileCard/ProfileCard";
 
-export default function Profile({ open, mentors, activeUser, setMentors }) {
+export default function Profile({
+  open,
+  mentors,
+  activeUser,
+  setMentors,
+  editMode,
+  setEditMode,
+}) {
   const activeMentor = mentors.find((mentor) => mentor._id === activeUser);
-
-  console.log(mentors);
 
   return (
     <>
@@ -16,6 +21,8 @@ export default function Profile({ open, mentors, activeUser, setMentors }) {
         activeUser={activeUser}
         mentors={mentors}
         setMentors={setMentors}
+        editMode={editMode}
+        setEditMode={setEditMode}
       />
     </>
   );

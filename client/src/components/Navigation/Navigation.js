@@ -76,8 +76,8 @@ const PseudoButton = styled.button`
 `;
 
 const Logout = styled.p`
-  position: relative;
-  top: 5rem;
+  position: fixed;
+  bottom: 1.5vh;
   color: var(--red);
   font-weight: bold;
 `;

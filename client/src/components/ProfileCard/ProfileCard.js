@@ -1,12 +1,19 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import Form from "../Form/Form";
 import { ReactComponent as PhoneIcon } from "../../icons/phone.svg";
 import { ReactComponent as MailIcon } from "../../icons/mail.svg";
 import { ReactComponent as EditIcon } from "../../icons/edit.svg";
 import { ReactComponent as ProfilePlaceholder } from "../../icons/profile.placeholder.svg";
 import background from "../../images/rectangle-petrol.png";
 
-export default function ProfileCard({ open, mentor, setMentors }) {
+export default function ProfileCard({
+  open,
+  mentor,
+  setMentors,
+  editMode,
+  setEditMode,
+}) {
   const setInactive = (mentor) => {
     let active = !mentor.isActive;
     fetch("http://localhost:4000/mentors/" + mentor._id, {
@@ -25,49 +32,58 @@ export default function ProfileCard({ open, mentor, setMentors }) {
       .catch((error) => console.error(error.message));
   };
 
+  console.log(editMode, 444);
+
   return (
-    <Section toggle={mentor.isActive} open={open}>
-      <div onChange={() => setInactive(mentor)}>
-        <SwitchIcon className={mentor.isActive && "active"}>
-          <input type="checkbox" />
-          <Slider className={mentor.isActive && "active"} />
-        </SwitchIcon>
-      </div>
-      <WrapperImageContact>
-        {mentor.image ? (
-          <ProfileImg src={"/images/" + mentor.image.name} />
-        ) : (
-          <ProfilePlaceholder />
-        )}
-        <Name>{mentor.mentor_name}</Name>
-        <WrapperContact>
-          <PhoneMail>
-            <PhoneIcon />
-            <p>{mentor.phone}</p>
-          </PhoneMail>
-          <PhoneMail>
-            <MailIcon />
-            <p>{mentor.email}</p>
-          </PhoneMail>
-        </WrapperContact>
-      </WrapperImageContact>
-      <Subline>Field of Competence</Subline>
-      <Competence>{mentor.competence}</Competence>
-      <Subline>About Me</Subline>
-      <About>{mentor.about}</About>
-      <Subline>Skills</Subline>
-      <WrapperBuzzwords>
-        <Buzzwords>Tax Consultant</Buzzwords>
-        <Buzzwords>Controlling</Buzzwords>
-        <Buzzwords>Income Tax</Buzzwords>
-        <Buzzwords>Corporate Tax</Buzzwords>
-        <Buzzwords>Self Employment</Buzzwords>
-      </WrapperBuzzwords>
-      <EditButton>
-        <EditIcon />
-        Edit
-      </EditButton>
-    </Section>
+    <>
+      {!editMode ? (
+        <Section toggle={mentor.isActive} open={open}>
+          <div onChange={() => setInactive(mentor)}>
+            <SwitchIcon className={mentor.isActive && "active"}>
+              <input type="checkbox" />
+              <Slider className={mentor.isActive && "active"} />
+            </SwitchIcon>
+          </div>
+          <WrapperImageContact>
+            {mentor.image ? (
+              <ProfileImg src={"/images/" + mentor.image.name} />
+            ) : (
+              <ProfilePlaceholder />
+            )}
+            <Name>{mentor.mentor_name}</Name>
+            <WrapperContact>
+              <PhoneMail>
+                <PhoneIcon />
+                <p>{mentor.phone}</p>
+              </PhoneMail>
+              <PhoneMail>
+                <MailIcon />
+                <p>{mentor.email}</p>
+              </PhoneMail>
+            </WrapperContact>
+          </WrapperImageContact>
+          <Subline>Field of Competence</Subline>
+          <Competence>{mentor.competence}</Competence>
+          <Subline>About Me</Subline>
+          <About>{mentor.about}</About>
+          <Subline>Skills</Subline>
+          <WrapperBuzzwords>
+            {mentor.buzzwords.map((buzzword, index) => (
+              <Buzzwords key={index}>{buzzword}</Buzzwords>
+            ))}
+          </WrapperBuzzwords>
+          <EditButton onClick={() => setEditMode(true)}>
+            <EditIcon />
+            Edit
+          </EditButton>
+        </Section>
+      ) : (
+        <>
+          <Form />
+          <GoBack onClick={() => setEditMode(false)}>Go back</GoBack>
+        </>
+      )}
+    </>
   );
 }
 
@@ -87,6 +103,9 @@ const Section = styled.section`
   }
   p {
     margin-top: 0.3rem;
+  }
+  a {
+    text-decoration: none;
   }
 `;
 
@@ -219,6 +238,21 @@ const EditButton = styled.button`
   align-items: center;
   font-weight: bold;
   cursor: pointer;
+`;
+
+const GoBack = styled.button`
+  margin: 1rem;
+  border: none;
+  background: none;
+  box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 35%);
+  border-radius: 0.3rem;
+  color: var(--petrol);
+  padding: 0.3rem 1rem;
+  font-size: 0.7rem;
+  font-weight: bold;
+  position: fixed;
+  top: 16vh;
+  left: 0;
 `;
 
 ProfileCard.propTypes = {
