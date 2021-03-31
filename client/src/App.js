@@ -23,7 +23,7 @@ function App() {
     loadFromLocal(FAVOURITES_KEY) ?? []
   );
   const [activeUser, setActiveUser] = useState(
-    loadFromLocal(ACTIVE_USER_KEY) ?? ""
+    loadFromLocal(ACTIVE_USER_KEY) ?? "anonym"
   );
 
   const [editMode, setEditMode] = useState(false);

@@ -12,12 +12,11 @@ export default function Form({
   activeUser,
   mentors,
 }) {
-  console.log(mentors, 111);
   console.log(activeUser, 222);
   const activeMentor = mentors.find((mentor) => mentor._id === activeUser);
-  console.log(activeMentor, 1234);
+  console.log(activeMentor);
 
-  const EDITMENTOR_KEY = "editMentorInput";
+  const EDITMENTOR_KEY = "mentorToEdit";
 
   const [editMentor, setEditMentor] = useState(
     loadFromLocal(EDITMENTOR_KEY) ?? activeMentor
@@ -27,6 +26,10 @@ export default function Form({
   useEffect(() => {
     saveToLocal(EDITMENTOR_KEY, editMentor);
   }, [editMentor]);
+
+  useEffect(() => {
+    setEditMentor(activeMentor);
+  }, [activeMentor]);
 
   let imageInput = null;
 
@@ -51,6 +54,7 @@ export default function Form({
     const url = "http://localhost:4000/upload";
     const formData = new FormData();
     formData.append("image", event.target.files[0]);
+    event.preventDefault();
 
     fetch(url, {
       method: "POST",
@@ -196,7 +200,7 @@ export default function Form({
         </ImageWrapper>
 
         <SubmitButton valid={valid} type="submit">
-          Save
+          Update Profile
         </SubmitButton>
       </FormWrapper>
 
