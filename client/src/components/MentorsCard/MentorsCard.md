@@ -12,7 +12,7 @@ This is a documentation about the mentorcard component.
     phone: "016498763569",
     about:
       "Bavaria ipsum dolor sit amet da Kini Radi woaß Haberertanz und sei. Mim i sog ja nix, i red ja bloß liberalitas Bavariae nimmds...",
-    image: "Image",
+    image: "",
   }}
 />
 ```
