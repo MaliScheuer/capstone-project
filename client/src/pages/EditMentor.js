@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
 import PropTypes from "prop-types";
 import EditForm from "../components/Form/EditForm";
 
@@ -40,10 +38,6 @@ export default function CreateMentor({
 
   return (
     <>
-      <Link to="/profile">
-        <GoBack onClick={handleNoEditMode}>Go back</GoBack>
-      </Link>
-
       <EditForm
         editMode={editMode}
         setEditMode={setEditMode}
@@ -55,21 +49,6 @@ export default function CreateMentor({
     </>
   );
 }
-
-const GoBack = styled.button`
-  margin: 1rem;
-  border: none;
-  background: none;
-  box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 35%);
-  border-radius: 0.3rem;
-  color: var(--petrol);
-  padding: 0.3rem 1rem;
-  font-size: 0.7rem;
-  font-weight: bold;
-  position: fixed;
-  top: 19vh;
-  left: 0;
-`;
 
 CreateMentor.propTypes = {
   open: PropTypes.bool,

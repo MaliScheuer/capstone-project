@@ -75,8 +75,8 @@ export default function ProfileCard({ open, mentor, setMentors, setEditMode }) {
 }
 
 const Section = styled.section`
-  position: relative;
   opacity: ${({ open, toggle }) => (open || !toggle ? "40%" : "100%")};
+  position: relative;
   text-align: center;
   padding: 1.2rem;
   background: url(${background});
@@ -99,7 +99,7 @@ const Section = styled.section`
 const SwitchIcon = styled.label`
   opacity: 50%;
   position: relative;
-  top: -0.8rem;
+  top: -1.1rem;
   left: 38vw;
   display: inline-block;
   background-color: white;

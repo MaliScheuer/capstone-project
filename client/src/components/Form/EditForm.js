@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { ReactComponent as Back } from "../../icons/back.svg";
 import Buzzwords from "../Buzzwords/Buzzwords";
 import isValidMentor from "../../lib/validateFunctions";
 import loadFromLocal from "../../lib/loadFromLocal";
@@ -11,6 +13,7 @@ export default function Form({
   open,
   activeUser,
   mentors,
+  handleNoEditMode,
 }) {
   console.log(activeUser, 222);
   const activeMentor = mentors.find((mentor) => mentor._id === activeUser);
@@ -103,6 +106,12 @@ export default function Form({
   return (
     <>
       <FormWrapper open={open} valid={valid} onSubmit={submitForm}>
+        <Link to="/profile">
+          <GoBack onClick={handleNoEditMode}>
+            <Back />
+            back
+          </GoBack>
+        </Link>
         <input
           type="text"
           name="mentor_name"
@@ -220,7 +229,7 @@ const FormWrapper = styled.form`
   position: absolute;
   display: flex;
   flex-direction: column;
-  margin: 2.3rem;
+  margin: 0.5rem 2.3rem;
   gap: 0.2rem;
   opacity: ${({ open, valid }) => (open || valid ? "40%" : "100%")};
   input,
@@ -310,6 +319,24 @@ const ImageButton = styled.button`
   cursor: pointer;
   margin-left: 0.5rem;
 `;
+
+const GoBack = styled.button`
+  display: flex;
+  margin: 1rem;
+  border: none;
+  background: none;
+  text-decoration: none;
+  box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 35%);
+  border-radius: 0.3rem;
+  color: var(--petrol);
+  padding: 0.3rem 1rem;
+  font-size: 0.7rem;
+  font-weight: bold;
+  cursor: pointer;
+  gap: 0.5rem;
+  align-items: center;
+`;
+
 Form.propTypes = {
   submitFunction: PropTypes.func,
   open: PropTypes.bool,
