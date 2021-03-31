@@ -6,27 +6,27 @@ import isValidMentor from "../../lib/validateFunctions";
 import loadFromLocal from "../../lib/loadFromLocal";
 import saveToLocal from "../../lib/saveToLocal";
 
-export default function Form({ postNewMentorToApi, open }) {
-  const initialMentor = {
-    mentor_name: "",
-    competence: "",
-    buzzwords: [],
-    email: "",
-    phone: "",
-    about: "",
-    image: "",
-  };
+export default function Form({
+  postNewMentorToApi,
+  open,
+  activeUser,
+  mentors,
+}) {
+  console.log(mentors, 111);
+  console.log(activeUser, 222);
+  const activeMentor = mentors.find((mentor) => mentor._id === activeUser);
+  console.log(activeMentor, 1234);
 
-  const NEWMENTOR_KEY = "newMentorInput";
+  const EDITMENTOR_KEY = "editMentorInput";
 
-  const [newMentor, setNewMentor] = useState(
-    loadFromLocal(NEWMENTOR_KEY) ?? initialMentor
+  const [editMentor, setEditMentor] = useState(
+    loadFromLocal(EDITMENTOR_KEY) ?? activeMentor
   );
   const [valid, setValid] = useState(false);
 
   useEffect(() => {
-    saveToLocal(NEWMENTOR_KEY, newMentor);
-  }, [newMentor]);
+    saveToLocal(EDITMENTOR_KEY, editMentor);
+  }, [editMentor]);
 
   let imageInput = null;
 
@@ -34,15 +34,15 @@ export default function Form({ postNewMentorToApi, open }) {
     const field = event.target;
     const value = field.value;
 
-    setNewMentor({
-      ...newMentor,
+    setEditMentor({
+      ...editMentor,
       [field.name]: value,
     });
   };
 
   const removeImage = () => {
-    setNewMentor({
-      ...newMentor,
+    setEditMentor({
+      ...editMentor,
       image: "",
     });
   };
@@ -57,41 +57,41 @@ export default function Form({ postNewMentorToApi, open }) {
       body: formData,
     })
       .then((result) => result.json())
-      .then((image) => setNewMentor({ ...newMentor, image: image }))
+      .then((image) => setEditMentor({ ...editMentor, image: image }))
       .catch((error) => console.error(error.message));
   };
 
   function submitForm(event) {
     event.preventDefault();
-    if (isValidMentor(newMentor)) {
+    if (isValidMentor(editMentor)) {
       setValid(true);
-      postNewMentorToApi(newMentor);
-      setNewMentor(initialMentor);
+      postNewMentorToApi(editMentor);
+      setEditMentor(activeMentor);
     }
   }
 
   const addBuzzword = (buzzword) => {
     if (buzzword.length >= 1) {
-      setNewMentor({
-        ...newMentor,
-        buzzwords: [...newMentor.buzzwords, buzzword],
+      setEditMentor({
+        ...editMentor,
+        buzzwords: [...editMentor.buzzwords, buzzword],
       });
     }
   };
 
   function deleteBuzzword(buzzwordToDelete) {
-    const remainingBuzzwords = newMentor.buzzwords.filter(
+    const remainingBuzzwords = editMentor.buzzwords.filter(
       (buzzword) => buzzwordToDelete !== buzzword
     );
-    setNewMentor({ ...newMentor, buzzwords: remainingBuzzwords });
+    setEditMentor({ ...editMentor, buzzwords: remainingBuzzwords });
   }
 
   function deleteLastBuzzword() {
-    const remainingBuzzwords = newMentor.buzzwords.filter(
-      (_, index) => index !== newMentor.buzzwords.length - 1
+    const remainingBuzzwords = editMentor.buzzwords.filter(
+      (_, index) => index !== editMentor.buzzwords.length - 1
     );
-    setNewMentor({
-      ...newMentor,
+    setEditMentor({
+      ...editMentor,
       buzzwords: remainingBuzzwords,
     });
   }
@@ -104,14 +104,14 @@ export default function Form({ postNewMentorToApi, open }) {
           name="mentor_name"
           placeholder="Enter your full name*"
           onChange={handleChange}
-          value={newMentor.mentor_name}
+          value={editMentor.mentor_name}
         />
 
         <select
           type="text"
           name="competence"
           onChange={handleChange}
-          value={newMentor.competence}
+          value={editMentor.competence}
         >
           <option value="">Choose field of competence*</option>
           <option value="Architecture and Engineering">
@@ -133,7 +133,7 @@ export default function Form({ postNewMentorToApi, open }) {
         </select>
 
         <Buzzwords
-          buzzwords={newMentor.buzzwords}
+          buzzwords={editMentor.buzzwords}
           onCreateBuzzword={addBuzzword}
           onDeleteBuzzword={deleteBuzzword}
           onDeleteLastBuzzword={deleteLastBuzzword}
@@ -144,7 +144,7 @@ export default function Form({ postNewMentorToApi, open }) {
           name="email"
           placeholder="Enter your email*"
           onChange={handleChange}
-          value={newMentor.email}
+          value={editMentor.email}
         />
 
         <input
@@ -152,7 +152,7 @@ export default function Form({ postNewMentorToApi, open }) {
           name="phone"
           placeholder="Enter your phone number*"
           onChange={handleChange}
-          value={newMentor.phone}
+          value={editMentor.phone}
         />
 
         <label>About</label>
@@ -166,7 +166,7 @@ export default function Form({ postNewMentorToApi, open }) {
                 and in which areas you can help
                 (use 250 - 750 characters)*"
           onChange={handleChange}
-          value={newMentor.about}
+          value={editMentor.about}
         />
 
         <label>Add image</label>
@@ -180,9 +180,9 @@ export default function Form({ postNewMentorToApi, open }) {
           ref={(input) => (imageInput = input)}
         />
         <ImageWrapper>
-          {newMentor.image?.name && (
+          {editMentor.image?.name && (
             <img
-              src={`/images/${newMentor.image.name}`}
+              src={`/images/${editMentor.image.name}`}
               width="100"
               alt="profile imge"
             />
@@ -196,16 +196,13 @@ export default function Form({ postNewMentorToApi, open }) {
         </ImageWrapper>
 
         <SubmitButton valid={valid} type="submit">
-          Create Profile
+          Save
         </SubmitButton>
       </FormWrapper>
 
       {valid && (
         <SuccessMessage>
-          <p>
-            Thanks for sharing your experience! Now your profile is part of our
-            mentors network!
-          </p>
+          <p>Thanks for updating your profile!</p>
           <a href="/search-mentors">
             <ProfileButton>Checkout other profiles</ProfileButton>
           </a>

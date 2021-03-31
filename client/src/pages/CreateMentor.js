@@ -10,10 +10,7 @@ export default function CreateMentor({
   mentors,
 }) {
   const [postMentor, setPostMentor] = useState([]);
-  console.log(activeUser, 111);
 
-  //function updateBackend() {
-  //if (activeUser === "") {
   const addToMentors = (mentor) => {
     fetch("http://localhost:4000/create-profile", {
       method: "POST",
@@ -33,44 +30,19 @@ export default function CreateMentor({
       .then((mentor) => setPostMentor(mentor))
       .catch((error) => console.error(error.message));
   };
-  /*addToMentors();
-    } else {
-      const updateMentor = (mentor) => {
-        fetch("http://localhost:4000/mentors/" + mentor._id, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            mentor_name: mentor.mentor_name,
-            competence: mentor.competence,
-            buzzwords: mentor.buzzwords,
-            email: mentor.email,
-            phone: mentor.phone,
-            about: mentor.about,
-            image: mentor.image,
-            isActive: mentor.isActive,
-          }),
-        })
-          .then(
-            fetch("http://localhost:4000/mentors")
-              .then((result) => result.json())
-              .then((mentors) => setPostMentor(mentors))
-              .catch((error) => console.error(error.message))
-          )
-          .catch((error) => console.error(error.message));
-      };
-      updateMentor();
-    }
-  }*/
 
+  console.log(editMode, 999);
   return (
-    <Form
-      editMode={editMode}
-      setEditMode={setEditMode}
-      open={open}
-      mentors={mentors}
-      postNewMentorToApi={addToMentors}
-      activeUser={activeUser}
-    ></Form>
+    <>
+      <Form
+        editMode={editMode}
+        setEditMode={setEditMode}
+        open={open}
+        mentors={mentors}
+        postNewMentorToApi={addToMentors}
+        activeUser={activeUser}
+      ></Form>
+    </>
   );
 }
 

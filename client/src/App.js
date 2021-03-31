@@ -2,6 +2,7 @@ import { Route, Switch } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Home from "./pages/Home";
 import CreateMentor from "./pages/CreateMentor";
+import EditMentor from "./pages/EditMentor";
 import SearchMentor from "./pages/SearchMentor";
 import Favourites from "./pages/Favourites";
 import Profile from "./pages/Profile";
@@ -122,6 +123,19 @@ function App() {
               activeUser={activeUser}
               editMode={editMode}
               setEditMode={setEditMode}
+            />
+          </Route>
+
+          <Route path="/edit-profile">
+            <Header headline="Edit Profile" open={open} setOpen={setOpen} />
+            <EditMentor
+              setMentors={setMentors}
+              mentors={mentors}
+              open={open}
+              activeUser={activeUser}
+              editMode={editMode}
+              setEditMode={setEditMode}
+              handleNoEditMode={() => setEditMode(false)}
             />
           </Route>
 
