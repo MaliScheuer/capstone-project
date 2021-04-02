@@ -235,7 +235,7 @@ const FormWrapper = styled.form`
   select,
   textarea {
     margin-bottom: 1rem;
-    border-radius: 1rem;
+    border-radius: 0.7rem;
     box-shadow: 0.1rem 0.2rem 0.2rem 0.1rem rgba(0, 0, 0, 35%);
     border: none;
     padding: 0.6rem;

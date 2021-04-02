@@ -69,7 +69,7 @@ const Wrapper = styled.section`
     background: var(--petrol-light);
     color: white;
     box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 35%);
-    border-radius: 1rem;
+    border-radius: 0.7rem;
     height: 70%;
     outline: none;
     cursor: pointer;

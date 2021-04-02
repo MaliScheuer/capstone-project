@@ -226,7 +226,7 @@ const FormWrapper = styled.form`
   select,
   textarea {
     margin-bottom: 1rem;
-    border-radius: 1rem;
+    border-radius: 0.7rem;
     box-shadow: 0.1rem 0.2rem 0.2rem 0.1rem rgba(0, 0, 0, 35%);
     border: none;
     padding: 0.6rem;
@@ -235,11 +235,7 @@ const FormWrapper = styled.form`
     font-style: italic;
     color: var(--petrol);
   }
-  /*input:valid, 
-select:valid, 
-textarea:valid{
-  box-shadow: 0 0 5px 1px var(--petrol);
-}*/
+
   textarea {
     height: 6rem;
     padding: 0.8rem;

@@ -1,8 +1,9 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import logo from "../images/logo.png";
+import logo from "../images/logo-short.png";
+import logoO from "../images/logo-o.png";
 import CtaButton from "../components/CtaButton/CtaButton";
 
 export default function Login({ setActiveUser }) {
@@ -28,7 +29,10 @@ export default function Login({ setActiveUser }) {
   return (
     <>
       <Wrapper>
-        <img src={logo} alt="logo" width="250"></img>
+        <WrapperLogo>
+          <img src={logo} alt="logo" width="250"></img>
+          <img className="active" src={logoO} alt="logo" width="250"></img>
+        </WrapperLogo>
         <WrapperLogin>
           <Input
             type="text"
@@ -66,6 +70,38 @@ const Wrapper = styled.section`
   height: 100vh;
 `;
 
+const fadeInTop = keyframes`
+0% {
+  transform: translateY(-40%)
+}
+80% {
+  transform: translateY(20%)
+}
+85{
+  transform: translateY(-0%)
+}
+95%{
+  transform: translateY(10%)
+}
+100%{
+  transform: translateY(0%)
+}
+`;
+
+const WrapperLogo = styled.div`
+  position: relative;
+
+  & img {
+    position: absolute;
+    top: -5rem;
+    left: -7.8rem;
+
+    &.active {
+      animation: ${fadeInTop} 0.7s ease-out;
+      
+  }
+`;
+
 const WrapperLogin = styled.section`
   display: flex;
   flex-direction: column;
@@ -79,7 +115,7 @@ const WrapperLogin = styled.section`
 const Input = styled.input`
   margin-top: 1rem;
   border-radius: 0.7rem;
-  box-shadow: 0.1rem 0.2rem 0.2rem 0.1rem rgba(0, 0, 0, 35%);
+  box-shadow: 0.1rem 0.2rem 0.2rem rgba(0, 0, 0, 35%);
   border: none;
   padding: 0.6rem 2.5rem;
   background: none;
