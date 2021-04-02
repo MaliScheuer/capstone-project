@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { ReactComponent as Back } from "../../icons/back.svg";
 import Buzzwords from "../Buzzwords/Buzzwords";
 import isValidMentor from "../../lib/validateFunctions";
 import loadFromLocal from "../../lib/loadFromLocal";
@@ -13,11 +12,10 @@ export default function Form({
   open,
   activeUser,
   mentors,
-  handleNoEditMode,
 }) {
-  console.log(activeUser, 222);
+  //console.log(activeUser, 222);
   const activeMentor = mentors.find((mentor) => mentor._id === activeUser);
-  console.log(activeMentor);
+  //console.log(activeMentor);
 
   const EDITMENTOR_KEY = "mentorToEdit";
 
@@ -27,12 +25,12 @@ export default function Form({
   const [valid, setValid] = useState(false);
 
   useEffect(() => {
-    saveToLocal(EDITMENTOR_KEY, editMentor);
-  }, [editMentor]);
-
-  useEffect(() => {
     setEditMentor(activeMentor);
   }, [activeMentor]);
+
+  useEffect(() => {
+    saveToLocal(EDITMENTOR_KEY, editMentor);
+  }, [editMentor]);
 
   let imageInput = null;
 
@@ -73,7 +71,7 @@ export default function Form({
     if (isValidMentor(editMentor)) {
       setValid(true);
       postNewMentorToApi(editMentor);
-      setEditMentor(activeMentor);
+      //setEditMentor(activeMentor);
     }
   }
 
@@ -105,13 +103,10 @@ export default function Form({
 
   return (
     <>
+      <Link to="/profile">
+        <GoBack>go back</GoBack>
+      </Link>
       <FormWrapper open={open} valid={valid} onSubmit={submitForm}>
-        <Link to="/profile">
-          <GoBack onClick={handleNoEditMode}>
-            <Back />
-            back
-          </GoBack>
-        </Link>
         <input
           type="text"
           name="mentor_name"
@@ -213,17 +208,21 @@ export default function Form({
         </SubmitButton>
       </FormWrapper>
 
-      {valid && (
+      {/*{valid && (
         <SuccessMessage>
-          <p>Thanks for updating your profile!</p>
-          <a href="/search-mentors">
-            <ProfileButton>Checkout other profiles</ProfileButton>
+          <p>Thanks for your update!</p>
+          <a href="/profile">
+            <ProfileButton>Checkout your profile</ProfileButton>
           </a>
         </SuccessMessage>
-      )}
+      )}*/}
+
+      {valid ? <Redirect to="/profile" /> : <Redirect to="/edit-profile" />}
     </>
   );
 }
+
+// update der Daten aus DB erst bei Refresh
 
 const FormWrapper = styled.form`
   position: absolute;
@@ -240,7 +239,7 @@ const FormWrapper = styled.form`
     box-shadow: 0.1rem 0.2rem 0.2rem 0.1rem rgba(0, 0, 0, 35%);
     border: none;
     padding: 0.6rem;
-    background: white;
+    background: none;
     outline: none;
     font-style: italic;
     color: var(--petrol);
@@ -321,7 +320,6 @@ const ImageButton = styled.button`
 `;
 
 const GoBack = styled.button`
-  display: flex;
   margin: 1rem;
   border: none;
   background: none;
@@ -333,8 +331,6 @@ const GoBack = styled.button`
   font-size: 0.7rem;
   font-weight: bold;
   cursor: pointer;
-  gap: 0.5rem;
-  align-items: center;
 `;
 
 Form.propTypes = {

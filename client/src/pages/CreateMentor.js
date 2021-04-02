@@ -31,7 +31,6 @@ export default function CreateMentor({
       .catch((error) => console.error(error.message));
   };
 
-  console.log(editMode, 999);
   return (
     <>
       <Form

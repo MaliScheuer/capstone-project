@@ -7,7 +7,7 @@ import { ReactComponent as EditIcon } from "../../icons/edit.svg";
 import { ReactComponent as ProfilePlaceholder } from "../../icons/profile.placeholder.svg";
 import background from "../../images/rectangle-petrol.png";
 
-export default function ProfileCard({ open, mentor, setMentors, setEditMode }) {
+export default function ProfileCard({ open, mentor, setMentors }) {
   const setInactive = (mentor) => {
     let active = !mentor.isActive;
     fetch("http://localhost:4000/mentors/" + mentor._id, {
@@ -64,7 +64,7 @@ export default function ProfileCard({ open, mentor, setMentors, setEditMode }) {
           ))}
         </WrapperBuzzwords>
         <Link to="/edit-profile">
-          <EditButton onClick={() => setEditMode(true)}>
+          <EditButton>
             <EditIcon />
             Edit
           </EditButton>
@@ -218,7 +218,7 @@ const EditButton = styled.button`
   border: none;
   box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 35%);
   color: var(--petrol);
-  background: white;
+  background: var(--grey);
   padding: 0.3rem 1rem;
   display: flex;
   gap: 0.5rem;

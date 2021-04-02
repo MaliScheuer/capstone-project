@@ -57,7 +57,7 @@ const SearchWrapper = styled.form`
   margin: 1.2rem 2.3rem;
   gap: 0.2rem;
   opacity: ${({ open, valid }) => (open || valid ? "40%" : "100%")};
-  background: var(--petrol-light);
+  background: var(--petrol);
   box-shadow: 0.1rem 0.1rem 0.2rem 0.1rem rgba(0, 0, 0, 35%);
   border-radius: 1rem;
   padding: 1rem 2rem;

@@ -8,7 +8,15 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-export default function Navigation({ open, setOpen, activeUser }) {
+export default function Navigation({
+  open,
+  setOpen,
+  activeUser,
+  setActiveUser,
+}) {
+  function handleLogout() {
+    setActiveUser("anonym");
+  }
   return (
     <StyledNavigation open={open}>
       <PseudoButton open={open} onClick={() => setOpen(!open)}>
@@ -42,7 +50,7 @@ export default function Navigation({ open, setOpen, activeUser }) {
         </>
       )}
       <Link to="/" open={open} onClick={() => setOpen(!open)}>
-        <Logout>
+        <Logout onClick={handleLogout}>
           <LogoutIcon />
           {activeUser === "anonym" ? "Go Back" : "Logout"}
         </Logout>
@@ -57,8 +65,7 @@ const StyledNavigation = styled.nav`
   flex-direction: column;
   gap: 1.7rem;
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
-  height: 60vh;
-  text-align: left;
+  height: 100vh;
   padding: 2rem;
   position: absolute;
   top: 0;
@@ -71,6 +78,7 @@ const StyledNavigation = styled.nav`
     text-decoration: none;
     color: white;
     letter-spacing: 0.2rem;
+    justify-self: center;
   }
 
   svg {
@@ -83,6 +91,7 @@ const PseudoButton = styled.button`
   text-align: left;
   color: white;
   outline: none;
+  align-self: flex-end;
 `;
 
 const Logout = styled.p`

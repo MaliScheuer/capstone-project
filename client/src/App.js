@@ -26,8 +26,6 @@ function App() {
     loadFromLocal(ACTIVE_USER_KEY) ?? "anonym"
   );
 
-  const [editMode, setEditMode] = useState(false);
-
   const activeMentor = mentors.find((mentor) => mentor._id === activeUser);
 
   useEffect(() => {
@@ -73,7 +71,12 @@ function App() {
 
   return (
     <div>
-      <Navigation open={open} setOpen={setOpen} activeUser={activeUser} />
+      <Navigation
+        open={open}
+        setOpen={setOpen}
+        activeUser={activeUser}
+        setActiveUser={setActiveUser}
+      />
       <main>
         <Switch>
           <Route path="/home">
@@ -109,8 +112,6 @@ function App() {
               mentors={mentors}
               activeUser={activeUser}
               setMentors={setMentors}
-              editMode={editMode}
-              setEditMode={setEditMode}
             />
           </Route>
 
@@ -121,8 +122,6 @@ function App() {
               mentors={mentors}
               open={open}
               activeUser={activeUser}
-              editMode={editMode}
-              setEditMode={setEditMode}
             />
           </Route>
 
@@ -133,9 +132,6 @@ function App() {
               mentors={mentors}
               open={open}
               activeUser={activeUser}
-              editMode={editMode}
-              setEditMode={setEditMode}
-              handleNoEditMode={() => setEditMode(false)}
             />
           </Route>
 

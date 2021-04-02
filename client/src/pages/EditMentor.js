@@ -6,11 +6,10 @@ export default function CreateMentor({
   open,
   activeUser,
   editMode,
-  setEditMode,
   mentors,
-  handleNoEditMode,
+  setMentors,
 }) {
-  const [updateMentor, setUpdateMentor] = useState([]);
+  //const [updateMentor, setUpdateMentor] = useState([]);
 
   const updateMentorToApi = (mentor) => {
     fetch("http://localhost:4000/mentors/" + mentor._id, {
@@ -30,7 +29,7 @@ export default function CreateMentor({
       .then(
         fetch("http://localhost:4000/mentors")
           .then((result) => result.json())
-          .then((mentors) => setUpdateMentor(mentors))
+          .then((mentors) => setMentors(mentors))
           .catch((error) => console.error(error.message))
       )
       .catch((error) => console.error(error.message));
@@ -40,7 +39,6 @@ export default function CreateMentor({
     <>
       <EditForm
         editMode={editMode}
-        setEditMode={setEditMode}
         open={open}
         mentors={mentors}
         postNewMentorToApi={updateMentorToApi}

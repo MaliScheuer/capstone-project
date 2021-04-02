@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import favicon from "../../images/fav.png";
 import { ReactComponent as BurgerIcon } from "../../icons/burger.svg";
 import { ReactComponent as SearchIcon } from "../../icons/search.svg";
 import { ReactComponent as HeartIcon } from "../../icons/heart.svg";

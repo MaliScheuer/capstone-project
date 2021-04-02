@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Buzzwords from "../Buzzwords/Buzzwords";
@@ -194,7 +195,6 @@ export default function Form({ postNewMentorToApi, open }) {
             Remove Image
           </ImageButton>
         </ImageWrapper>
-
         <SubmitButton valid={valid} type="submit">
           Create Profile
         </SubmitButton>
@@ -207,7 +207,7 @@ export default function Form({ postNewMentorToApi, open }) {
             mentors network!
           </p>
           <a href="/search-mentors">
-            <ProfileButton>Checkout other profiles</ProfileButton>
+            <ProfileButton>Checkout other mentors</ProfileButton>
           </a>
         </SuccessMessage>
       )}
@@ -230,7 +230,7 @@ const FormWrapper = styled.form`
     box-shadow: 0.1rem 0.2rem 0.2rem 0.1rem rgba(0, 0, 0, 35%);
     border: none;
     padding: 0.6rem;
-    background: white;
+    background: none;
     outline: none;
     font-style: italic;
     color: var(--petrol);

@@ -65,7 +65,6 @@ export default function MentorsCard({
 }
 
 const Wrapper = styled.section`
-  background: url(${background});
   opacity: ${({ open }) => (open ? "40%" : "100%")};
 
   p {
@@ -74,7 +73,6 @@ const Wrapper = styled.section`
 `;
 
 const Section = styled.section`
-  background: var(--grey);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -172,7 +170,7 @@ const IconWrapper = styled.button`
 
   svg {
     path {
-      fill: ${(props) => (props.isFavourite ? "var(--petrol)" : "white")};
+      fill: ${(props) => (props.isFavourite ? "var(--petrol)" : "var(--grey)")};
     }
   }
 `;
