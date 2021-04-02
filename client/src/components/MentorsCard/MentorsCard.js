@@ -74,7 +74,7 @@ const Wrapper = styled.section`
 `;
 
 const Section = styled.section`
-  background: white;
+  background: var(--grey);
   display: flex;
   flex-direction: column;
   align-items: center;
