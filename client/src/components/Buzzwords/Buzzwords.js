@@ -7,10 +7,13 @@ export default function Buzzwords({
   buzzwords,
   onDeleteBuzzword,
   onDeleteLastBuzzword,
+  validation,
 }) {
   const [value, setValue] = useState("");
 
   const handleChange = (event) => setValue(event.target.value);
+
+  console.log(validation, 444);
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
@@ -38,6 +41,7 @@ export default function Buzzwords({
         value={value}
         onKeyDown={handleKeyDown}
         data-testid="buzzword-input"
+        //className={validation.includes("buzzwords") ? "invalid" : ""}
       />
       <button type="button" onClick={handleClick}>
         Add
@@ -63,6 +67,10 @@ const Wrapper = styled.section`
   border-radius: 1rem;
   padding: 1rem;
   margin-bottom: 1rem;
+
+  .invalid {
+    box-shadow: 0.1rem 0.2rem 0.2rem #ff6750;
+  }
 
   button {
     border: none;

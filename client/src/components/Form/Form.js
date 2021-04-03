@@ -24,6 +24,7 @@ export default function Form({ postNewMentorToApi, open }) {
     loadFromLocal(NEWMENTOR_KEY) ?? initialMentor
   );
   const [valid, setValid] = useState(false);
+  const [validation, setValidation] = useState("invalid");
 
   useEffect(() => {
     saveToLocal(NEWMENTOR_KEY, newMentor);
@@ -62,14 +63,77 @@ export default function Form({ postNewMentorToApi, open }) {
       .catch((error) => console.error(error.message));
   };
 
+  const notValid = [];
+
+  const isValidMentorName = (name) => {
+    const letters = /^[a-z ,.'-]+$/i;
+    if (name.length >= 2 && name.match(letters)) {
+      return true;
+    } else {
+      notValid.push("name");
+    }
+  };
+  const isValidCompetence = (competence) => {
+    if (competence !== "") {
+      return true;
+    } else {
+      notValid.push("competence");
+    }
+  };
+
+  const isValidBuzzwords = (buzzword) => {
+    if (buzzword.length >= 1) {
+      return true;
+    } else {
+      notValid.push("buzzwords");
+    }
+  };
+
+  const isValidEmail = (email) => {
+    if (email.includes("@")) {
+      return true;
+    } else {
+      notValid.push("email");
+    }
+  };
+
+  const isValidPhone = (phone) => {
+    const phoneno = /([0-9\s\-]{7,})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/;
+    if (phone.match(phoneno)) {
+      return true;
+    } else {
+      notValid.push("phone");
+    }
+  };
+
+  const isValidAbout = (about) => {
+    if (about.length >= 250 && about.length <= 750) {
+      return true;
+    } else {
+      notValid.push("about");
+    }
+  };
+
+  function formValidation() {
+    isValidMentorName(newMentor.mentor_name) &&
+      isValidCompetence(newMentor.competence) &&
+      isValidBuzzwords(newMentor.buzzwords) &&
+      isValidEmail(newMentor.email) &&
+      isValidPhone(newMentor.phone) &&
+      isValidAbout(newMentor.about);
+    setValidation(notValid);
+  }
+
   function submitForm(event) {
     event.preventDefault();
-    if (isValidMentor(newMentor)) {
+    if (formValidation()) {
       setValid(true);
       postNewMentorToApi(newMentor);
       setNewMentor(initialMentor);
     }
   }
+
+  console.log(validation);
 
   const addBuzzword = (buzzword) => {
     if (buzzword.length >= 1) {
@@ -100,19 +164,26 @@ export default function Form({ postNewMentorToApi, open }) {
   return (
     <>
       <FormWrapper open={open} valid={valid} onSubmit={submitForm}>
+        {validation.includes("name") && (
+          <ErrorMessage>Please enter your right name</ErrorMessage>
+        )}
         <input
           type="text"
           name="mentor_name"
           placeholder="Enter your full name*"
           onChange={handleChange}
           value={newMentor.mentor_name}
+          className={validation.includes("name") ? "invalid" : ""}
         />
-
+        {validation.includes("competence") && (
+          <ErrorMessage>Please choose a field of competence</ErrorMessage>
+        )}
         <select
           type="text"
           name="competence"
           onChange={handleChange}
           value={newMentor.competence}
+          className={validation.includes("competence") ? "invalid" : ""}
         >
           <option value="">Choose field of competence*</option>
           <option value="Architecture and Engineering">
@@ -133,30 +204,47 @@ export default function Form({ postNewMentorToApi, open }) {
           <option value="Science and Technology">Science and Technology</option>
         </select>
 
+        {validation.includes("buzzwords") && (
+          <ErrorMessage>
+            Please enter at least one buzzword or skill
+          </ErrorMessage>
+        )}
         <Buzzwords
           buzzwords={newMentor.buzzwords}
           onCreateBuzzword={addBuzzword}
           onDeleteBuzzword={deleteBuzzword}
           onDeleteLastBuzzword={deleteLastBuzzword}
+          validation={validation}
         ></Buzzwords>
 
+        {validation.includes("email") && (
+          <ErrorMessage>Please enter a valid email address</ErrorMessage>
+        )}
         <input
           type="email"
           name="email"
           placeholder="Enter your email*"
           onChange={handleChange}
           value={newMentor.email}
+          className={validation.includes("email") ? "invalid" : ""}
         />
 
+        {validation.includes("phone") && (
+          <ErrorMessage>Please enter your valid phone number</ErrorMessage>
+        )}
         <input
           type="tel"
           name="phone"
           placeholder="Enter your phone number*"
           onChange={handleChange}
           value={newMentor.phone}
+          className={validation.includes("phone") ? "invalid" : ""}
         />
 
         <label>About</label>
+        {validation.includes("about") && (
+          <ErrorMessage>Please use between 250 and 750 characters</ErrorMessage>
+        )}
         <textarea
           minLength="250"
           maxLength="750"
@@ -168,6 +256,7 @@ export default function Form({ postNewMentorToApi, open }) {
                 (use 250 - 750 characters)*"
           onChange={handleChange}
           value={newMentor.about}
+          className={validation.includes("about") ? "invalid" : ""}
         />
 
         <label>Add image</label>
@@ -234,6 +323,10 @@ const FormWrapper = styled.form`
     outline: none;
     font-style: italic;
     color: var(--petrol);
+  }
+
+  .invalid {
+    box-shadow: 0.1rem 0.2rem 0.2rem #ff6750;
   }
 
   textarea {
@@ -305,6 +398,12 @@ const ImageButton = styled.button`
   cursor: pointer;
   margin-left: 0.5rem;
 `;
+const ErrorMessage = styled.div`
+  color: #ff6750;
+  font-size: 0.7rem;
+  font-style: italic;
+`;
+
 Form.propTypes = {
   submitFunction: PropTypes.func,
   open: PropTypes.bool,
