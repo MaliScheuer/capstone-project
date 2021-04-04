@@ -24,11 +24,20 @@ export default function Form({ postNewMentorToApi, open }) {
     loadFromLocal(NEWMENTOR_KEY) ?? initialMentor
   );
   const [valid, setValid] = useState(false);
-  const [validation, setValidation] = useState("invalid");
+  const [validation, setValidation] = useState([]);
 
   useEffect(() => {
     saveToLocal(NEWMENTOR_KEY, newMentor);
   }, [newMentor]);
+
+  useEffect(() => {
+    if (validation.includes("valid")) {
+      postNewMentorToApi(newMentor);
+      setValid(true);
+      setNewMentor(initialMentor);
+      setValidation([]);
+    }
+  }, [validation]);
 
   let imageInput = null;
 
@@ -114,23 +123,27 @@ export default function Form({ postNewMentorToApi, open }) {
     }
   };
 
+  const allValid = () => {
+    if (!notValid.length) {
+      notValid.push("valid");
+      return true;
+    }
+  };
+
   function formValidation() {
     isValidMentorName(newMentor.mentor_name) &&
       isValidCompetence(newMentor.competence) &&
       isValidBuzzwords(newMentor.buzzwords) &&
       isValidEmail(newMentor.email) &&
       isValidPhone(newMentor.phone) &&
-      isValidAbout(newMentor.about);
+      isValidAbout(newMentor.about) &&
+      allValid();
     setValidation(notValid);
   }
 
   function submitForm(event) {
     event.preventDefault();
-    if (formValidation()) {
-      setValid(true);
-      postNewMentorToApi(newMentor);
-      setNewMentor(initialMentor);
-    }
+    formValidation();
   }
 
   console.log(validation);
@@ -165,7 +178,7 @@ export default function Form({ postNewMentorToApi, open }) {
     <>
       <FormWrapper open={open} valid={valid} onSubmit={submitForm}>
         {validation.includes("name") && (
-          <ErrorMessage>Please enter your right name</ErrorMessage>
+          <ErrorMessage>Please enter your first and last name</ErrorMessage>
         )}
         <input
           type="text"
