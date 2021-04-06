@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { ReactComponent as PhoneIcon } from "../../icons/phone.svg";
 import { ReactComponent as MailIcon } from "../../icons/mail.svg";
 import { ReactComponent as EditIcon } from "../../icons/edit.svg";
@@ -8,6 +8,7 @@ import { ReactComponent as ProfilePlaceholder } from "../../icons/profile.placeh
 import background from "../../images/rectangle-petrol.png";
 
 export default function ProfileCard({ open, mentor, setMentors }) {
+  const history = useHistory();
   const setInactive = (mentor) => {
     let active = !mentor.isActive;
     fetch("http://localhost:4000/mentors/" + mentor._id, {
@@ -17,12 +18,8 @@ export default function ProfileCard({ open, mentor, setMentors }) {
         isActive: active,
       }),
     })
-      .then(
-        fetch("http://localhost:4000/mentors")
-          .then((result) => result.json())
-          .then((mentors) => setMentors(mentors))
-          .catch((error) => console.error(error.message))
-      )
+      .then((response) => response.json())
+      .then(() => history.push("/profile"))
       .catch((error) => console.error(error.message));
   };
 

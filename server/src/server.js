@@ -25,7 +25,8 @@ mongoose.connect(connectionString, {
 const connection = mongoose.connection;
 connection.once("open", () => console.log("mongodb is connected"));
 
-server.get("/", (req, res) => res.send("Hello"));
+server.use(express.static("./client/build/"));
+server.use(express.static("./server/public/"));
 
 server.get("/mentors", (request, response) => {
   Mentors.find()
@@ -34,6 +35,14 @@ server.get("/mentors", (request, response) => {
       if (error) response.json(error.message);
       response.json(mentors);
     });
+});
+
+server.get("/mentors/:mentorId", (request, response) => {
+  const mentorId = request.params.mentorId;
+  Mentors.findOne({ _id: mentorId })
+    .populate("image")
+    .then((mentor) => response.json(mentor))
+    .catch((error) => console.error(error.message));
 });
 
 server.post("/create-profile", (request, response) => {
@@ -55,7 +64,7 @@ server.post("/create-profile", (request, response) => {
 
 server.post("/upload", (request, response) => {
   const image = request.files.image;
-  image.mv("./client/public/images/" + image.name);
+  image.mv("./server/public/assets/" + image.name);
 
   const imageToSave = new Image({ name: image.name });
 

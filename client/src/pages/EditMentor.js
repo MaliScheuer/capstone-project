@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
-import EditForm from "../components/Form/EditForm";
+import EditForm from "../components/EditForm/EditForm";
 
-export default function CreateMentor({
-  open,
-  activeUser,
-  editMode,
-  mentors,
-  setMentors,
-}) {
-  //const [updateMentor, setUpdateMentor] = useState([]);
+export default function EditMentor({ open, activeUser, mentors }) {
+  let history = useHistory();
+
+  /*const [activeMentor, setActiveMentor] = useState();
+
+  useEffect(() => {
+    fetch("http://localhost:4000/mentors/" + activeUser)
+      .then((response) => response.json())
+      .then((mentor) => setActiveMentor(mentor));
+  }, [activeMentor]);*/
 
   const updateMentorToApi = (mentor) => {
     fetch("http://localhost:4000/mentors/" + mentor._id, {
@@ -26,28 +29,23 @@ export default function CreateMentor({
         isActive: mentor.isActive,
       }),
     })
-      .then(
-        fetch("http://localhost:4000/mentors")
-          .then((result) => result.json())
-          .then((mentors) => setMentors(mentors))
-          .catch((error) => console.error(error.message))
-      )
+      .then((response) => response.json())
+      .then(() => history.push("/profile"))
       .catch((error) => console.error(error.message));
   };
 
   return (
     <>
       <EditForm
-        editMode={editMode}
         open={open}
         mentors={mentors}
-        postNewMentorToApi={updateMentorToApi}
+        updateMentorToApi={updateMentorToApi}
         activeUser={activeUser}
       ></EditForm>
     </>
   );
 }
 
-CreateMentor.propTypes = {
+EditMentor.propTypes = {
   open: PropTypes.bool,
 };

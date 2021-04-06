@@ -84,7 +84,7 @@ function App() {
               headline={
                 activeUser === "anonym"
                   ? "Welcome"
-                  : `Welcome ${activeMentor.mentor_name
+                  : `Welcome ${activeMentor?.mentor_name
                       .split(" ")
                       .slice(0, 1)
                       .join("")}`
@@ -132,6 +132,7 @@ function App() {
               mentors={mentors}
               open={open}
               activeUser={activeUser}
+              setActiveUser={setActiveUser}
             />
           </Route>
 

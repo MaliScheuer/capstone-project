@@ -7,7 +7,7 @@ import isValidMentor from "../../lib/validateFunctions";
 import loadFromLocal from "../../lib/loadFromLocal";
 import saveToLocal from "../../lib/saveToLocal";
 
-export default function Form({ postNewMentorToApi, open }) {
+export default function Form({ postNewMentorToApi, open, isStatic }) {
   const initialMentor = {
     mentor_name: "",
     competence: "",
@@ -176,7 +176,12 @@ export default function Form({ postNewMentorToApi, open }) {
 
   return (
     <>
-      <FormWrapper open={open} valid={valid} onSubmit={submitForm}>
+      <FormWrapper
+        isStatic={isStatic}
+        open={open}
+        valid={valid}
+        onSubmit={submitForm}
+      >
         {validation.includes("name") && (
           <ErrorMessage>Please enter your first and last name</ErrorMessage>
         )}
@@ -285,7 +290,7 @@ export default function Form({ postNewMentorToApi, open }) {
         <ImageWrapper>
           {newMentor.image?.name && (
             <img
-              src={`/images/${newMentor.image.name}`}
+              src={`http://localhost:4000/assets/${newMentor.image.name}`}
               width="100"
               alt="profile imge"
             />
@@ -318,7 +323,7 @@ export default function Form({ postNewMentorToApi, open }) {
 }
 
 const FormWrapper = styled.form`
-  position: absolute;
+  position: ${(props) => (props.isStatic ? "static" : "absolute")};
   display: flex;
   flex-direction: column;
   margin: 2.3rem;
@@ -371,7 +376,7 @@ const SuccessMessage = styled.div`
   color: white;
   padding: 1rem;
   margin: 2rem;
-  position: relative;
+  position: ${(props) => (props.isStatic ? "static" : "relative")};
   border-radius: 0.3rem;
 `;
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Buzzwords from "../Buzzwords/Buzzwords";
@@ -7,15 +7,8 @@ import isValidMentor from "../../lib/validateFunctions";
 import loadFromLocal from "../../lib/loadFromLocal";
 import saveToLocal from "../../lib/saveToLocal";
 
-export default function Form({
-  postNewMentorToApi,
-  open,
-  activeUser,
-  mentors,
-}) {
-  //console.log(activeUser, 222);
+export default function Form({ updateMentorToApi, open, activeUser, mentors }) {
   const activeMentor = mentors.find((mentor) => mentor._id === activeUser);
-  //console.log(activeMentor);
 
   const EDITMENTOR_KEY = "mentorToEdit";
 
@@ -23,6 +16,8 @@ export default function Form({
     loadFromLocal(EDITMENTOR_KEY) ?? activeMentor
   );
   const [valid, setValid] = useState(false);
+
+  console.log(editMentor);
 
   useEffect(() => {
     setEditMentor(activeMentor);
@@ -70,8 +65,8 @@ export default function Form({
     event.preventDefault();
     if (isValidMentor(editMentor)) {
       setValid(true);
-      postNewMentorToApi(editMentor);
-      //setEditMentor(activeMentor);
+      updateMentorToApi(editMentor);
+      setEditMentor(editMentor);
     }
   }
 
@@ -216,8 +211,6 @@ export default function Form({
           </a>
         </SuccessMessage>
       )}*/}
-
-      {valid ? <Redirect to="/profile" /> : <Redirect to="/edit-profile" />}
     </>
   );
 }
