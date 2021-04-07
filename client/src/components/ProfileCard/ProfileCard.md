@@ -6,13 +6,13 @@ import { MemoryRouter } from "react-router-dom";
   <ProfileCard
     mentor={{
       mentor_name: "Max Mustermann",
-      competence: "Education & Training",
+      competence: "Arts and Entertainment",
       buzzwords: ["actor", "filming", "screenwriter", "theater"],
       email: "max.mustermann@gmail.com",
       phone: "016498763569",
       about:
         "Bavaria ipsum dolor sit amet da Kini Radi woaß Haberertanz und sei. Mim i sog ja nix, i red ja bloß liberalitas Bavariae nimmds...",
-      image: null,
+      image: "https://",
       isActive: true,
     }}
   />

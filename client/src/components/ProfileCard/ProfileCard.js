@@ -7,7 +7,7 @@ import { ReactComponent as EditIcon } from "../../icons/edit.svg";
 import { ReactComponent as ProfilePlaceholder } from "../../icons/profile.placeholder.svg";
 import background from "../../images/rectangle-petrol.png";
 
-export default function ProfileCard({ open, mentor, setMentors }) {
+export default function ProfileCard({ open, mentor }) {
   const history = useHistory();
   const setInactive = (mentor) => {
     let active = !mentor.isActive;

@@ -3,9 +3,14 @@ import styled from "styled-components";
 import MentorsCard from "../components/MentorsCard/MentorsCard";
 
 export default function Favourites({ favourites, removeFavourite, open }) {
+  const allActiveFavourites = favourites.filter(
+    (mentor) => mentor.isActive === true
+  );
+  //console.log(favourites, 111);
+  //console.log(allActiveFavourites);
   return (
     <>
-      {favourites.map((mentor, index) => (
+      {allActiveFavourites.map((mentor, index) => (
         <MentorsCard
           onAddToFavourites={() => removeFavourite(mentor._id)}
           key={index}
@@ -16,7 +21,7 @@ export default function Favourites({ favourites, removeFavourite, open }) {
       ))}
       {favourites.length === 0 && (
         <NoFavourites>
-          You haven´t yet nominated any mentors to be part of your favourites.
+          You haven´t nominated any mentors to be part of your favourites yet.
         </NoFavourites>
       )}
     </>
