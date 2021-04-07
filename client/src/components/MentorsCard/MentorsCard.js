@@ -5,7 +5,6 @@ import { ReactComponent as HeartIconPetrol } from "../../icons/heart.petrol.svg"
 import { ReactComponent as PhoneIcon } from "../../icons/phone.svg";
 import { ReactComponent as MailIcon } from "../../icons/mail.svg";
 import { ReactComponent as ProfilePlaceholder } from "../../icons/profile.placeholder.svg";
-import background from "../../images/background-petrol.png";
 import CtaButton from "../CtaButton/CtaButton";
 
 export default function MentorsCard({
@@ -24,7 +23,9 @@ export default function MentorsCard({
         </IconWrapper>
 
         {mentor.image ? (
-          <ProfileImg src={"/images/" + mentor.image.name} />
+          <ProfileImg
+            src={`http://localhost:4000/assets/${mentor.image.name}`}
+          />
         ) : (
           <ProfilePlaceholder />
         )}

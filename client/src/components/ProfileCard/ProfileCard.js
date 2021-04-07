@@ -7,7 +7,7 @@ import { ReactComponent as EditIcon } from "../../icons/edit.svg";
 import { ReactComponent as ProfilePlaceholder } from "../../icons/profile.placeholder.svg";
 import background from "../../images/rectangle-petrol.png";
 
-export default function ProfileCard({ open, mentor }) {
+export default function ProfileCard({ open, mentor, setMentors }) {
   const history = useHistory();
   const setInactive = (mentor) => {
     let active = !mentor.isActive;
@@ -34,7 +34,9 @@ export default function ProfileCard({ open, mentor }) {
         </div>
         <WrapperImageContact>
           {mentor.image ? (
-            <ProfileImg src={"/images/" + mentor.image.name} />
+            <ProfileImg
+              src={`http://localhost:4000/assets/${mentor.image.name}`}
+            />
           ) : (
             <ProfilePlaceholder />
           )}

@@ -177,7 +177,7 @@ export default function EditForm({
         <ImageWrapper>
           {editMentor.image?.name && (
             <img
-              src={`/images/${editMentor.image.name}`}
+              src={`http://localhost:4000/assets/${editMentor.image.name}`}
               width="100"
               alt="profile imge"
             />

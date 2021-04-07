@@ -26,6 +26,6 @@ export default function Profile({ open, activeUser, setMentors }) {
 
 Profile.propTypes = {
   open: PropTypes.bool,
-  mentors: PropTypes.array,
+  setMentors: PropTypes.func,
   activeUser: PropTypes.string,
 };

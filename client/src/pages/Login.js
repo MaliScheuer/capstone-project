@@ -8,7 +8,6 @@ import CtaButton from "../components/CtaButton/CtaButton";
 
 export default function Login({ setActiveUser }) {
   const [username, setUsername] = useState("");
-  console.log(username);
 
   const handleChange = (event) => {
     event.preventDefault();
