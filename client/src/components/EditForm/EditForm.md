@@ -4,6 +4,6 @@ This is a documentation about the edit form component.
 ```js
 import { MemoryRouter } from "react-router-dom";
 <MemoryRouter>
-  <EditForm mentors={["Max", "Lisa"]} />
+  <EditForm isStatic mentors={["Max", "Lisa"]} />
 </MemoryRouter>;
 ```

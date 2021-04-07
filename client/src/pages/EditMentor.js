@@ -1,18 +1,30 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
+import loadFromLocal from "../lib/loadFromLocal";
+import saveToLocal from "../lib/saveToLocal";
 import EditForm from "../components/EditForm/EditForm";
 
 export default function EditMentor({ open, activeUser, mentors }) {
   let history = useHistory();
 
-  /*const [activeMentor, setActiveMentor] = useState();
+  const activeMentor = mentors.find((mentor) => mentor._id === activeUser);
+
+  const EDITMENTOR_KEY = "mentorToEdit";
+
+  const [editMentor, setEditMentor] = useState(
+    loadFromLocal(EDITMENTOR_KEY) ?? activeMentor
+  );
+
+  useEffect(() => {
+    saveToLocal(EDITMENTOR_KEY, editMentor);
+  }, [editMentor]);
 
   useEffect(() => {
     fetch("http://localhost:4000/mentors/" + activeUser)
       .then((response) => response.json())
-      .then((mentor) => setActiveMentor(mentor));
-  }, [activeMentor]);*/
+      .then((mentor) => setEditMentor(mentor));
+  }, [activeMentor]);
 
   const updateMentorToApi = (mentor) => {
     fetch("http://localhost:4000/mentors/" + mentor._id, {
@@ -30,6 +42,7 @@ export default function EditMentor({ open, activeUser, mentors }) {
       }),
     })
       .then((response) => response.json())
+      .then((mentor) => setEditMentor(mentor))
       .then(() => history.push("/profile"))
       .catch((error) => console.error(error.message));
   };
@@ -41,6 +54,8 @@ export default function EditMentor({ open, activeUser, mentors }) {
         mentors={mentors}
         updateMentorToApi={updateMentorToApi}
         activeUser={activeUser}
+        editMentor={editMentor}
+        setEditMentor={setEditMentor}
       ></EditForm>
     </>
   );
@@ -48,4 +63,6 @@ export default function EditMentor({ open, activeUser, mentors }) {
 
 EditMentor.propTypes = {
   open: PropTypes.bool,
+  activeUser: PropTypes.string,
+  mentors: PropTypes.array,
 };

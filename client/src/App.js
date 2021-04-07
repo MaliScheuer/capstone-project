@@ -45,7 +45,7 @@ function App() {
       .then((result) => result.json())
       .then((mentors) => setMentors(mentors))
       .catch((error) => console.error(error.message));
-  }, []);
+  }, [activeUser]);
 
   function addToFavouriteMentor(favouriteMentor) {
     const selectedFavourite = mentors.filter(

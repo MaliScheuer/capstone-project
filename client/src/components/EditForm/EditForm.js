@@ -1,31 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Buzzwords from "../Buzzwords/Buzzwords";
 import isValidMentor from "../../lib/validateFunctions";
-import loadFromLocal from "../../lib/loadFromLocal";
-import saveToLocal from "../../lib/saveToLocal";
 
-export default function Form({ updateMentorToApi, open, activeUser, mentors }) {
-  const activeMentor = mentors.find((mentor) => mentor._id === activeUser);
-
-  const EDITMENTOR_KEY = "mentorToEdit";
-
-  const [editMentor, setEditMentor] = useState(
-    loadFromLocal(EDITMENTOR_KEY) ?? activeMentor
-  );
+export default function EditForm({
+  updateMentorToApi,
+  open,
+  isStatic,
+  editMentor,
+  setEditMentor,
+}) {
   const [valid, setValid] = useState(false);
-
-  console.log(editMentor);
-
-  useEffect(() => {
-    setEditMentor(activeMentor);
-  }, [activeMentor]);
-
-  useEffect(() => {
-    saveToLocal(EDITMENTOR_KEY, editMentor);
-  }, [editMentor]);
 
   let imageInput = null;
 
@@ -101,7 +88,12 @@ export default function Form({ updateMentorToApi, open, activeUser, mentors }) {
       <Link to="/profile">
         <GoBack>go back</GoBack>
       </Link>
-      <FormWrapper open={open} valid={valid} onSubmit={submitForm}>
+      <FormWrapper
+        isStatic={isStatic}
+        open={open}
+        valid={valid}
+        onSubmit={submitForm}
+      >
         <input
           type="text"
           name="mentor_name"
@@ -202,23 +194,12 @@ export default function Form({ updateMentorToApi, open, activeUser, mentors }) {
           Update Profile
         </SubmitButton>
       </FormWrapper>
-
-      {/*{valid && (
-        <SuccessMessage>
-          <p>Thanks for your update!</p>
-          <a href="/profile">
-            <ProfileButton>Checkout your profile</ProfileButton>
-          </a>
-        </SuccessMessage>
-      )}*/}
     </>
   );
 }
 
-// update der Daten aus DB erst bei Refresh
-
 const FormWrapper = styled.form`
-  position: absolute;
+  position: ${(props) => (props.isStatic ? "static" : "absolute")};
   display: flex;
   flex-direction: column;
   margin: 0.5rem 2.3rem;
@@ -237,11 +218,7 @@ const FormWrapper = styled.form`
     font-style: italic;
     color: var(--petrol);
   }
-  /*input:valid, 
-select:valid, 
-textarea:valid{
-  box-shadow: 0 0 5px 1px var(--petrol);
-}*/
+
   textarea {
     height: 6rem;
     padding: 0.8rem;
@@ -264,29 +241,6 @@ const SubmitButton = styled.button`
   width: 230px;
   font-size: 1.1rem;
   align-self: center;
-`;
-
-const SuccessMessage = styled.div`
-  background: var(--petrol);
-  color: white;
-  padding: 1rem;
-  margin: 2rem;
-  position: relative;
-  border-radius: 0.3rem;
-`;
-
-const ProfileButton = styled.button`
-  border: none;
-  outline: none;
-  border-radius: 0.3rem;
-  color: var(--petrol);
-  padding: 0.5rem;
-  margin-top: 1rem;
-  background: var(--lightgrey);
-  letter-spacing: 0.1rem;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  cursor: pointer;
 `;
 
 const ImageWrapper = styled.section`
@@ -326,7 +280,10 @@ const GoBack = styled.button`
   cursor: pointer;
 `;
 
-Form.propTypes = {
-  submitFunction: PropTypes.func,
+EditForm.propTypes = {
   open: PropTypes.bool,
+  updateMentorToAp: PropTypes.func,
+  isStatic: PropTypes.bool,
+  editMentor: PropTypes.object,
+  setEditMentor: PropTypes.func,
 };
