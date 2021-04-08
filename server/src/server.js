@@ -6,6 +6,10 @@ import Mentors from "./models/mentors.model.js";
 import Image from "./models/image.model.js";
 import dotenv from "dotenv";
 import cors from "cors";
+import path from "path";
+import { dirname } from "./lib/pathHelpers.js";
+
+const __dirname = dirname(import.meta.url);
 
 //"mongodb://localhost:27017/mentor-app";
 dotenv.config();
@@ -24,9 +28,6 @@ mongoose.connect(connectionString, {
 
 const connection = mongoose.connection;
 connection.once("open", () => console.log("mongodb is connected"));
-
-server.use(express.static("./client/build/"));
-server.use(express.static("./server/public/"));
 
 server.get("/mentors", (request, response) => {
   Mentors.find()
@@ -83,4 +84,11 @@ server.put("/mentors/:mentorId", (request, response) => {
   }).then((result) => response.json(result));
 });
 
-server.listen(4000);
+server.use(express.static("./server/public/"));
+server.use(express.static(path.join(__dirname, "../../client/build")));
+server.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "../../client/build", "index.html"));
+});
+
+const port = process.env.PORT || 4000;
+server.listen(port, () => console.log(`Server listens on port ${port}.`));

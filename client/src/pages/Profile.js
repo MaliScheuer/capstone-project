@@ -6,7 +6,7 @@ export default function Profile({ open, activeUser, setMentors }) {
   const [activeMentor, setActiveMentor] = useState();
 
   useEffect(() => {
-    fetch("http://localhost:4000/mentors/" + activeUser)
+    fetch("mentors/" + activeUser)
       .then((response) => response.json())
       .then((mentor) => setActiveMentor(mentor));
   }, [activeMentor]);

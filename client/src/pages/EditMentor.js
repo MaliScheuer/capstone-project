@@ -21,13 +21,13 @@ export default function EditMentor({ open, activeUser, mentors }) {
   }, [editMentor]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/mentors/" + activeUser)
+    fetch("/mentors/" + activeUser)
       .then((response) => response.json())
       .then((mentor) => setEditMentor(mentor));
   }, [activeMentor]);
 
   const updateMentorToApi = (mentor) => {
-    fetch("http://localhost:4000/mentors/" + mentor._id, {
+    fetch("/mentors/" + mentor._id, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

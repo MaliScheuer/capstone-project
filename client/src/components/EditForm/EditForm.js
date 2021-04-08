@@ -34,7 +34,7 @@ export default function EditForm({
   };
 
   const handleImageUpload = (event) => {
-    const url = "http://localhost:4000/upload";
+    const url = "/upload";
     const formData = new FormData();
     formData.append("image", event.target.files[0]);
     event.preventDefault();
@@ -177,7 +177,7 @@ export default function EditForm({
         <ImageWrapper>
           {editMentor.image?.name && (
             <img
-              src={`http://localhost:4000/assets/${editMentor.image.name}`}
+              src={`/assets/${editMentor.image.name}`}
               width="100"
               alt="profile imge"
             />

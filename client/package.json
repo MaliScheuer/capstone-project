@@ -44,5 +44,6 @@
     "@svgr/cli": "^5.5.0",
     "@svgr/webpack": "^5.5.0",
     "react-styleguidist": "^11.1.5"
-  }
+  },
+  "proxy": "http://localhost:4000"
 }

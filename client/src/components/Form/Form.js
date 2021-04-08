@@ -57,7 +57,7 @@ export default function Form({ postNewMentorToApi, open, isStatic }) {
   };
 
   const handleImageUpload = (event) => {
-    const url = "http://localhost:4000/upload";
+    const url = "/upload";
     const formData = new FormData();
     formData.append("image", event.target.files[0]);
 
@@ -288,7 +288,7 @@ export default function Form({ postNewMentorToApi, open, isStatic }) {
         <ImageWrapper>
           {newMentor.image?.name && (
             <img
-              src={`http://localhost:4000/assets/${newMentor.image.name}`}
+              src={`/assets/${newMentor.image.name}`}
               width="100"
               alt="profile imge"
             />

@@ -6,7 +6,7 @@ export default function CreateMentor({ open, activeUser, mentors }) {
   const [postMentor, setPostMentor] = useState([]);
 
   const addToMentors = (mentor) => {
-    fetch("http://localhost:4000/create-profile", {
+    fetch("/create-profile", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -23,9 +23,7 @@ export default function MentorsCard({
         </IconWrapper>
 
         {mentor.image ? (
-          <ProfileImg
-            src={`http://localhost:4000/assets/${mentor.image.name}`}
-          />
+          <ProfileImg src={`/assets/${mentor.image.name}`} />
         ) : (
           <ProfilePlaceholder />
         )}

@@ -7,11 +7,11 @@ import { ReactComponent as EditIcon } from "../../icons/edit.svg";
 import { ReactComponent as ProfilePlaceholder } from "../../icons/profile.placeholder.svg";
 import background from "../../images/rectangle-petrol.png";
 
-export default function ProfileCard({ open, mentor }) {
+export default function ProfileCard({ open, mentor, setMentors }) {
   const history = useHistory();
   const setInactive = (mentor) => {
     let active = !mentor.isActive;
-    fetch("http://localhost:4000/mentors/" + mentor._id, {
+    fetch("/mentors/" + mentor._id, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -20,6 +20,12 @@ export default function ProfileCard({ open, mentor }) {
     })
       .then((response) => response.json())
       .then(() => history.push("/profile"))
+      /*.then(
+        fetch("http://localhost:4000/mentors")
+          .then((result) => result.json())
+          .then((mentors) => setMentors(mentors))
+          .catch((error) => console.error(error.message))
+      )*/
       .catch((error) => console.error(error.message));
   };
 
@@ -34,9 +40,7 @@ export default function ProfileCard({ open, mentor }) {
         </div>
         <WrapperImageContact>
           {mentor.image ? (
-            <ProfileImg
-              src={`http://localhost:4000/assets/${mentor.image.name}`}
-            />
+            <ProfileImg src={`/assets/${mentor.image.name}`} />
           ) : (
             <ProfilePlaceholder />
           )}
