@@ -83,7 +83,7 @@ server.put("/mentors/:mentorId", (request, response) => {
   }).then((result) => response.json(result));
 });
 
-server.use(express.static("./server/public/"));
+server.get("/assets", express.static("./server/public/"));
 server.use(express.static(path.join(__dirname, "../../client/build")));
 server.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "../../client/build", "index.html"));
