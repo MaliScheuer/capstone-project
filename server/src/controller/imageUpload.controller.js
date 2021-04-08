@@ -1,4 +1,4 @@
-import { Image } from "../models/image.model";
+import Image from "../models/image.model.js";
 
 function postImage(request, response) {
   const image = request.files.image;

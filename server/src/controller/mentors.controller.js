@@ -1,4 +1,4 @@
-import { Mentors } from "../models/mentors.model";
+import Mentors from "../models/mentors.model.js";
 
 function getMentors(request, response) {
   Mentors.find()

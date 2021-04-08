@@ -2,7 +2,7 @@ import {
   getMentors,
   getMentor,
   editMentor,
-} from "../controller/mentors.controller";
+} from "../controller/mentors.controller.js";
 
 import express from "express";
 

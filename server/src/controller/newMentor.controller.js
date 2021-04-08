@@ -1,4 +1,4 @@
-import { Mentors } from "../models/mentors.model";
+import Mentors from "../models/mentors.model.js";
 
 function postMentor(request, response) {
   const mentor = new Mentors({

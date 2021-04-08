@@ -1,4 +1,4 @@
-import { postMentor } from "../controller/newMentor.controller";
+import { postMentor } from "../controller/newMentor.controller.js";
 
 import express from "express";
 
