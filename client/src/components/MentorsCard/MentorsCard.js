@@ -5,7 +5,6 @@ import { ReactComponent as HeartIconPetrol } from "../../icons/heart.petrol.svg"
 import { ReactComponent as PhoneIcon } from "../../icons/phone.svg";
 import { ReactComponent as MailIcon } from "../../icons/mail.svg";
 import { ReactComponent as ProfilePlaceholder } from "../../icons/profile.placeholder.svg";
-import background from "../../images/background-petrol.png";
 import CtaButton from "../CtaButton/CtaButton";
 
 export default function MentorsCard({
@@ -24,7 +23,7 @@ export default function MentorsCard({
         </IconWrapper>
 
         {mentor.image ? (
-          <ProfileImg src={"/images/" + mentor.image.name} />
+          <ProfileImg src={`/assets/${mentor.image.name}`} />
         ) : (
           <ProfilePlaceholder />
         )}
@@ -65,7 +64,6 @@ export default function MentorsCard({
 }
 
 const Wrapper = styled.section`
-  background: url(${background});
   opacity: ${({ open }) => (open ? "40%" : "100%")};
 
   p {
@@ -74,7 +72,6 @@ const Wrapper = styled.section`
 `;
 
 const Section = styled.section`
-  background: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -172,7 +169,7 @@ const IconWrapper = styled.button`
 
   svg {
     path {
-      fill: ${(props) => (props.isFavourite ? "var(--petrol)" : "white")};
+      fill: ${(props) => (props.isFavourite ? "var(--petrol)" : "var(--grey)")};
     }
   }
 `;

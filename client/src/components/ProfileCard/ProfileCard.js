@@ -1,67 +1,79 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { ReactComponent as PhoneIcon } from "../../icons/phone.svg";
 import { ReactComponent as MailIcon } from "../../icons/mail.svg";
 import { ReactComponent as EditIcon } from "../../icons/edit.svg";
+import { ReactComponent as ProfilePlaceholder } from "../../icons/profile.placeholder.svg";
 import background from "../../images/rectangle-petrol.png";
 
-export default function ProfileCard({ open }) {
-  const [toggle, setToggle] = useState(true);
-  const triggerToggle = () => {
-    setToggle(!toggle);
+export default function ProfileCard({ open, mentor, setMentors }) {
+  const history = useHistory();
+  const setInactive = (mentor) => {
+    let active = !mentor.isActive;
+    fetch("/mentors/" + mentor._id, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        isActive: active,
+      }),
+    })
+      .then((response) => response.json())
+      .then(() => history.push("/profile"))
+      .catch((error) => console.error(error.message));
   };
 
   return (
-    <Section toggle={toggle} open={open}>
-      <div>
-        <SwitchIcon className={toggle ? "active" : ""}>
-          <input onChange={triggerToggle} type="checkbox" />
-          <Slider className={toggle ? "active" : ""} />
-        </SwitchIcon>
-      </div>
-      <WrapperImageContact>
-        <ProfileImg src="https://images.unsplash.com/photo-1571844307880-751c6d86f3f3?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2017&q=80"></ProfileImg>
-        <Name>Lisa Musterfrau</Name>
-        <WrapperContact>
-          <PhoneMail>
-            <PhoneIcon />
-            <p>0176 3965 2184</p>
-          </PhoneMail>
-          <PhoneMail>
-            <MailIcon />
-            <p>lisa.mustermann@gmail.com</p>
-          </PhoneMail>
-        </WrapperContact>
-      </WrapperImageContact>
-      <Subline>Field of Competence</Subline>
-      <Competence>Finance and Taxes</Competence>
-      <Subline>About Me</Subline>
-      <About>
-        Bavaria ipsum dolor sit amet da Kini Radi woaß Haberertanz und sei. Mim
-        i sog ja nix, i red ja bloß liberalitas Bavariae nimmds, blärrd: Wolln
-        Watschnpladdla a ganze Steckerleis Sauakraud unbandig resch hi sog i
-        ghupft wia gsprunga auffi. Kummd und sei singd sowos wui.
-      </About>
-      <Subline>Skills</Subline>
-      <WrapperBuzzwords>
-        <Buzzwords>Tax Consultant</Buzzwords>
-        <Buzzwords>Controlling</Buzzwords>
-        <Buzzwords>Income Tax</Buzzwords>
-        <Buzzwords>Corporate Tax</Buzzwords>
-        <Buzzwords>Self Employment</Buzzwords>
-      </WrapperBuzzwords>
-      <EditButton>
-        <EditIcon />
-        Edit
-      </EditButton>
-    </Section>
+    <>
+      <Section toggle={mentor.isActive} open={open}>
+        <div onChange={() => setInactive(mentor)}>
+          <SwitchIcon className={mentor.isActive && "active"}>
+            <input type="checkbox" />
+            <Slider className={mentor.isActive && "active"} />
+          </SwitchIcon>
+        </div>
+        <WrapperImageContact>
+          {mentor.image ? (
+            <ProfileImg src={`/assets/${mentor.image.name}`} />
+          ) : (
+            <ProfilePlaceholder />
+          )}
+          <Name>{mentor.mentor_name}</Name>
+          <WrapperContact>
+            <PhoneMail>
+              <PhoneIcon />
+              <p>{mentor.phone}</p>
+            </PhoneMail>
+            <PhoneMail>
+              <MailIcon />
+              <p>{mentor.email}</p>
+            </PhoneMail>
+          </WrapperContact>
+        </WrapperImageContact>
+        <Subline>Field of Competence</Subline>
+        <Competence>{mentor.competence}</Competence>
+        <Subline>About Me</Subline>
+        <About>{mentor.about}</About>
+        <Subline>Skills</Subline>
+        <WrapperBuzzwords>
+          {mentor.buzzwords.map((buzzword, index) => (
+            <Buzzwords key={index}>{buzzword}</Buzzwords>
+          ))}
+        </WrapperBuzzwords>
+        <Link to="/edit-profile">
+          <EditButton>
+            <EditIcon />
+            Edit
+          </EditButton>
+        </Link>
+      </Section>
+    </>
   );
 }
 
 const Section = styled.section`
-  position: relative;
   opacity: ${({ open, toggle }) => (open || !toggle ? "40%" : "100%")};
+  position: relative;
   text-align: center;
   padding: 1.2rem;
   background: url(${background});
@@ -76,12 +88,15 @@ const Section = styled.section`
   p {
     margin-top: 0.3rem;
   }
+  a {
+    text-decoration: none;
+  }
 `;
 
 const SwitchIcon = styled.label`
   opacity: 50%;
   position: relative;
-  top: -0.8rem;
+  top: -1.1rem;
   left: 38vw;
   display: inline-block;
   background-color: white;
@@ -200,7 +215,7 @@ const EditButton = styled.button`
   border: none;
   box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 35%);
   color: var(--petrol);
-  background: white;
+  background: var(--grey);
   padding: 0.3rem 1rem;
   display: flex;
   gap: 0.5rem;
@@ -211,4 +226,5 @@ const EditButton = styled.button`
 
 ProfileCard.propTypes = {
   open: PropTypes.bool,
+  mentor: PropTypes.object,
 };

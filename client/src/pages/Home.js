@@ -3,12 +3,19 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import CtaButton from "../components/CtaButton/CtaButton";
 
-export default function Home({ open }) {
+export default function Home({ open, activeUser }) {
   return (
     <Wrapper open={open}>
-      <Link to="/create-profile">
-        <CtaButton buttonText="Become a mentor"></CtaButton>
-      </Link>
+      {activeUser === "anonym" && (
+        <Link to="/create-profile">
+          <CtaButton buttonText="Become a mentor"></CtaButton>
+        </Link>
+      )}
+      {activeUser !== "anonym" && (
+        <Link to="/profile">
+          <CtaButton buttonText="Update your profile"></CtaButton>
+        </Link>
+      )}
       <Link to="/search-mentors">
         <CtaButton buttonText="Find a mentor"></CtaButton>
       </Link>
@@ -33,4 +40,5 @@ const Wrapper = styled.section`
 `;
 Home.propTypes = {
   open: PropTypes.bool,
+  activeUser: PropTypes.string,
 };

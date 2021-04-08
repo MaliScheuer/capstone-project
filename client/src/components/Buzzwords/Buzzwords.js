@@ -33,11 +33,12 @@ export default function Buzzwords({
       <input
         type="text"
         name="buzzwords"
-        placeholder="Enter skills or buzzwords"
+        placeholder="Enter skills or buzzwords*"
         onChange={handleChange}
         value={value}
         onKeyDown={handleKeyDown}
         data-testid="buzzword-input"
+        //className={validation.includes("buzzwords") ? "invalid" : ""}
       />
       <button type="button" onClick={handleClick}>
         Add
@@ -64,12 +65,16 @@ const Wrapper = styled.section`
   padding: 1rem;
   margin-bottom: 1rem;
 
+  .invalid {
+    box-shadow: 0.1rem 0.2rem 0.2rem #ff6750;
+  }
+
   button {
     border: none;
     background: var(--petrol-light);
     color: white;
     box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 35%);
-    border-radius: 1rem;
+    border-radius: 0.7rem;
     height: 70%;
     outline: none;
     cursor: pointer;

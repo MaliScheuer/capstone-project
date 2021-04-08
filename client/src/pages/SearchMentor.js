@@ -10,6 +10,8 @@ export default function SearchMentor({
   addToFavouriteMentor,
   favourites,
 }) {
+  const allActiveMentors = mentors.filter((mentor) => mentor.isActive === true);
+
   const initialSearchTerms = {
     competence: "",
     buzzwords: "",
@@ -52,15 +54,16 @@ export default function SearchMentor({
   }
 
   const filteredMentors = filterMentors(
-    mentors,
+    allActiveMentors,
     searchterm.competence,
     searchterm.buzzwords
   );
 
-  function showAll(event) {
-    event.preventDefault();
+  function showAll() {
     setSearchterm(initialSearchTerms);
   }
+
+  const searchResults = filteredMentors.length;
 
   return (
     <>
@@ -70,6 +73,8 @@ export default function SearchMentor({
         onhandleChange={handleChange}
         onShowAll={showAll}
       />
+
+      <Result>Results: {searchResults}</Result>
       {filteredMentors.map((mentor) => (
         <MentorsCard
           onAddToFavourites={() => addToFavouriteMentor(mentor)}
@@ -81,6 +86,7 @@ export default function SearchMentor({
           )}
         />
       ))}
+
       {filteredMentors.length === 0 && (
         <NoResult>
           Your search term didn´t match any mentor. Please choose another field
@@ -99,6 +105,13 @@ const NoResult = styled.p`
   padding: 1rem;
   border-radius: 0.3rem;
   box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 35%);
+`;
+
+const Result = styled.p`
+  color: var(--petrol);
+  margin-left: 2rem;
+  letter-spacing: 0.25rem;
+  font-weight: bold;
 `;
 
 SearchMentor.propTypes = {

@@ -1,4 +1,4 @@
-import { getByTestId, render, fireEvent } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import Header from "./Header";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
 

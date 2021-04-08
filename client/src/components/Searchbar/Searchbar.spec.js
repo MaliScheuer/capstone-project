@@ -7,40 +7,52 @@ describe("Searchbar component", () => {
       competence: "",
       buzzwords: "",
     };
-    render(<Searchbar searchterm={searchterm} />);
-    expect(screen.getByRole("option", { name: /Choose field of competence/i }))
-      .toBeInTheDocument;
+
+    const handleChange = jest.fn(() => {});
+    render(<Searchbar searchterm={searchterm} onhandleChange={handleChange} />);
+    expect(
+      screen.getByRole("option", { name: /Choose field of competence/i })
+    ).toBeInTheDocument();
     expect(
       screen.getByRole("option", { name: /Architecture and Engineering/i })
-    ).toBeInTheDocument;
-    expect(screen.getByRole("option", { name: /Agriculture and Food/i }))
-      .toBeInTheDocument;
-    expect(screen.getByRole("option", { name: /Arts and Entertainment/i }))
-      .toBeInTheDocument;
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("option", { name: /Agriculture and Food/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("option", { name: /Arts and Entertainment/i })
+    ).toBeInTheDocument();
     expect(
       screen.getByRole("option", {
         name: /Business, Management and Administration/i,
       })
-    ).toBeInTheDocument;
-    expect(screen.getByRole("option", { name: /Education and Training/i }))
-      .toBeInTheDocument;
-    expect(screen.getByRole("option", { name: /Education and Training/i }))
-      .toBeInTheDocument;
-    expect(screen.getByRole("option", { name: /Finance and Accounting/i }))
-      .toBeInTheDocument;
-    expect(screen.getByRole("option", { name: /Health and Medicine/i }))
-      .toBeInTheDocument;
-    expect(screen.getByRole("option", { name: /Law and Public Policy/i }))
-      .toBeInTheDocument;
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("option", { name: /Education and Training/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("option", { name: /Education and Training/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("option", { name: /Finance and Accounting/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("option", { name: /Health and Medicine/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("option", { name: /Law and Public Policy/i })
+    ).toBeInTheDocument();
     expect(
       screen.getByRole("option", {
         name: /Sales, Marketing and Communications/i,
       })
-    ).toBeInTheDocument;
-    expect(screen.getByRole("option", { name: /Science and Technology/i }))
-      .toBeInTheDocument;
-    expect(screen.getByPlaceholderText("Enter skill or buzzword..."))
-      .toBeInTheDocument;
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("option", { name: /Science and Technology/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText("Enter skill or buzzword...")
+    ).toBeInTheDocument();
   });
 
   it("should update buzzword value on change", () => {
