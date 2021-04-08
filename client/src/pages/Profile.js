@@ -9,7 +9,7 @@ export default function Profile({ open, activeUser, setMentors }) {
     fetch("mentors/" + activeUser)
       .then((response) => response.json())
       .then((mentor) => setActiveMentor(mentor));
-  }, [activeMentor]);
+  }, [activeUser]);
 
   return activeMentor ? (
     <>

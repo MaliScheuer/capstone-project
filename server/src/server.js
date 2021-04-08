@@ -8,6 +8,9 @@ import dotenv from "dotenv";
 import cors from "cors";
 import path from "path";
 import { dirname } from "./lib/pathHelpers.js";
+//import imageUploadRoutes from "./routes/imageUploadRoutes.routes";
+//import mentorsRoutes from "./routes/mentorsRoutes.routes";
+//import newMentorsRoutes from "./routes/newMentorRoutes.routes";
 
 const __dirname = dirname(import.meta.url);
 
@@ -27,6 +30,8 @@ mongoose.connect(connectionString, {
 
 const connection = mongoose.connection;
 connection.once("open", () => console.log("mongodb is connected"));
+
+//server.use("/api", [imageUploadRoutes, mentorsRoutes, newMentorsRoutes]);
 
 server.get("/mentors", (request, response) => {
   Mentors.find()
