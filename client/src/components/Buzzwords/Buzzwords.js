@@ -12,8 +12,6 @@ export default function Buzzwords({
 
   const handleChange = (event) => setValue(event.target.value);
 
-  //console.log(validation, 444);
-
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       event.preventDefault();

@@ -20,12 +20,6 @@ export default function ProfileCard({ open, mentor, setMentors }) {
     })
       .then((response) => response.json())
       .then(() => history.push("/profile"))
-      /*.then(
-        fetch("http://localhost:4000/mentors")
-          .then((result) => result.json())
-          .then((mentors) => setMentors(mentors))
-          .catch((error) => console.error(error.message))
-      )*/
       .catch((error) => console.error(error.message));
   };
 

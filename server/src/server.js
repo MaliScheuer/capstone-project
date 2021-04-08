@@ -11,7 +11,6 @@ import { dirname } from "./lib/pathHelpers.js";
 
 const __dirname = dirname(import.meta.url);
 
-//"mongodb://localhost:27017/mentor-app";
 dotenv.config();
 const server = express();
 server.use(cors());

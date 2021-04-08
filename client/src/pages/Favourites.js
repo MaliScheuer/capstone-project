@@ -6,8 +6,7 @@ export default function Favourites({ favourites, removeFavourite, open }) {
   const allActiveFavourites = favourites.filter(
     (mentor) => mentor.isActive === true
   );
-  //console.log(favourites, 111);
-  //console.log(allActiveFavourites);
+
   return (
     <>
       {allActiveFavourites.map((mentor, index) => (
