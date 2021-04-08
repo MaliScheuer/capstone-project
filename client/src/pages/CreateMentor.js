@@ -2,13 +2,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Form from "../components/Form/Form";
 
-export default function CreateMentor({
-  open,
-  activeUser,
-  editMode,
-  setEditMode,
-  mentors,
-}) {
+export default function CreateMentor({ open, activeUser, mentors }) {
   const [postMentor, setPostMentor] = useState([]);
 
   const addToMentors = (mentor) => {
@@ -34,8 +28,6 @@ export default function CreateMentor({
   return (
     <>
       <Form
-        editMode={editMode}
-        setEditMode={setEditMode}
         open={open}
         mentors={mentors}
         postNewMentorToApi={addToMentors}
@@ -47,4 +39,6 @@ export default function CreateMentor({
 
 CreateMentor.propTypes = {
   open: PropTypes.bool,
+  activeUser: PropTypes.string,
+  mentors: PropTypes.array,
 };

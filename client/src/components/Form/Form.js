@@ -423,4 +423,5 @@ const ErrorMessage = styled.div`
 Form.propTypes = {
   submitFunction: PropTypes.func,
   open: PropTypes.bool,
+  isStatic: PropTypes.bool,
 };

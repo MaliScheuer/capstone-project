@@ -94,10 +94,10 @@ const WrapperLogo = styled.div`
     position: absolute;
     top: -5rem;
     left: -7.8rem;
+  }
 
-    &.active {
-      animation: ${fadeInTop} 0.7s ease-out;
-      
+  &.active {
+    animation: ${fadeInTop} 0.7s ease-out;
   }
 `;
 
@@ -124,5 +124,5 @@ const Input = styled.input`
 `;
 
 Login.propTypes = {
-  setactiveUser: PropTypes.func,
+  setActiveUser: PropTypes.func,
 };

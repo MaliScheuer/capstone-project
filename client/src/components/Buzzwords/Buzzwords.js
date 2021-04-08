@@ -7,7 +7,6 @@ export default function Buzzwords({
   buzzwords,
   onDeleteBuzzword,
   onDeleteLastBuzzword,
-  validation,
 }) {
   const [value, setValue] = useState("");
 

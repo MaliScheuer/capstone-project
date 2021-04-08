@@ -104,4 +104,5 @@ Navigation.propTypes = {
   setOpen: PropTypes.func,
   open: PropTypes.bool,
   activeUser: PropTypes.string,
+  setActiveUser: PropTypes.func,
 };
