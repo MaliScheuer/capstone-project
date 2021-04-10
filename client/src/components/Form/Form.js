@@ -144,8 +144,6 @@ export default function Form({ postNewMentorToApi, open, isStatic }) {
     formValidation();
   }
 
-  console.log(validation);
-
   const addBuzzword = (buzzword) => {
     if (buzzword.length >= 1) {
       setNewMentor({
