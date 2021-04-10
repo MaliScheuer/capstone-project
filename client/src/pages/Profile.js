@@ -2,7 +2,13 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import ProfileCard from "../components/ProfileCard/ProfileCard";
 
-export default function Profile({ open, activeUser, setMentors, mentors }) {
+export default function Profile({
+  open,
+  activeUser,
+  setMentors,
+  mentors,
+  onReload,
+}) {
   const [activeMentor, setActiveMentor] = useState();
 
   useEffect(() => {
@@ -20,6 +26,7 @@ export default function Profile({ open, activeUser, setMentors, mentors }) {
         activeUser={activeUser}
         setMentors={setMentors}
         mentors={mentors}
+        onReload={onReload}
       />
     </>
   ) : null;

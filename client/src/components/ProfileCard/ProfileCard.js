@@ -7,11 +7,12 @@ import { ReactComponent as EditIcon } from "../../icons/edit.svg";
 import { ReactComponent as ProfilePlaceholder } from "../../icons/profile.placeholder.svg";
 import background from "../../images/rectangle-petrol.png";
 
-export default function ProfileCard({ open, mentor, setMentors, mentors }) {
+export default function ProfileCard({ open, mentor, onReload }) {
   const history = useHistory();
 
   const setInactive = (mentor) => {
     let active = !mentor.isActive;
+    onReload(mentor);
     fetch("/mentors/" + mentor._id, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -20,14 +21,14 @@ export default function ProfileCard({ open, mentor, setMentors, mentors }) {
       }),
     })
       .then((response) => response.json())
-      //.then(() => history.push("/profile"))
+      .then(() => history.push("/profile"))
       //.then((mentor) => setMentors(mentor))
       .catch((error) => console.error(error.message));
   };
 
   /*const setInactive = (mentor) => {
     let active = !mentor.isActive;
-    fetch("http://localhost:4000/mentors/" + mentor._id, {
+    fetch("/mentors/" + mentor._id, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -35,7 +36,7 @@ export default function ProfileCard({ open, mentor, setMentors, mentors }) {
       }),
     })
       .then(
-        fetch("http://localhost:4000/mentors")
+        fetch("/mentors")
           .then((result) => result.json())
           .then((mentors) => setMentors(mentors))
           .catch((error) => console.error(error.message))
@@ -94,9 +95,11 @@ export default function ProfileCard({ open, mentor, setMentors, mentors }) {
 const Section = styled.section`
   opacity: ${({ open, toggle }) => (open || !toggle ? "40%" : "100%")};
   position: relative;
+  top: -0.8rem;
   text-align: center;
   padding: 1.2rem;
   background: url(${background});
+  width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
   height: 110px;
@@ -230,7 +233,7 @@ const Subline = styled.h4`
 `;
 
 const EditButton = styled.button`
-  margin-top: 2rem;
+  margin-top: 1rem;
   border-radius: 0.3rem;
   border: none;
   box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 35%);
