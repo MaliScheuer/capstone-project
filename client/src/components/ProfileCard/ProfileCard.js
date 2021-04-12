@@ -1,23 +1,28 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Link, useHistory } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { ReactComponent as PhoneIcon } from "../../icons/phone.svg";
 import { ReactComponent as MailIcon } from "../../icons/mail.svg";
 import { ReactComponent as EditIcon } from "../../icons/edit.svg";
 import { ReactComponent as ProfilePlaceholder } from "../../icons/profile.placeholder.svg";
 import background from "../../images/rectangle-petrol.png";
 
-export default function ProfileCard({ open, mentor, onReload, setMentors }) {
+export default function ProfileCard({ open, mentor, setMentors }) {
   const history = useHistory();
+
+  const [toggle, setToggle] = useState(true);
+  const triggerToggle = () => {
+    setToggle(!toggle);
+  };
 
   /*const setInactive = (mentor) => {
     let active = !mentor.isActive;
-    //onReload(mentor);
     fetch("/mentors/" + mentor._id, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        isActive: active,
+        isActive: !mentor.isActive,
       }),
     })
       .then((response) => response.json())
@@ -38,7 +43,7 @@ export default function ProfileCard({ open, mentor, onReload, setMentors }) {
       .then(
         fetch("/mentors")
           .then((result) => result.json())
-          .then((mentors) => setMentors(mentors))
+          .then(() => setToggle(toggle))
           .catch((error) => console.error(error.message))
       )
       .catch((error) => console.error(error.message));
