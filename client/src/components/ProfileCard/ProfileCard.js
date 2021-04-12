@@ -7,12 +7,12 @@ import { ReactComponent as EditIcon } from "../../icons/edit.svg";
 import { ReactComponent as ProfilePlaceholder } from "../../icons/profile.placeholder.svg";
 import background from "../../images/rectangle-petrol.png";
 
-export default function ProfileCard({ open, mentor, onReload }) {
+export default function ProfileCard({ open, mentor, onReload, setMentors }) {
   const history = useHistory();
 
-  const setInactive = (mentor) => {
+  /*const setInactive = (mentor) => {
     let active = !mentor.isActive;
-    onReload(mentor);
+    //onReload(mentor);
     fetch("/mentors/" + mentor._id, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -24,9 +24,9 @@ export default function ProfileCard({ open, mentor, onReload }) {
       .then(() => history.push("/profile"))
       //.then((mentor) => setMentors(mentor))
       .catch((error) => console.error(error.message));
-  };
+  };*/
 
-  /*const setInactive = (mentor) => {
+  const setInactive = (mentor) => {
     let active = !mentor.isActive;
     fetch("/mentors/" + mentor._id, {
       method: "PUT",
@@ -42,7 +42,7 @@ export default function ProfileCard({ open, mentor, onReload }) {
           .catch((error) => console.error(error.message))
       )
       .catch((error) => console.error(error.message));
-  };*/
+  };
 
   return (
     <>
