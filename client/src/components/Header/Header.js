@@ -31,7 +31,7 @@ export default function Header({ open, setOpen, headline }) {
 
 const Wrapper = styled.section`
   background-color: var(--petrol);
-  height: 20vh;
+  height: 22vh;
   padding-top: 2rem;
   padding-left: 1.5rem;
   color: white;

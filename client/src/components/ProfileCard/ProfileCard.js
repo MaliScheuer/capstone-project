@@ -95,7 +95,7 @@ export default function ProfileCard({ open, mentor, onReload }) {
 const Section = styled.section`
   opacity: ${({ open, toggle }) => (open || !toggle ? "40%" : "100%")};
   position: relative;
-  top: -0.8rem;
+  top: -0.2rem;
   text-align: center;
   padding: 1.2rem;
   background: url(${background});

@@ -1,5 +1,5 @@
 export const isValidMentorName = (name) => {
-  const letters = /^[a-z ,.'-]+$/i;
+  const letters = /^[A-Za-z_äÄöÖüÜß ,.'-]+$/i;
   if (name.length >= 2 && name.match(letters)) {
     return true;
   } else {
