@@ -4,7 +4,7 @@
 
 You have been looking for a suitable mentor for a long time or would like to share your experience as a mentor? Oraculi, the platform for all mentors & mentees to be, helps you with exactly that. Users can either register as a mentor themselves or use various search criteria to find the perfect mentor match.
 
-(client/src/images/oraculi_screens.png)
+![oraculi app](/client/src/images/oraculi_screens.png)
 
 ## `Demo`
 
