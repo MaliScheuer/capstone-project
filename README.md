@@ -4,10 +4,13 @@
 
 You have been looking for a suitable mentor for a long time or would like to share your experience as a mentor? Oraculi, the platform for all mentors & mentees to be, helps you with exactly that. Users can either register as a mentor themselves or use various search criteria to find the perfect mentor match.
 
+(client/src/images/oraculi_screens.png)
+
 ## `Demo`
 
 Try out the app here: [Oraculi](https://oraculi0.herokuapp.com/)
-To try out the fake login, enter 'Max' or 'Lisa' as user name.
+
+In order to use the fake login, enter 'Max' or 'Lisa' as user name.
 
 ### The app is currently only supported as a mobile/responsive version.
 
