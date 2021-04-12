@@ -47,6 +47,10 @@ function App() {
       .catch((error) => console.error(error.message));
   }, []);
 
+  function onReload() {
+    setMentors(mentors);
+  }
+
   function addToFavouriteMentor(favouriteMentor) {
     const selectedFavourite = mentors.filter(
       (mentor) => mentor._id === favouriteMentor._id
@@ -112,6 +116,7 @@ function App() {
               mentors={mentors}
               activeUser={activeUser}
               setMentors={setMentors}
+              onReload={onReload}
             />
           </Route>
 

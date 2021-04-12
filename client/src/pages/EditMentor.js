@@ -42,7 +42,6 @@ export default function EditMentor({ open, activeUser, mentors }) {
       }),
     })
       .then((response) => response.json())
-      //.then((mentor) => setEditMentor(mentor))
       .then(() => history.push("/profile"))
       .catch((error) => console.error(error.message));
   };
