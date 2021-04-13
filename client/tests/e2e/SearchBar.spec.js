@@ -27,4 +27,10 @@ describe("SearchBar Component E2E tested", () => {
     cy.get(DROPDOWN_COMPETENCE_FIELD).select("Arts and Entertainment");
     cy.get(MENTOR_CARD).should("have.length", 2);
   });
+
+  it("renders all mentors who matching the search query input OR field of competence dropdown", () => {
+    cy.get(DROPDOWN_COMPETENCE_FIELD).select("Health and Medicine");
+    cy.get(SEARCH_INPUT_FIELD).type("self employment");
+    cy.get(MENTOR_CARD).should("have.length", 4);
+  });
 });
