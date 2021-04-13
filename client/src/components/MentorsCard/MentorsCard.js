@@ -16,7 +16,7 @@ export default function MentorsCard({
   const [details, setDetails] = useState(false);
 
   return (
-    <Wrapper open={open}>
+    <Wrapper open={open} data-testid="mentor-card">
       <Section>
         <IconWrapper isFavourite={isFavourite}>
           <HeartIconPetrol onClick={onAddToFavourites} />

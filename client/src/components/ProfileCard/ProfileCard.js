@@ -8,13 +8,8 @@ import { ReactComponent as EditIcon } from "../../icons/edit.svg";
 import { ReactComponent as ProfilePlaceholder } from "../../icons/profile.placeholder.svg";
 import background from "../../images/rectangle-petrol.png";
 
-export default function ProfileCard({ open, mentor, setMentors }) {
+export default function ProfileCard({ open, mentor, setMentors, activeUser }) {
   const history = useHistory();
-
-  const [toggle, setToggle] = useState(true);
-  const triggerToggle = () => {
-    setToggle(!toggle);
-  };
 
   /*const setInactive = (mentor) => {
     let active = !mentor.isActive;
@@ -22,7 +17,7 @@ export default function ProfileCard({ open, mentor, setMentors }) {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        isActive: !mentor.isActive,
+        isActive: active,
       }),
     })
       .then((response) => response.json())
@@ -43,9 +38,11 @@ export default function ProfileCard({ open, mentor, setMentors }) {
       .then(
         fetch("/mentors")
           .then((result) => result.json())
-          .then(() => setToggle(toggle))
+
+          .then((mentors) => setMentors(mentors))
           .catch((error) => console.error(error.message))
       )
+      .then(() => history.push("/profile"))
       .catch((error) => console.error(error.message));
   };
 
