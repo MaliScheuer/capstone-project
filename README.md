@@ -12,7 +12,7 @@ Try out the app here: [Oraculi](https://oraculi0.herokuapp.com/)
 
 In order to use the fake login, enter 'Max' or 'Lisa' as user name.
 
-### The app is currently only supported as a mobile/responsive version.
+### The app is currently only supported as a mobile version.
 
 ## `Tech Stacks: `
 
