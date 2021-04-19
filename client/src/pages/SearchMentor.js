@@ -75,17 +75,19 @@ export default function SearchMentor({
       />
 
       <Result>Results: {searchResults}</Result>
-      {filteredMentors.map((mentor) => (
-        <MentorsCard
-          onAddToFavourites={() => addToFavouriteMentor(mentor)}
-          open={open}
-          key={mentor._id}
-          mentor={mentor}
-          isFavourite={favourites.some(
-            (favourite) => mentor._id === favourite._id
-          )}
-        />
-      ))}
+      <Wrapper>
+        {filteredMentors.map((mentor) => (
+          <MentorsCard
+            onAddToFavourites={() => addToFavouriteMentor(mentor)}
+            open={open}
+            key={mentor._id}
+            mentor={mentor}
+            isFavourite={favourites.some(
+              (favourite) => mentor._id === favourite._id
+            )}
+          />
+        ))}
+      </Wrapper>
 
       {filteredMentors.length === 0 && (
         <NoResult>
@@ -96,6 +98,23 @@ export default function SearchMentor({
     </>
   );
 }
+
+const Wrapper = styled.div`
+  @media (min-width: 801px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media (min-width: 501px) and (max-width: 800px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 500px) {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+`;
 
 const NoResult = styled.p`
   color: var(--petrol);

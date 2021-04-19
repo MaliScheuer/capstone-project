@@ -64,6 +64,11 @@ const SearchWrapper = styled.section`
   border-radius: 1rem;
   padding: 1rem 2rem;
 
+  @media (min-width: 700px) {
+    width: 40%;
+    margin: 1rem auto;
+  }
+
   input,
   select {
     margin-bottom: 1rem;

@@ -322,6 +322,7 @@ const FormWrapper = styled.form`
   position: ${(props) => (props.isStatic ? "static" : "absolute")};
   display: flex;
   flex-direction: column;
+  align-content: center;
   margin: 2.3rem;
   gap: 0.2rem;
   opacity: ${({ open, valid }) => (open || valid ? "40%" : "100%")};

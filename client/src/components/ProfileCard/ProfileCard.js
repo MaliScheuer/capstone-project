@@ -47,50 +47,48 @@ export default function ProfileCard({ open, mentor, setMentors, activeUser }) {
   };
 
   return (
-    <>
-      <Section toggle={mentor.isActive} open={open}>
-        <div onChange={() => setInactive(mentor)}>
-          <SwitchIcon className={mentor.isActive && "active"}>
-            <input type="checkbox" />
-            <Slider className={mentor.isActive && "active"} />
-          </SwitchIcon>
-        </div>
-        <WrapperImageContact>
-          {mentor.image ? (
-            <ProfileImg src={`/assets/${mentor.image.name}`} />
-          ) : (
-            <ProfilePlaceholder />
-          )}
-          <Name>{mentor.mentor_name}</Name>
-          <WrapperContact>
-            <PhoneMail>
-              <PhoneIcon />
-              <p>{mentor.phone}</p>
-            </PhoneMail>
-            <PhoneMail>
-              <MailIcon />
-              <p>{mentor.email}</p>
-            </PhoneMail>
-          </WrapperContact>
-        </WrapperImageContact>
-        <Subline>Field of Competence</Subline>
-        <Competence>{mentor.competence}</Competence>
-        <Subline>About Me</Subline>
-        <About>{mentor.about}</About>
-        <Subline>Skills</Subline>
-        <WrapperBuzzwords>
-          {mentor.buzzwords.map((buzzword, index) => (
-            <Buzzwords key={index}>{buzzword}</Buzzwords>
-          ))}
-        </WrapperBuzzwords>
-        <Link to="/edit-profile">
-          <EditButton>
-            <EditIcon />
-            Edit
-          </EditButton>
-        </Link>
-      </Section>
-    </>
+    <Section toggle={mentor.isActive} open={open}>
+      <div onChange={() => setInactive(mentor)}>
+        <SwitchIcon className={mentor.isActive && "active"}>
+          <input type="checkbox" />
+          <Slider className={mentor.isActive && "active"} />
+        </SwitchIcon>
+      </div>
+      <WrapperImageContact>
+        {mentor.image ? (
+          <ProfileImg src={`/assets/${mentor.image.name}`} />
+        ) : (
+          <ProfilePlaceholder />
+        )}
+        <Name>{mentor.mentor_name}</Name>
+        <WrapperContact>
+          <PhoneMail>
+            <PhoneIcon />
+            <p>{mentor.phone}</p>
+          </PhoneMail>
+          <PhoneMail>
+            <MailIcon />
+            <p>{mentor.email}</p>
+          </PhoneMail>
+        </WrapperContact>
+      </WrapperImageContact>
+      <Subline>Field of Competence</Subline>
+      <Competence>{mentor.competence}</Competence>
+      <Subline>About Me</Subline>
+      <About>{mentor.about}</About>
+      <Subline>Skills</Subline>
+      <WrapperBuzzwords>
+        {mentor.buzzwords.map((buzzword, index) => (
+          <Buzzwords key={index}>{buzzword}</Buzzwords>
+        ))}
+      </WrapperBuzzwords>
+      <Link to="/edit-profile">
+        <EditButton>
+          <EditIcon />
+          Edit
+        </EditButton>
+      </Link>
+    </Section>
   );
 }
 
@@ -101,7 +99,7 @@ const Section = styled.section`
   text-align: center;
   padding: 1.2rem;
   background: url(${background});
-  width: 100%;
+  width: 100vw;
   background-repeat: no-repeat;
   background-size: cover;
   height: 110px;
@@ -115,6 +113,10 @@ const Section = styled.section`
   }
   a {
     text-decoration: none;
+  }
+
+  @media (min-width: 600px) {
+    width: 50vw;
   }
 `;
 
@@ -135,6 +137,9 @@ const SwitchIcon = styled.label`
   }
   &.active {
     opacity: 100%;
+  }
+  @media (min-width: 600px) {
+    left: 20vw;
   }
 `;
 const Slider = styled.span`
