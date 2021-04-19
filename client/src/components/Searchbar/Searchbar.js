@@ -17,6 +17,7 @@ export default function Searchbar({
           name="competence"
           value={searchterm.competence}
           onChange={onhandleChange}
+          data-testid="competence-input"
         >
           <option>Choose field of competence</option>
           <option>Architecture and Engineering</option>
@@ -39,6 +40,7 @@ export default function Searchbar({
           placeholder="Enter skill or buzzword..."
           value={searchterm.buzzwords}
           onChange={onhandleChange}
+          data-testid="search-input"
         />
         <CtaButton
           type="button"

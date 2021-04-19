@@ -1,18 +1,18 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Link, useHistory } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { ReactComponent as PhoneIcon } from "../../icons/phone.svg";
 import { ReactComponent as MailIcon } from "../../icons/mail.svg";
 import { ReactComponent as EditIcon } from "../../icons/edit.svg";
 import { ReactComponent as ProfilePlaceholder } from "../../icons/profile.placeholder.svg";
 import background from "../../images/rectangle-petrol.png";
 
-export default function ProfileCard({ open, mentor, onReload }) {
+export default function ProfileCard({ open, mentor, setMentors, activeUser }) {
   const history = useHistory();
 
-  const setInactive = (mentor) => {
+  /*const setInactive = (mentor) => {
     let active = !mentor.isActive;
-    onReload(mentor);
     fetch("/mentors/" + mentor._id, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -24,9 +24,9 @@ export default function ProfileCard({ open, mentor, onReload }) {
       .then(() => history.push("/profile"))
       //.then((mentor) => setMentors(mentor))
       .catch((error) => console.error(error.message));
-  };
+  };*/
 
-  /*const setInactive = (mentor) => {
+  const setInactive = (mentor) => {
     let active = !mentor.isActive;
     fetch("/mentors/" + mentor._id, {
       method: "PUT",
@@ -38,11 +38,13 @@ export default function ProfileCard({ open, mentor, onReload }) {
       .then(
         fetch("/mentors")
           .then((result) => result.json())
+
           .then((mentors) => setMentors(mentors))
           .catch((error) => console.error(error.message))
       )
+      .then(() => history.push("/profile"))
       .catch((error) => console.error(error.message));
-  };*/
+  };
 
   return (
     <>
