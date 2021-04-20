@@ -188,7 +188,7 @@ const WrapperImageContact = styled.section`
   }
   @media (min-width: 1000px) {
     width: 40vw;
-    padding: 2.5rem;
+    padding: 2rem;
   }
 `;
 const Name = styled.h4`

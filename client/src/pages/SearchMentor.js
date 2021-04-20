@@ -100,12 +100,12 @@ export default function SearchMentor({
 }
 
 const Wrapper = styled.div`
-  @media (min-width: 801px) {
+  @media (min-width: 1025px) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
   }
 
-  @media (min-width: 501px) and (max-width: 800px) {
+  @media (min-width: 501px) and (max-width: 1024px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
