@@ -8,7 +8,7 @@ export default function Favourites({ favourites, removeFavourite, open }) {
   );
 
   return (
-    <>
+    <Wrapper>
       {allActiveFavourites.map((mentor, index) => (
         <MentorsCard
           onAddToFavourites={() => removeFavourite(mentor._id)}
@@ -23,9 +23,26 @@ export default function Favourites({ favourites, removeFavourite, open }) {
           You haven´t nominated any mentors to be part of your favourites yet.
         </NoFavourites>
       )}
-    </>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  @media (min-width: 801px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media (min-width: 501px) and (max-width: 800px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 500px) {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+`;
 
 const NoFavourites = styled.p`
   margin: 2rem;

@@ -37,6 +37,14 @@ const Wrapper = styled.section`
   color: white;
   opacity: ${({ open }) => (open ? "40%" : "100%")};
 
+  @media (min-width: 600px) {
+    height: 15vh;
+  }
+
+  @media (min-width: 1025px) {
+    height: 25vh;
+  }
+
   h1 {
     margin-top: 0.4rem;
     letter-spacing: 0.3rem;

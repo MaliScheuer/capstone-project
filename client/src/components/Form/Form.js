@@ -171,7 +171,7 @@ export default function Form({ postNewMentorToApi, open, isStatic }) {
   }
 
   return (
-    <>
+    <Wrapper>
       <FormWrapper
         isStatic={isStatic}
         open={open}
@@ -314,14 +314,20 @@ export default function Form({ postNewMentorToApi, open, isStatic }) {
           </a>
         </SuccessMessage>
       )}
-    </>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const FormWrapper = styled.form`
   position: ${(props) => (props.isStatic ? "static" : "absolute")};
   display: flex;
   flex-direction: column;
+  align-content: center;
   margin: 2.3rem;
   gap: 0.2rem;
   opacity: ${({ open, valid }) => (open || valid ? "40%" : "100%")};
@@ -365,6 +371,7 @@ const SubmitButton = styled.button`
   width: 230px;
   font-size: 1.1rem;
   align-self: center;
+  margin-bottom: 2rem;
 `;
 
 const SuccessMessage = styled.div`

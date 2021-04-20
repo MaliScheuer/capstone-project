@@ -84,16 +84,16 @@ export default function EditForm({
   }
 
   return (
-    <>
-      <Link to="/profile">
-        <GoBack>go back</GoBack>
-      </Link>
+    <Wrapper>
       <FormWrapper
         isStatic={isStatic}
         open={open}
         valid={valid}
         onSubmit={submitForm}
       >
+        <Link to="/profile">
+          <GoBack>go back</GoBack>
+        </Link>
         <input
           type="text"
           name="mentor_name"
@@ -194,9 +194,14 @@ export default function EditForm({
           Update Profile
         </SubmitButton>
       </FormWrapper>
-    </>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const FormWrapper = styled.form`
   position: ${(props) => (props.isStatic ? "static" : "absolute")};
@@ -241,6 +246,7 @@ const SubmitButton = styled.button`
   width: 230px;
   font-size: 1.1rem;
   align-self: center;
+  margin-bottom: 2rem;
 `;
 
 const ImageWrapper = styled.section`
