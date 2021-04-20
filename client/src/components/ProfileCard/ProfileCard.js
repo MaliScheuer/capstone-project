@@ -241,7 +241,7 @@ const Competence = styled.p`
 const About = styled.p`
   font-size: 0.8rem;
   @media (min-width: 600px) {
-    width: 50vw;
+    width: 40vw;
   }
 `;
 
@@ -292,7 +292,7 @@ const EditButton = styled.button`
   cursor: pointer;
 
   @media (min-width: 600px) {
-    left: 21vw;
+    left: 22vw;
   }
 
   @media (min-width: 1000px) {
